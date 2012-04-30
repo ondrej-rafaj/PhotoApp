@@ -15,5 +15,11 @@
 + (AVCaptureTorchMode)torchMode;
 + (void)setTorchMode:(AVCaptureTorchMode)mode;
 
++ (BOOL)isFirstLaunch;
+
++ (NSString *)photoGalleryName;
+
++ (NSString *)flurryCode;
+
 
 @end

@@ -31,7 +31,6 @@
 		4C9575E11540AA9500A7141E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9575DD1540AA9500A7141E /* OpenGLES.framework */; };
 		4C9575E21540AA9500A7141E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9575DE1540AA9500A7141E /* QuartzCore.framework */; };
 		4C9575E51540AAAD00A7141E /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9575E41540AAAD00A7141E /* libGPUImage.a */; };
-		4C9575E91540AEA000A7141E /* PAGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9575E81540AEA000A7141E /* PAGalleryViewController.m */; };
 		4C9575EE1540AF8400A7141E /* PAViewStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9575ED1540AF8400A7141E /* PAViewStyles.m */; };
 		4C9575F11540BD4E00A7141E /* FTCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9575F01540BD4E00A7141E /* FTCameraButtonView.m */; };
 		4C9575F21540BD4E00A7141E /* FTCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9575F01540BD4E00A7141E /* FTCameraButtonView.m */; };
@@ -45,6 +44,42 @@
 		4CC4861A1547F42B007BADC2 /* PA_cameraButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC486161547F42B007BADC2 /* PA_cameraButton@2x.png */; };
 		4CC4861D1547F64C007BADC2 /* PA_cameraIconBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC4861B1547F64C007BADC2 /* PA_cameraIconBig.png */; };
 		4CC4861E1547F64C007BADC2 /* PA_cameraIconBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC4861C1547F64C007BADC2 /* PA_cameraIconBig@2x.png */; };
+		4CC5BC891548A72100442905 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC5BC881548A72100442905 /* Accelerate.framework */; };
+		4CC6E6AD154ED157007C524C /* PA_cameraIconFlip.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E6AB154ED157007C524C /* PA_cameraIconFlip.png */; };
+		4CC6E6AE154ED157007C524C /* PA_cameraIconFlip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E6AC154ED157007C524C /* PA_cameraIconFlip@2x.png */; };
+		4CC6E6B7154EEB0D007C524C /* PAGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6B6154EEB0D007C524C /* PAGalleryView.m */; };
+		4CC6E6D2154EEB98007C524C /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6BD154EEB98007C524C /* AQGridView.m */; };
+		4CC6E6D3154EEB98007C524C /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6BD154EEB98007C524C /* AQGridView.m */; };
+		4CC6E6D4154EEB98007C524C /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6BF154EEB98007C524C /* AQGridViewAnimatorItem.m */; };
+		4CC6E6D5154EEB98007C524C /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6BF154EEB98007C524C /* AQGridViewAnimatorItem.m */; };
+		4CC6E6D6154EEB98007C524C /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C2154EEB98007C524C /* AQGridViewCell.m */; };
+		4CC6E6D7154EEB98007C524C /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C2154EEB98007C524C /* AQGridViewCell.m */; };
+		4CC6E6D8154EEB98007C524C /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C4154EEB98007C524C /* AQGridViewData.m */; };
+		4CC6E6D9154EEB98007C524C /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C4154EEB98007C524C /* AQGridViewData.m */; };
+		4CC6E6DA154EEB98007C524C /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C6154EEB98007C524C /* AQGridViewUpdateInfo.m */; };
+		4CC6E6DB154EEB98007C524C /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C6154EEB98007C524C /* AQGridViewUpdateInfo.m */; };
+		4CC6E6DC154EEB98007C524C /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C8154EEB98007C524C /* AQGridViewUpdateItem.m */; };
+		4CC6E6DD154EEB98007C524C /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6C8154EEB98007C524C /* AQGridViewUpdateItem.m */; };
+		4CC6E6DE154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6CA154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m */; };
+		4CC6E6DF154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6CA154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m */; };
+		4CC6E6E0154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6CC154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m */; };
+		4CC6E6E1154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6CC154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m */; };
+		4CC6E6E2154EEB98007C524C /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6CE154EEB98007C524C /* UIColor+AQGridView.m */; };
+		4CC6E6E3154EEB98007C524C /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6CE154EEB98007C524C /* UIColor+AQGridView.m */; };
+		4CC6E6E4154EEB98007C524C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6D1154EEB98007C524C /* MBProgressHUD.m */; };
+		4CC6E6E5154EEB98007C524C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6D1154EEB98007C524C /* MBProgressHUD.m */; };
+		4CC6E6E9154EED4A007C524C /* PAGalleryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6E8154EED4A007C524C /* PAGalleryViewCell.m */; };
+		4CC6E6EA154EED4A007C524C /* PAGalleryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E6E8154EED4A007C524C /* PAGalleryViewCell.m */; };
+		4CC6E6FD154EFF06007C524C /* PA_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E6FB154EFF06007C524C /* PA_checkmark.png */; };
+		4CC6E6FE154EFF06007C524C /* PA_checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E6FB154EFF06007C524C /* PA_checkmark.png */; };
+		4CC6E6FF154EFF06007C524C /* PA_checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E6FC154EFF06007C524C /* PA_checkmark@2x.png */; };
+		4CC6E700154EFF06007C524C /* PA_checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E6FC154EFF06007C524C /* PA_checkmark@2x.png */; };
+		4CC6E703154F01E8007C524C /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E702154F01E8007C524C /* UIView+Effects.m */; };
+		4CC6E704154F01E8007C524C /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E702154F01E8007C524C /* UIView+Effects.m */; };
+		4CC6E707154F01F6007C524C /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E706154F01F6007C524C /* UIView+Layout.m */; };
+		4CC6E708154F01F6007C524C /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6E706154F01F6007C524C /* UIView+Layout.m */; };
+		4CC6E70C154F03ED007C524C /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC6E70B154F03ED007C524C /* libFlurryAnalytics.a */; };
+		4CC6E70D154F03ED007C524C /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC6E70B154F03ED007C524C /* libFlurryAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +126,6 @@
 		4C9575DD1540AA9500A7141E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4C9575DE1540AA9500A7141E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C9575E41540AAAD00A7141E /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGPUImage.a; path = "DerivedData/RunMe/Build/Products/Debug-iphoneos/libGPUImage.a"; sourceTree = "<group>"; };
-		4C9575E71540AEA000A7141E /* PAGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAGalleryViewController.h; sourceTree = "<group>"; };
-		4C9575E81540AEA000A7141E /* PAGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAGalleryViewController.m; sourceTree = "<group>"; };
 		4C9575EC1540AF8400A7141E /* PAViewStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAViewStyles.h; sourceTree = "<group>"; };
 		4C9575ED1540AF8400A7141E /* PAViewStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAViewStyles.m; sourceTree = "<group>"; };
 		4C9575EF1540BD4E00A7141E /* FTCameraButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCameraButtonView.h; sourceTree = "<group>"; };
@@ -109,6 +142,44 @@
 		4CC486161547F42B007BADC2 /* PA_cameraButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_cameraButton@2x.png"; sourceTree = "<group>"; };
 		4CC4861B1547F64C007BADC2 /* PA_cameraIconBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_cameraIconBig.png; sourceTree = "<group>"; };
 		4CC4861C1547F64C007BADC2 /* PA_cameraIconBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_cameraIconBig@2x.png"; sourceTree = "<group>"; };
+		4CC5BC881548A72100442905 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		4CC6E6AB154ED157007C524C /* PA_cameraIconFlip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_cameraIconFlip.png; sourceTree = "<group>"; };
+		4CC6E6AC154ED157007C524C /* PA_cameraIconFlip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_cameraIconFlip@2x.png"; sourceTree = "<group>"; };
+		4CC6E6B5154EEB0D007C524C /* PAGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAGalleryView.h; sourceTree = "<group>"; };
+		4CC6E6B6154EEB0D007C524C /* PAGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAGalleryView.m; sourceTree = "<group>"; };
+		4CC6E6BA154EEB98007C524C /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
+		4CC6E6BB154EEB98007C524C /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
+		4CC6E6BC154EEB98007C524C /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridView.h; sourceTree = "<group>"; };
+		4CC6E6BD154EEB98007C524C /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridView.m; sourceTree = "<group>"; };
+		4CC6E6BE154EEB98007C524C /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
+		4CC6E6BF154EEB98007C524C /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
+		4CC6E6C0154EEB98007C524C /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
+		4CC6E6C1154EEB98007C524C /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewCell.h; sourceTree = "<group>"; };
+		4CC6E6C2154EEB98007C524C /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewCell.m; sourceTree = "<group>"; };
+		4CC6E6C3154EEB98007C524C /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewData.h; sourceTree = "<group>"; };
+		4CC6E6C4154EEB98007C524C /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewData.m; sourceTree = "<group>"; };
+		4CC6E6C5154EEB98007C524C /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
+		4CC6E6C6154EEB98007C524C /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
+		4CC6E6C7154EEB98007C524C /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateItem.h; sourceTree = "<group>"; };
+		4CC6E6C8154EEB98007C524C /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateItem.m; sourceTree = "<group>"; };
+		4CC6E6C9154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
+		4CC6E6CA154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
+		4CC6E6CB154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
+		4CC6E6CC154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
+		4CC6E6CD154EEB98007C524C /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AQGridView.h"; sourceTree = "<group>"; };
+		4CC6E6CE154EEB98007C524C /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
+		4CC6E6D0154EEB98007C524C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		4CC6E6D1154EEB98007C524C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		4CC6E6E7154EED4A007C524C /* PAGalleryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAGalleryViewCell.h; sourceTree = "<group>"; };
+		4CC6E6E8154EED4A007C524C /* PAGalleryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAGalleryViewCell.m; sourceTree = "<group>"; };
+		4CC6E6FB154EFF06007C524C /* PA_checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_checkmark.png; sourceTree = "<group>"; };
+		4CC6E6FC154EFF06007C524C /* PA_checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_checkmark@2x.png"; sourceTree = "<group>"; };
+		4CC6E701154F01E8007C524C /* UIView+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Effects.h"; sourceTree = "<group>"; };
+		4CC6E702154F01E8007C524C /* UIView+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Effects.m"; sourceTree = "<group>"; };
+		4CC6E705154F01F6007C524C /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		4CC6E706154F01F6007C524C /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		4CC6E70A154F03ED007C524C /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		4CC6E70B154F03ED007C524C /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC5BC891548A72100442905 /* Accelerate.framework in Frameworks */,
 				4C7B800C1540CAAD00DF8572 /* AssetsLibrary.framework in Frameworks */,
 				4C7B80051540C38200DF8572 /* AVFoundation.framework in Frameworks */,
 				4C9575E51540AAAD00A7141E /* libGPUImage.a in Frameworks */,
@@ -126,6 +198,7 @@
 				4C95758E1540A85100A7141E /* UIKit.framework in Frameworks */,
 				4C9575901540A85200A7141E /* Foundation.framework in Frameworks */,
 				4C9575921540A85200A7141E /* CoreGraphics.framework in Frameworks */,
+				4CC6E70C154F03ED007C524C /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +209,7 @@
 				4C9575AC1540A85200A7141E /* SenTestingKit.framework in Frameworks */,
 				4C9575AD1540A85200A7141E /* UIKit.framework in Frameworks */,
 				4C9575AE1540A85200A7141E /* Foundation.framework in Frameworks */,
+				4CC6E70D154F03ED007C524C /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +239,7 @@
 		4C95758C1540A85100A7141E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4CC5BC881548A72100442905 /* Accelerate.framework */,
 				4C9575E41540AAAD00A7141E /* libGPUImage.a */,
 				4C7B800B1540CAAD00DF8572 /* AssetsLibrary.framework */,
 				4C7B80041540C38200DF8572 /* AVFoundation.framework */,
@@ -183,6 +258,7 @@
 		4C9575931540A85200A7141E /* PhotoApp */ = {
 			isa = PBXGroup;
 			children = (
+				4CC6E6B8154EEB98007C524C /* Thirdparty */,
 				4C9575C71540A8D400A7141E /* Categories */,
 				4C9575C61540A8C900A7141E /* Config */,
 				4C9575C51540A8BF00A7141E /* Filters */,
@@ -230,7 +306,6 @@
 		4C9575C21540A86300A7141E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4C9575E61540AE8700A7141E /* Gallery */,
 				4C9575C91540A8E800A7141E /* Home */,
 				4C9575C81540A8E200A7141E /* Basic */,
 			);
@@ -240,6 +315,7 @@
 		4C9575C31540A8B200A7141E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4CC6E6B4154EEAED007C524C /* Gallery view */,
 				4CC4860E15475C93007BADC2 /* Photo grid view */,
 				4CC486091547099A007BADC2 /* Cells */,
 				4CC4842215416AB1007BADC2 /* Camera button */,
@@ -276,6 +352,10 @@
 		4C9575C71540A8D400A7141E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4CC6E705154F01F6007C524C /* UIView+Layout.h */,
+				4CC6E706154F01F6007C524C /* UIView+Layout.m */,
+				4CC6E701154F01E8007C524C /* UIView+Effects.h */,
+				4CC6E702154F01E8007C524C /* UIView+Effects.m */,
 				4C7B800D1540CB1A00DF8572 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
 				4C7B800E1540CB1A00DF8572 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
 			);
@@ -307,15 +387,6 @@
 				4C9575D21540AA1400A7141E /* FTRotatingView.m */,
 			);
 			name = "Rotating view";
-			sourceTree = "<group>";
-		};
-		4C9575E61540AE8700A7141E /* Gallery */ = {
-			isa = PBXGroup;
-			children = (
-				4C9575E71540AEA000A7141E /* PAGalleryViewController.h */,
-				4C9575E81540AEA000A7141E /* PAGalleryViewController.m */,
-			);
-			name = Gallery;
 			sourceTree = "<group>";
 		};
 		4C9575EB1540AF6500A7141E /* Styles */ = {
@@ -366,6 +437,10 @@
 		4CC486121547F42B007BADC2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				4CC6E6FB154EFF06007C524C /* PA_checkmark.png */,
+				4CC6E6FC154EFF06007C524C /* PA_checkmark@2x.png */,
+				4CC6E6AB154ED157007C524C /* PA_cameraIconFlip.png */,
+				4CC6E6AC154ED157007C524C /* PA_cameraIconFlip@2x.png */,
 				4CC4861B1547F64C007BADC2 /* PA_cameraIconBig.png */,
 				4CC4861C1547F64C007BADC2 /* PA_cameraIconBig@2x.png */,
 				4CC486131547F42B007BADC2 /* PA_bottomBar.png */,
@@ -375,6 +450,81 @@
 			);
 			path = Assets;
 			sourceTree = SOURCE_ROOT;
+		};
+		4CC6E6B4154EEAED007C524C /* Gallery view */ = {
+			isa = PBXGroup;
+			children = (
+				4CC6E6E6154EED26007C524C /* Gallery view cell */,
+				4CC6E6B5154EEB0D007C524C /* PAGalleryView.h */,
+				4CC6E6B6154EEB0D007C524C /* PAGalleryView.m */,
+			);
+			name = "Gallery view";
+			sourceTree = "<group>";
+		};
+		4CC6E6B8154EEB98007C524C /* Thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				4CC6E709154F03ED007C524C /* FlurryAnalytics */,
+				4CC6E6B9154EEB98007C524C /* AQGridView */,
+				4CC6E6CF154EEB98007C524C /* MBProgressHUD */,
+			);
+			path = Thirdparty;
+			sourceTree = SOURCE_ROOT;
+		};
+		4CC6E6B9154EEB98007C524C /* AQGridView */ = {
+			isa = PBXGroup;
+			children = (
+				4CC6E6BA154EEB98007C524C /* AQGridView+CellLayout.h */,
+				4CC6E6BB154EEB98007C524C /* AQGridView+CellLocationDelegation.h */,
+				4CC6E6BC154EEB98007C524C /* AQGridView.h */,
+				4CC6E6BD154EEB98007C524C /* AQGridView.m */,
+				4CC6E6BE154EEB98007C524C /* AQGridViewAnimatorItem.h */,
+				4CC6E6BF154EEB98007C524C /* AQGridViewAnimatorItem.m */,
+				4CC6E6C0154EEB98007C524C /* AQGridViewCell+AQGridViewCellPrivate.h */,
+				4CC6E6C1154EEB98007C524C /* AQGridViewCell.h */,
+				4CC6E6C2154EEB98007C524C /* AQGridViewCell.m */,
+				4CC6E6C3154EEB98007C524C /* AQGridViewData.h */,
+				4CC6E6C4154EEB98007C524C /* AQGridViewData.m */,
+				4CC6E6C5154EEB98007C524C /* AQGridViewUpdateInfo.h */,
+				4CC6E6C6154EEB98007C524C /* AQGridViewUpdateInfo.m */,
+				4CC6E6C7154EEB98007C524C /* AQGridViewUpdateItem.h */,
+				4CC6E6C8154EEB98007C524C /* AQGridViewUpdateItem.m */,
+				4CC6E6C9154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.h */,
+				4CC6E6CA154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m */,
+				4CC6E6CB154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.h */,
+				4CC6E6CC154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m */,
+				4CC6E6CD154EEB98007C524C /* UIColor+AQGridView.h */,
+				4CC6E6CE154EEB98007C524C /* UIColor+AQGridView.m */,
+			);
+			path = AQGridView;
+			sourceTree = "<group>";
+		};
+		4CC6E6CF154EEB98007C524C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4CC6E6D0154EEB98007C524C /* MBProgressHUD.h */,
+				4CC6E6D1154EEB98007C524C /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		4CC6E6E6154EED26007C524C /* Gallery view cell */ = {
+			isa = PBXGroup;
+			children = (
+				4CC6E6E7154EED4A007C524C /* PAGalleryViewCell.h */,
+				4CC6E6E8154EED4A007C524C /* PAGalleryViewCell.m */,
+			);
+			name = "Gallery view cell";
+			sourceTree = "<group>";
+		};
+		4CC6E709154F03ED007C524C /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				4CC6E70A154F03ED007C524C /* FlurryAnalytics.h */,
+				4CC6E70B154F03ED007C524C /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -455,6 +605,10 @@
 				4CC4861A1547F42B007BADC2 /* PA_cameraButton@2x.png in Resources */,
 				4CC4861D1547F64C007BADC2 /* PA_cameraIconBig.png in Resources */,
 				4CC4861E1547F64C007BADC2 /* PA_cameraIconBig@2x.png in Resources */,
+				4CC6E6AD154ED157007C524C /* PA_cameraIconFlip.png in Resources */,
+				4CC6E6AE154ED157007C524C /* PA_cameraIconFlip@2x.png in Resources */,
+				4CC6E6FD154EFF06007C524C /* PA_checkmark.png in Resources */,
+				4CC6E6FF154EFF06007C524C /* PA_checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +617,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C9575B61540A85200A7141E /* InfoPlist.strings in Resources */,
+				4CC6E6FE154EFF06007C524C /* PA_checkmark.png in Resources */,
+				4CC6E700154EFF06007C524C /* PA_checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,13 +651,26 @@
 				4C9575CC1540A90300A7141E /* PAHomeViewController.m in Sources */,
 				4C9575CF1540A9BE00A7141E /* PAConfig.m in Sources */,
 				4C9575D31540AA1400A7141E /* FTRotatingView.m in Sources */,
-				4C9575E91540AEA000A7141E /* PAGalleryViewController.m in Sources */,
 				4C9575EE1540AF8400A7141E /* PAViewStyles.m in Sources */,
 				4C9575F11540BD4E00A7141E /* FTCameraButtonView.m in Sources */,
 				4C9575F51540BD8600A7141E /* FTFlipButtonView.m in Sources */,
 				4C7B800F1540CB1A00DF8572 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				4CC4860D154709D6007BADC2 /* PAOptionsTableViewCell.m in Sources */,
 				4CC4861115475CBD007BADC2 /* FTPhotoGridView.m in Sources */,
+				4CC6E6B7154EEB0D007C524C /* PAGalleryView.m in Sources */,
+				4CC6E6D2154EEB98007C524C /* AQGridView.m in Sources */,
+				4CC6E6D4154EEB98007C524C /* AQGridViewAnimatorItem.m in Sources */,
+				4CC6E6D6154EEB98007C524C /* AQGridViewCell.m in Sources */,
+				4CC6E6D8154EEB98007C524C /* AQGridViewData.m in Sources */,
+				4CC6E6DA154EEB98007C524C /* AQGridViewUpdateInfo.m in Sources */,
+				4CC6E6DC154EEB98007C524C /* AQGridViewUpdateItem.m in Sources */,
+				4CC6E6DE154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
+				4CC6E6E0154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m in Sources */,
+				4CC6E6E2154EEB98007C524C /* UIColor+AQGridView.m in Sources */,
+				4CC6E6E4154EEB98007C524C /* MBProgressHUD.m in Sources */,
+				4CC6E6E9154EED4A007C524C /* PAGalleryViewCell.m in Sources */,
+				4CC6E703154F01E8007C524C /* UIView+Effects.m in Sources */,
+				4CC6E707154F01F6007C524C /* UIView+Layout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +682,19 @@
 				4C9575F21540BD4E00A7141E /* FTCameraButtonView.m in Sources */,
 				4C9575F61540BD8600A7141E /* FTFlipButtonView.m in Sources */,
 				4C7B80101540CB1A00DF8572 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
+				4CC6E6D3154EEB98007C524C /* AQGridView.m in Sources */,
+				4CC6E6D5154EEB98007C524C /* AQGridViewAnimatorItem.m in Sources */,
+				4CC6E6D7154EEB98007C524C /* AQGridViewCell.m in Sources */,
+				4CC6E6D9154EEB98007C524C /* AQGridViewData.m in Sources */,
+				4CC6E6DB154EEB98007C524C /* AQGridViewUpdateInfo.m in Sources */,
+				4CC6E6DD154EEB98007C524C /* AQGridViewUpdateItem.m in Sources */,
+				4CC6E6DF154EEB98007C524C /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
+				4CC6E6E1154EEB98007C524C /* NSIndexSet+AQIsSetContiguous.m in Sources */,
+				4CC6E6E3154EEB98007C524C /* UIColor+AQGridView.m in Sources */,
+				4CC6E6E5154EEB98007C524C /* MBProgressHUD.m in Sources */,
+				4CC6E6EA154EED4A007C524C /* PAGalleryViewCell.m in Sources */,
+				4CC6E704154F01E8007C524C /* UIView+Effects.m in Sources */,
+				4CC6E708154F01F6007C524C /* UIView+Layout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +766,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fuerte Int Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuerte Int Ltd";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -598,6 +781,8 @@
 					"-all_load",
 					"-ObjC",
 				);
+				PROVISIONING_PROFILE = "095D692E-7BF9-45E1-A7C4-04F5B3C40F66";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "095D692E-7BF9-45E1-A7C4-04F5B3C40F66";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "../GPUImage/framework/**";
 				VALIDATE_PRODUCT = YES;
@@ -614,10 +799,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -631,10 +817,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -650,6 +837,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
 				INFOPLIST_FILE = "PhotoAppTests/PhotoAppTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -667,6 +858,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
 				INFOPLIST_FILE = "PhotoAppTests/PhotoAppTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

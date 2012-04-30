@@ -19,5 +19,20 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (BOOL)isFirstLaunch {
+	BOOL didLaunchBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"PAConfigIsFirstLaunch"];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"PAConfigIsFirstLaunch"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	return !didLaunchBefore;
+}
+
++ (NSString *)photoGalleryName {
+	return @"Sepia Pro";
+}
+
++ (NSString *)flurryCode {
+	return @"6THGBQVWHALTY5KPVBID"; // Sepia Pro
+}
+
 
 @end

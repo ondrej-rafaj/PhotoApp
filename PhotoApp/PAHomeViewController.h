@@ -13,38 +13,51 @@
 #import "FTFlipButtonView.h"
 #import "FTPhotoGridView.h"
 #import "PAOptionsTableViewCell.h"
+#import "PAGalleryView.h"
+#import "MBProgressHUD.h"
 #import "GPUImage.h"
 
 
-@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate> {
+@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate> {
 	
 	UIToolbar *mainToolbar;
+	FTFlipBarButtonItem *galleryFlipButton;
 	
 	UIView *mainView;
+	
+	UIView *cameraMainView;
 	GPUImageView *cameraView;
-	UIView *settingsView;
-	
 	UIView *touchDetector;
-	
 	FTPhotoGridView *gridView;
-	
 	UITableView *optionsTable;
-	NSMutableArray *data;
-	
 	FTCameraButtonView *flashButton;
 	FTCameraButtonView *optionsButton;
-	
 	GPUImageStillCamera *stillCamera;
     GPUImageFilter *filter;
+    GPUImageVignetteFilter *vignette;
     UISlider *filterSettingsSlider;
+	AVCaptureSession *avSession;
+	AVCaptureTorchMode torchMode;
+	UIButton *snapButton;
+	CGFloat optionsTableHeight;
+	UIImageView *flyingView;
+	MBProgressHUD *progressHud;
+	
+	UIView *galleryMainView;
+	PAGalleryView *galleryDisplayView;
+	
+	NSMutableArray *data;
 	
 	ALAssetsLibrary *library;
+	NSMutableArray *assets;
 	
-	AVCaptureSession *avSession;
 	
-	AVCaptureTorchMode torchMode;
 	
 }
+
+@property (nonatomic) UIInterfaceOrientation orientation;
+
+- (void)rotateElements;
 
 
 @end
