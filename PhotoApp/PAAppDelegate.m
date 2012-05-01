@@ -8,7 +8,8 @@
 
 #import "PAAppDelegate.h"
 #import "PAHomeViewController.h"
-#import "FlurryAnalytics.h"
+#import "FTTracking.h"
+#import "FTProjectInitialization.h"
 #import "PAConfig.h"
 
 
@@ -27,7 +28,7 @@
 	self.viewController = [[PAHomeViewController alloc] init];
 	self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-	[FlurryAnalytics startSession:[PAConfig flurryCode]];
+	[FTProjectInitialization enableFlurryWithApiKey:[PAConfig flurryCode]];
     return YES;
 }
 

@@ -34,5 +34,9 @@
 	return @"6THGBQVWHALTY5KPVBID"; // Sepia Pro
 }
 
++ (NSString *)facebookAppId {
+	return @"221860844593941"; // Sepia Pro
+}
+
 
 @end

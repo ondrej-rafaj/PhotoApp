@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Fuerte International. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FTViewController.h"
 
-@interface PAViewController : UIViewController
+@interface PAViewController : FTViewController
 
 @end

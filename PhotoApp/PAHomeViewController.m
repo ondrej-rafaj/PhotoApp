@@ -8,11 +8,16 @@
 
 #import "PAHomeViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Twitter/Twitter.h>
 #import "PAViewStyles.h"
 #import "PAAppDelegate.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
-#import "FlurryAnalytics.h"
+#import "UIImage+Tools.h"
+#import "FTTracking.h"
+#import "FTAlertView.h"
+#import "FTLang.h"
 #import "PAConfig.h"
+#import "FTSystem.h"
 
 
 #define degreesToRadians(x) (M_PI * (x) / 180.0)
@@ -87,6 +92,10 @@
 	}
 }
 
+- (CGRect)frameForGalleryDisplayView {
+	return galleryMainView.bounds;
+}
+
 #pragma mark Data management
 
 - (void)reloadData {
@@ -127,8 +136,6 @@
 	if (!galleryFlipButton) {
 		galleryFlipButton = [[FTFlipBarButtonItem alloc] initWithFlipBarButtonItem];
 		[galleryFlipButton.flipButton setDelegate:self];
-		[galleryFlipButton.flipButton.frontButton addTarget:self action:@selector(didClickGallery:) forControlEvents:UIControlEventTouchUpInside];
-		[galleryFlipButton.flipButton.backButton addTarget:self action:@selector(didClickGallery:) forControlEvents:UIControlEventTouchUpInside];
 		[galleryFlipButton.flipButton.backButton setBackgroundColor:[UIColor blackColor]];
 		[galleryFlipButton.flipButton.backButton setImage:[UIImage imageNamed:@"PA_cameraIconFlip.png"] forState:UIControlStateNormal];
 	}
@@ -220,13 +227,13 @@
 }
 
 - (void)createFunctionButtons {
-	data = [NSMutableArray array];
-	[data addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
-	[data addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
-	[data addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the sepia effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
+	optionsData = [NSMutableArray array];
+	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
+	[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
+	[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the sepia effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
 	
 	if ([PAConfig isFirstLaunch]) {
-		for (NSDictionary *a in data) {
+		for (NSDictionary *a in optionsData) {
 			[[NSUserDefaults standardUserDefaults] setFloat:1.0 forKey:[a objectForKey:@"identifier"]];
 		}
 		[[NSUserDefaults standardUserDefaults]synchronize];
@@ -279,6 +286,7 @@
 	[vignette prepareForImageCapture];
 	
 	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
+	[rotationFilter prepareForImageCapture];
     [stillCamera addTarget:rotationFilter];
     [rotationFilter addTarget:vignette];
     [filter addTarget:cameraView];
@@ -344,10 +352,13 @@
 }
 
 - (void)createGalleryView {
-	galleryMainView = [[UIView alloc] initWithFrame:self.view.bounds];
+	CGRect r = self.view.bounds;
+	r.size.height -= 53;
+	galleryMainView = [[UIView alloc] initWithFrame:r];
 	[galleryMainView setBackgroundColor:[UIColor blackColor]];
 	
-	galleryDisplayView = [[PAGalleryView alloc] initWithFrame:galleryMainView.bounds];
+	galleryDisplayView = [[PAGalleryView alloc] initWithFrame:[self frameForGalleryDisplayView]];
+	[galleryDisplayView setDelegate:self];
 	[galleryMainView setBackgroundColor:[UIColor clearColor]];
 	[galleryMainView addSubview:galleryDisplayView];
 	
@@ -365,7 +376,7 @@
 #pragma mark HUD delegate method
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
-	[FlurryAnalytics logEvent:@"Camera: Photo saved successfully"];
+	[FTTracking logEvent:@"Camera: Photo saved successfully"];
 }
 
 #pragma mark Saving photo
@@ -407,14 +418,14 @@
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:galleryFlipButton.flipButton.rotationInterval];
 	if (screen == FTFlipButtonViewScreenFront) {
-		[FlurryAnalytics logEvent:@"Gallery"];
+		[FTTracking logEvent:@"Gallery"];
 		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:mainView cache:YES];
 		[mainView addSubview:cameraMainView];
 		[galleryMainView removeFromSuperview];
 		
 	}
 	else {
-		[FlurryAnalytics logEvent:@"Camera"];
+		[FTTracking logEvent:@"Camera"];
 		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:mainView cache:YES];
 		[mainView addSubview:galleryMainView];
 		[cameraMainView removeFromSuperview];
@@ -450,7 +461,7 @@
 }
 
 - (void)didClickTakePhoto:(UIBarButtonItem *)sender {
-	[FlurryAnalytics logEvent:@"Camera: Take photo"];
+	[FTTracking logEvent:@"Camera: Take photo"];
 	if (torchMode == AVCaptureTorchModeOn) {
 		NSError *error = nil;
 		if (![stillCamera.inputCamera lockForConfiguration:&error])
@@ -464,26 +475,8 @@
 	else [self takePhoto];
 }
 
-- (void)didClickFlashPhoto:(UIButton *)sender {
-	[FlurryAnalytics logEvent:@"Camera: Toggle flash"];
-	AVCaptureTorchMode m = [PAConfig torchMode];
-	if (m == AVCaptureTorchModeOff) m = AVCaptureTorchModeOn;
-	else if (m == AVCaptureTorchModeOn) m = AVCaptureTorchModeOff;
-	torchMode = m;
-	[PAConfig setTorchMode:m];
-	[flashButton setTitle:[self getFlashButtonTitle] forState:UIControlStateNormal];
-	CGRect r = flashButton.frame;
-	if (UIInterfaceOrientationIsPortrait(_orientation)) r.size.width = [self getFlashButtonWidth];
-	else r.size.height = [self getFlashButtonWidth];
-	[UIView beginAnimations:nil context:nil];
-	[flashButton setFrame:r];
-	[optionsTable setAlpha:0];
-	[UIView commitAnimations];
-	[optionsButton enableHighlight:NO];
-}
-
 - (void)didClickOptionsPhoto:(UIButton *)sender {
-	[FlurryAnalytics logEvent:@"Camera: Toggle options"];
+	[FTTracking logEvent:@"Camera: Toggle options"];
 	CGFloat alpha = (optionsTable.alpha > 0) ? 0 : 1;
 	if (alpha == 0) {
 		[optionsButton setTitle:@"Options" forState:UIControlStateNormal];
@@ -497,6 +490,24 @@
 	[UIView commitAnimations];
 }
 
+- (void)didClickFlashPhoto:(UIButton *)sender {
+	[FTTracking logEvent:@"Camera: Toggle flash"];
+	AVCaptureTorchMode m = [PAConfig torchMode];
+	if (m == AVCaptureTorchModeOff) m = AVCaptureTorchModeOn;
+	else if (m == AVCaptureTorchModeOn) m = AVCaptureTorchModeOff;
+	torchMode = m;
+	[PAConfig setTorchMode:m];
+	[flashButton setTitle:[self getFlashButtonTitle] forState:UIControlStateNormal];
+	CGRect r = flashButton.frame;
+	if (UIInterfaceOrientationIsPortrait(_orientation)) r.size.width = [self getFlashButtonWidth];
+	else r.size.height = [self getFlashButtonWidth];
+	[UIView beginAnimations:nil context:nil];
+	[flashButton setFrame:r];
+	[UIView commitAnimations];
+	if (optionsTable.alpha > 0) [self didClickOptionsPhoto:optionsButton];
+	[optionsButton enableHighlight:NO];
+}
+
 #pragma mark Options table data source & delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -504,11 +515,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 3;
+	return [optionsData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *d = [data objectAtIndex:indexPath.row];
+	NSDictionary *d = [optionsData objectAtIndex:indexPath.row];
 	if ([[d objectForKey:@"type"] isEqualToString:@"switch"]) return 50.0f;
 	else return 80.0f;
 }
@@ -522,7 +533,7 @@
 		[cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
 		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	}
-	NSDictionary *d = [data objectAtIndex:indexPath.row];
+	NSDictionary *d = [optionsData objectAtIndex:indexPath.row];
 	[cell setIdentifier:[d objectForKey:@"identifier"]];
 	[cell.titleLabel setText:[d objectForKey:@"name"]];
 	[cell.descriptionLabel setText:[d objectForKey:@"description"]];
@@ -550,15 +561,15 @@
 		[UIView beginAnimations:nil context:nil];
 		[gridView setAlpha:alpha];
 		[UIView commitAnimations];
-		if (enabled) [FlurryAnalytics logEvent:@"Camera: Grid enabled"];
-		else [FlurryAnalytics logEvent:@"Camera: Grid disabled"];
+		if (enabled) [FTTracking logEvent:@"Camera: Grid enabled"];
+		else [FTTracking logEvent:@"Camera: Grid disabled"];
 	}
 	else if ([identifier isEqualToString:@"photoVignette"]) {
 		BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:identifier];
 		[vignette setX:((enabled) ? 0.75 : 0)];
 		[vignette setY:((enabled) ? 0.5 : 0)];
-		if (enabled) [FlurryAnalytics logEvent:@"Camera: Vignette enabled"];
-		else [FlurryAnalytics logEvent:@"Camera: Vignette disabled"];
+		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
+		else [FTTracking logEvent:@"Camera: Vignette disabled"];
 	}
 }
 
@@ -579,6 +590,9 @@
 	if (_orientation == UIInterfaceOrientationPortraitUpsideDown) deg = 180;
 	else if (_orientation == UIInterfaceOrientationLandscapeRight) deg = 90;
 	else if (_orientation == UIInterfaceOrientationLandscapeLeft) deg = -90;
+	
+	//deg = -90;
+	
 	CGFloat rad = (deg == 0) ? 0 : degreesToRadians(deg);
 	
 	BOOL isShowingOptionsTable = (optionsTable.alpha > 0);
@@ -590,8 +604,9 @@
 		[snapButton.imageView setTransform:CGAffineTransformMakeRotation(rad)];
 		[galleryFlipButton.flipButton setTransform:CGAffineTransformMakeRotation(rad)];
 		[progressHud setTransform:CGAffineTransformMakeRotation(rad)];
+		[galleryDisplayView setTransform:CGAffineTransformMakeRotation(rad)];
+		[galleryDisplayView setFrame:[self frameForGalleryDisplayView]];
 	} completion:^(BOOL finished) {
-		//[snapButton.imageView setTransform:CGAffineTransformMakeRotation(rad)];
 		[flashButton setTransform:CGAffineTransformMakeRotation(rad)];
 		[optionsButton setTransform:CGAffineTransformMakeRotation(rad)];
 		[optionsTable setTransform:CGAffineTransformMakeRotation(rad)];
@@ -608,6 +623,162 @@
 			
 		}];
 	}];
+}
+
+#pragma mark Gallery view sharing delegate
+
+- (UIImage *)imageForSharingFromAsset:(ALAsset *)asset {
+	ALAssetRepresentation *rep = [asset defaultRepresentation];
+	CGImageRef iref = [rep fullResolutionImage];
+	UIImage *inputImage = [UIImage imageWithCGImage:iref];
+	inputImage = [inputImage scaleWithMaxSize:800];
+	return inputImage;
+	
+//	GPUImageTransformFilter *scale = [[GPUImageTransformFilter alloc] init];
+//	CGFloat mSize = (inputImage.size.width > inputImage.size.height) ? inputImage.size.width : inputImage.size.height;
+//	CGFloat x = (((800 * 100) / mSize) / 100);
+//	[scale setAffineTransform:CGAffineTransformMakeScale(x, x)];
+//	
+//	GPUImageCropFilter *crop = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0.f, 0.125f, 1.0f, 0.75f)];
+//	[crop addTarget:scale];
+//	
+//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
+//	[stillImageSource addTarget:crop];
+//	[stillImageSource processImage];
+//	
+//	return [crop imageFromCurrentlyProcessedOutput];
+}
+
+- (void)galleryView:(PAGalleryView *)gallery requestsFacebookShareFor:(ALAsset *)asset {
+	if ([FTSystem isInternetAvailable]) {
+		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") andAnimationStyle:FTProgressViewAnimationFade];
+		[NSThread detachNewThreadSelector:@selector(prepareForFacebook:) toTarget:self withObject:asset];
+		[FTTracking logEvent:@"Sharing: Post on Facebook"];
+	}
+	else {
+		FTAlertWithTitleAndMessage(FTLangGet(@"No internet connection"), FTLangGet(@"Please connect to the internet!"));
+	}
+}
+
+- (void)galleryView:(PAGalleryView *)gallery requestsEmailShareFor:(ALAsset *)asset {
+	if ([MFMailComposeViewController canSendMail]) {
+		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareEmail:) onTarget:self withObject:asset animated:YES];
+	}
+	else {
+		//[UIAlertView showMessage:FTLangGet(@"Please setup an email account on your device first") withTitle:FTLangGet(@"No Email Account")];
+		FTAlertWithTitleAndMessage(FTLangGet(@"No Email Account"), FTLangGet(@"Please setup an email account on your device first"));
+	}
+}
+
+- (void)galleryView:(PAGalleryView *)gallery requestsTwitterShareFor:(ALAsset *)asset {
+	if ([FTSystem isInternetAvailable]) {
+		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") andAnimationStyle:FTProgressViewAnimationFade];
+		[NSThread detachNewThreadSelector:@selector(prepareForTwitter:) toTarget:self withObject:asset];
+		[FTTracking logEvent:@"Sharing: Post on Twitter"];
+	}
+	else {
+		FTAlertWithTitleAndMessage(FTLangGet(@"No internet connection"), FTLangGet(@"Please connect to the internet!"));
+	}
+}
+
+#pragma mark Twitter sharing
+
+- (void)sendImageToTwitter:(UIImage *)img {
+	if (NSClassFromString(@"TWTweetComposeViewController") && [TWTweetComposeViewController canSendTweet]) {
+		TWTweetComposeViewController *tweetController = [TWTweetComposeViewController new];
+		[tweetController addImage:img];
+		[self presentViewController:tweetController animated:YES completion:nil];
+	}
+	else FTAlertWithTitleAndMessage(FTLangGet(@"Twitter error"), FTLangGet(@"Error posting to Twitter"));
+}
+
+- (void)prepareForTwitter:(ALAsset *)asset {
+	UIImage *img = [self imageForSharingFromAsset:asset];
+	[self performSelectorOnMainThread:@selector(sendImageToTwitter:) withObject:img waitUntilDone:NO];
+}
+
+#pragma mark Facebook sharing
+
+- (void)sendImageOnFacebook:(UIImage *)img {
+	[super.loadingProgressView setLabelText:FTLangGet(@"Posting to Facebook")];
+	PAAppDelegate *appDel = (PAAppDelegate *)[UIApplication sharedApplication].delegate;
+	[appDel.share setReferencedController:self];
+    [appDel.share setUpFacebookWithAppID:[PAConfig facebookAppId] permissions:FTShareFacebookPermissionPublish | FTShareFacebookPermissionOffLine andDelegate:self];
+	
+	FTShareFacebookData *d = [[FTShareFacebookData alloc] init];
+    FTShareFacebookPhoto *photo = [FTShareFacebookPhoto facebookPhotoFromImage:img];
+    [photo setMessage:[NSString stringWithFormat:@"%@ on %@", [PAConfig photoGalleryName], [NSDate date]]];
+	[d setUploadPhoto:photo];
+    [d setType:FTShareFacebookRequestTypeAlbum];
+    [d setHttpType:FTShareFacebookHttpTypePost];
+	//[d setCaption:self.canvasData.title];
+	[appDel.share shareViaFacebook:d];
+}
+
+- (void)prepareForFacebook:(ALAsset *)asset {
+	UIImage *img = [self imageForSharingFromAsset:asset];
+	[self performSelectorOnMainThread:@selector(sendImageOnFacebook:) withObject:img waitUntilDone:NO];
+}
+
+#pragma mark FTShareFacebook delegate
+
+- (void)facebookDidPost:(NSError *)error {
+	NSString *message = FTLangGet(@"Your photo has been successfuly posted");
+	if (error) message = [FTLangGet(@"Error occured while posting image on Facebook: ") stringByAppendingString:[error localizedDescription]];
+    FTAlertWithTitleAndMessage(FTLangGet(@"Facebook"), message);
+	[FTTracking logEvent:@"Sharing: Post on Facebook finished"];
+	[super.loadingProgressView hide:YES];
+}
+
+#pragma Email sharing
+
+- (void)presentMailDialog:(NSData *)imageData {
+	MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+	[mc setMailComposeDelegate:self];
+	[mc setSubject:[NSString stringWithFormat:@"Photo from %@ %@ app", [PAConfig photoGalleryName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone")]];
+	[mc setMessageBody:[NSString stringWithFormat:@"\n\n\n\%@ app by Fuerte International UK - http://www.fuerteint.com/", [PAConfig photoGalleryName]] isHTML:NO];
+	[mc setMessageBody:[NSString stringWithFormat:@"</br></br></br></br>%@ app by <a href='http://www.fuerteint.com/'>Fuerte International UK</a>", [PAConfig photoGalleryName]] isHTML:YES];
+	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:[NSString stringWithFormat:@"%@.png", [NSDate date]]];
+	imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PA_logo" ofType:@"png"]];
+	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:@"Fuerte_International_UK.png"];
+	[mc setModalPresentationStyle:UIModalPresentationPageSheet];
+	[self presentModalViewController:mc animated:YES];
+	[FTTracking logEvent:@"Mail: Sending image"];
+}
+
+- (void)prepareEmail:(ALAsset *)asset {
+	NSData *imageData = UIImagePNGRepresentation([self imageForSharingFromAsset:asset]);
+	[self performSelectorOnMainThread:@selector(presentMailDialog:) withObject:imageData waitUntilDone:NO];
+}
+
+#pragma mark Email delegate method
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+	switch (result) {
+		case MFMailComposeResultCancelled:
+			NSLog(@"Mail send canceled.");
+			[FTTracking logEvent:@"Mail: Mail canceled"];
+			break;
+		case MFMailComposeResultSaved:
+			//[UIAlertView showMessage:FTLangGet(@"Your email has been saved") withTitle:FTLangGet(@"Email")];
+			[FTTracking logEvent:@"Mail: Mail saved"];
+			break;
+		case MFMailComposeResultSent:
+			NSLog(@"Mail sent.");
+			[FTTracking logEvent:@"Mail: Mail sent"];
+			//[UIAlertView showMessage:FTLangGet(@"Your email has been sent") withTitle:FTLangGet(@"Email")];
+			break;
+		case MFMailComposeResultFailed:
+			NSLog(@"Mail send error: %@.", [error localizedDescription]);
+			//[UIAlertView showMessage:[error localizedDescription] withTitle:FTLangGet(@"Error")];
+			FTAlertWithTitleAndMessage(FTLangGet(@"Error"), [error localizedDescription]);
+			[FTTracking logEvent:@"Mail: Mail send failed"];
+			break;
+		default:
+			break;
+	}
+	// hide the modal view controller
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark View lifecycle

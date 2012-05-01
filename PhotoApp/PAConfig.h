@@ -20,6 +20,7 @@
 + (NSString *)photoGalleryName;
 
 + (NSString *)flurryCode;
++ (NSString *)facebookAppId;
 
 
 @end

@@ -8,12 +8,14 @@
 
 #import "PAGalleryView.h"
 #import "PAGalleryViewCell.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import "FTSystem.h"
+#import "FTAlertView.h"
 
 
 @implementation PAGalleryView
 
 @synthesize data = _data;
+@synthesize delegate = _delegate;
 
 
 #pragma mark Initialization
@@ -44,14 +46,14 @@
 }
 
 - (CGSize)portraitGridCellSizeForGridView:(AQGridView *)gridView {
-	return CGSizeMake(90, 90);
+	return CGSizeMake(100, 100);
 }
 
 - (AQGridViewCell *)gridView:(AQGridView *)gridView cellForItemAtIndex:(NSUInteger)index {
 	static NSString *cellIdentifier = @"galleryCellIdentifier";
 	PAGalleryViewCell *cell = (PAGalleryViewCell *)[gridView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (!cell) {
-		cell = [[PAGalleryViewCell alloc] initWithFrame:CGRectMake(0, 0, 90, 90) reuseIdentifier:cellIdentifier];
+		cell = [[PAGalleryViewCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100) reuseIdentifier:cellIdentifier];
 		[cell setSelectionStyle:AQGridViewCellSelectionStyleNone];
 	}
 	ALAsset *a = [_data objectAtIndex:index];
@@ -62,7 +64,37 @@
 }
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index {
-	
+	_selectedAssetIndex = index;
+	UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"Share photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Email", @"Twitter", nil];
+	[as showInView:self.superview];
+}
+
+#pragma mark Action sheet delegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	BOOL isConnection = [FTSystem isInternetAvailable];
+	if (buttonIndex == 0) {
+		if (isConnection) {
+			if ([_delegate respondsToSelector:@selector(galleryView:requestsFacebookShareFor:)]) {
+				[_delegate galleryView:self requestsFacebookShareFor:[_data objectAtIndex:_selectedAssetIndex]];
+			}
+		}
+	}
+	else if (buttonIndex == 1) {
+		if ([_delegate respondsToSelector:@selector(galleryView:requestsEmailShareFor:)]) {
+			[_delegate galleryView:self requestsEmailShareFor:[_data objectAtIndex:_selectedAssetIndex]];
+		}
+	}
+	else if (buttonIndex == 2) {
+		if (isConnection) {
+			if ([_delegate respondsToSelector:@selector(galleryView:requestsTwitterShareFor:)]) {
+				[_delegate galleryView:self requestsTwitterShareFor:[_data objectAtIndex:_selectedAssetIndex]];
+			}
+		}
+	}
+	if (!isConnection && buttonIndex != 3 && buttonIndex != 1) {
+		FTAlertWithTitleAndMessage(@"No connection", @"No internet conection available");
+	}
 }
 
 

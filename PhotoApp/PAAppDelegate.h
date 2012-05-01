@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Fuerte International. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FTAppDelegate.h"
 #import <Accelerate/Accelerate.h>
 
 
 @class PAHomeViewController;
 
-@interface PAAppDelegate : UIResponder <UIApplicationDelegate, UIAccelerometerDelegate>
+@interface PAAppDelegate : FTAppDelegate <UIAccelerometerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) PAHomeViewController *viewController;

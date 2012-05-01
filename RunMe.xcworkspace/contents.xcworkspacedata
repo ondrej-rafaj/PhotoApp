@@ -7,4 +7,7 @@
    <FileRef
       location = "group:../GPUImage/framework/GPUImage.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:../FTLibrary/FTLibrary.xcodeproj">
+   </FileRef>
 </Workspace>

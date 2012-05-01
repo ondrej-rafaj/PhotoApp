@@ -9,6 +9,7 @@
 #import "PAViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MessageUI/MessageUI.h>
 #import "FTCameraButtonView.h"
 #import "FTFlipButtonView.h"
 #import "FTPhotoGridView.h"
@@ -18,7 +19,7 @@
 #import "GPUImage.h"
 
 
-@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate> {
+@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate> {
 	
 	UIToolbar *mainToolbar;
 	FTFlipBarButtonItem *galleryFlipButton;
@@ -46,7 +47,7 @@
 	UIView *galleryMainView;
 	PAGalleryView *galleryDisplayView;
 	
-	NSMutableArray *data;
+	NSMutableArray *optionsData;
 	
 	ALAssetsLibrary *library;
 	NSMutableArray *assets;
