@@ -31,6 +31,7 @@
 @implementation PAHomeViewController
 
 @synthesize orientation = _orientation;
+@synthesize stillCamera = _stillCamera;
 
 
 #pragma mark Positioning
@@ -290,7 +291,7 @@
 	[cameraView setBackgroundColorRed:0 green:0 blue:0 alpha:0];
 	[cameraMainView addSubview:cameraView];
 	
-	stillCamera = [[GPUImageStillCamera alloc] init];
+	_stillCamera = [[GPUImageStillCamera alloc] init];
 	filter = [[GPUImageSepiaFilter alloc] init];
 	[filter prepareForImageCapture];
 	
@@ -300,14 +301,14 @@
 	
 	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
 	[rotationFilter prepareForImageCapture];
-	[stillCamera addTarget:rotationFilter];
+	[_stillCamera addTarget:rotationFilter];
 	[rotationFilter addTarget:vignette];
 	[filter addTarget:cameraView];
 	
 	//		GPUImageSepiaFilter *s = [[GPUImageSepiaFilter alloc] init];
 	//		[s addTarget:cameraView];
 	
-	[stillCamera startCameraCapture];
+	[_stillCamera startCameraCapture];
 }
 
 - (void)createCameraViewElements {
@@ -412,13 +413,24 @@
 }
 
 - (void)saveImage:(UIImage *)image {
+	UIImageOrientation o = UIImageOrientationUp;
+	if (_orientation == UIInterfaceOrientationLandscapeRight) {
+		o = UIImageOrientationLeft;
+	}
+	else if (_orientation == UIInterfaceOrientationLandscapeLeft) {
+		o = UIImageOrientationRight;
+	}
+	else if (_orientation == UIInterfaceOrientationPortraitUpsideDown) {
+		o = UIImageOrientationDown;
+	}
+	image = [UIImage imageWithCGImage:image.CGImage scale:1 orientation:o];
 	[library saveImage:image toAlbum:[PAConfig photoGalleryName] withCompletionBlock:^(NSError *error) {
 		if (error != nil) {
 			NSLog(@"Save image error: %@", [error description]);
 		}
 		else {
 			//library = nil;
-			//library = [[ALAssetsLibrary alloc] init];
+			library = [[ALAssetsLibrary alloc] init];
 		}
 		[progressHud setCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_checkmark.png"]]];
 		[progressHud setMode:MBProgressHUDModeCustomView];
@@ -465,7 +477,7 @@
 #pragma mark Button actions
 
 - (void)takePhoto {
-	[stillCamera capturePhotoProcessedUpToFilter:filter withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+	[_stillCamera capturePhotoProcessedUpToFilter:filter withCompletionHandler:^(UIImage *processedImage, NSError *error) {
 		NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
 		[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
 		
@@ -476,12 +488,12 @@
 		
 		if (torchMode == AVCaptureTorchModeOn || torchMode == AVCaptureTorchModeAuto) {
 			NSError *error = nil;
-			if (![stillCamera.inputCamera lockForConfiguration:&error])
+			if (![_stillCamera.inputCamera lockForConfiguration:&error])
 			{
 				NSLog(@"Error locking for configuration: %@", error);
 			}
-			[stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOff];
-			[stillCamera.inputCamera unlockForConfiguration];
+			[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOff];
+			[_stillCamera.inputCamera unlockForConfiguration];
 		}
 	}];
 }
@@ -490,12 +502,12 @@
 	[FTTracking logEvent:@"Camera: Take photo"];
 	if (torchMode == AVCaptureTorchModeOn) {
 		NSError *error = nil;
-		if (![stillCamera.inputCamera lockForConfiguration:&error])
+		if (![_stillCamera.inputCamera lockForConfiguration:&error])
 		{
 			NSLog(@"Error locking for configuration: %@", error);
 		}
-		[stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOn];
-		[stillCamera.inputCamera unlockForConfiguration];
+		[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOn];
+		[_stillCamera.inputCamera unlockForConfiguration];
 		[NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(takePhoto) userInfo:nil repeats:NO];
 	}
 	else [self takePhoto];

@@ -35,7 +35,6 @@
 	UITableView *optionsTable;
 	FTCameraButtonView *flashButton;
 	FTCameraButtonView *optionsButton;
-	GPUImageStillCamera *stillCamera;
     GPUImageFilter *filter;
     GPUImageVignetteFilter *vignette;
     UISlider *filterSettingsSlider;
@@ -61,6 +60,9 @@
 }
 
 @property (nonatomic) UIInterfaceOrientation orientation;
+
+@property (nonatomic, strong) GPUImageStillCamera *stillCamera;
+
 
 - (void)rotateElements;
 

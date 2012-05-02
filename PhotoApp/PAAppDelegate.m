@@ -35,6 +35,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 	// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+	[_viewController.stillCamera stopCameraCapture];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -48,6 +49,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[_accelerometer setDelegate:self];
 	[_accelerometer setUpdateInterval:1.4];
+	[_viewController.stillCamera startCameraCapture];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
