@@ -19,9 +19,12 @@
 #import "GPUImage.h"
 #import "PASharingView.h"
 #import "PAPhotoDetailView.h"
+#import "PAConfig.h"
 
 
 @interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate> {
+	
+	PAConfig *config;
 	
 	UIToolbar *mainToolbar;
 	FTFlipBarButtonItem *galleryFlipButton;
@@ -35,8 +38,6 @@
 	UITableView *optionsTable;
 	FTCameraButtonView *flashButton;
 	FTCameraButtonView *optionsButton;
-    GPUImageFilter *filter;
-    GPUImageVignetteFilter *vignette;
     UISlider *filterSettingsSlider;
 	AVCaptureSession *avSession;
 	AVCaptureTorchMode torchMode;

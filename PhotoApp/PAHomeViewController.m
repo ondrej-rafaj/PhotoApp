@@ -17,7 +17,6 @@
 #import "FTTracking.h"
 #import "FTAlertView.h"
 #import "FTLang.h"
-#import "PAConfig.h"
 #import "FTSystem.h"
 
 
@@ -106,7 +105,7 @@
 	[library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
 		if (group != nil) {
 			//NSLog(@"Group name: %@", [group valueForProperty:ALAssetsGroupPropertyName]);
-			if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:[PAConfig photoGalleryName]]) {
+			if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:[PAConfig appName]]) {
 				[group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
 					if (result != nil) {
 						//NSLog(@"See asset: %@", result);
@@ -158,7 +157,6 @@
 		
 		UIBarButtonItem *snap = [[UIBarButtonItem alloc] initWithCustomView:snapButton];
 		[arr addObject:snap];
-		
 	}
 	
 	flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -167,9 +165,6 @@
 	UIBarButtonItem *fixed = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 	[fixed setWidth:34];
 	[arr addObject:flex];
-	
-	//	lib = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(didClickLibrary:)];
-	//	[arr addObject:lib];
 	
 	[mainToolbar setItems:arr animated:animated];
 }
@@ -215,24 +210,8 @@
 	}
 }
 
-- (NSMutableDictionary *)dictionaryWithName:(NSString *)name withDescription:(NSString *)desc withIdentifier:(NSString *)identifier andType:(NSString *)type {
-	NSMutableDictionary *d = [NSMutableDictionary dictionary];
-	[d setValue:name forKey:@"name"];
-	[d setValue:desc forKey:@"description"];
-	[d setValue:identifier forKey:@"identifier"];
-	[d setValue:type forKey:@"type"];
-	return d;
-}
-
-- (NSMutableDictionary *)dictionaryWithName:(NSString *)name withDescription:(NSString *)desc andIdentifier:(NSString *)identifier {
-	return [self dictionaryWithName:name withDescription:desc withIdentifier:identifier andType:@"switch"];
-}
-
 - (void)createFunctionButtons {
-	optionsData = [NSMutableArray array];
-	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
-	[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
-	[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the sepia effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
+	optionsData = [config optionsData];
 	
 	if ([PAConfig isFirstLaunch]) {
 		for (NSDictionary *a in optionsData) {
@@ -279,34 +258,29 @@
 	cameraView = [[GPUImageView alloc] initWithFrame:r];
 	
 	[cameraView setFillMode:kGPUImageFillModePreserveAspectRatio];
+	
 	if ([[UIDevice currentDevice] iPhone4]) {
-		[cameraView setFillMode:kGPUImageFillModePreserveAspectRatioAndFill];
+		
 	}
 	else {
-		[cameraView setFillMode:kGPUImageFillModePreserveAspectRatio];
+		
 	}
-	
-	NSLog(@"Photo preset size: %@", AVCaptureSessionPresetPhoto);
 	
 	[cameraView setBackgroundColorRed:0 green:0 blue:0 alpha:0];
 	[cameraMainView addSubview:cameraView];
 	
 	_stillCamera = [[GPUImageStillCamera alloc] init];
-	filter = [[GPUImageSepiaFilter alloc] init];
-	[filter prepareForImageCapture];
 	
-	vignette = [[GPUImageVignetteFilter alloc] init];
-	[vignette addTarget:filter];
-	[vignette prepareForImageCapture];
+	GPUImageFilter *f = [config cameraFilter];
+	
+//	GPUImageSepiaFilter *s = [[GPUImageSepiaFilter alloc] init];
+//	[f addTarget:s];
 	
 	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
 	[rotationFilter prepareForImageCapture];
 	[_stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:vignette];
-	[filter addTarget:cameraView];
-	
-	//		GPUImageSepiaFilter *s = [[GPUImageSepiaFilter alloc] init];
-	//		[s addTarget:cameraView];
+	[rotationFilter addTarget:f];
+	[f addTarget:cameraView];
 	
 	[_stillCamera startCameraCapture];
 }
@@ -412,6 +386,18 @@
 	[progressHud hide:YES];	
 }
 
+- (void)finishSavingImage {
+	[progressHud setCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_checkmark.png"]]];
+	[progressHud setMode:MBProgressHUDModeCustomView];
+	[progressHud setLabelText:@"Completed"];
+	[progressHud setDetailsLabelText:nil];
+	[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
+	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hideHud) userInfo:nil repeats:NO];
+	[UIView beginAnimations:nil context:nil];
+	[flyingView setAlpha:0];
+	[UIView commitAnimations];
+}
+
 - (void)saveImage:(UIImage *)image {
 	UIImageOrientation o = UIImageOrientationUp;
 	if (_orientation == UIInterfaceOrientationLandscapeRight) {
@@ -424,7 +410,7 @@
 		o = UIImageOrientationDown;
 	}
 	image = [UIImage imageWithCGImage:image.CGImage scale:1 orientation:o];
-	[library saveImage:image toAlbum:[PAConfig photoGalleryName] withCompletionBlock:^(NSError *error) {
+	[library saveImage:image toAlbum:[PAConfig appName] withCompletionBlock:^(NSError *error) {
 		if (error != nil) {
 			NSLog(@"Save image error: %@", [error description]);
 		}
@@ -432,15 +418,7 @@
 			//library = nil;
 			library = [[ALAssetsLibrary alloc] init];
 		}
-		[progressHud setCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_checkmark.png"]]];
-		[progressHud setMode:MBProgressHUDModeCustomView];
-		[progressHud setLabelText:@"Completed"];
-		[progressHud setDetailsLabelText:nil];
-		[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
-		[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(hideHud) userInfo:nil repeats:NO];
-		[UIView beginAnimations:nil context:nil];
-		[flyingView setAlpha:0];
-		[UIView commitAnimations];
+		[self performSelectorOnMainThread:@selector(finishSavingImage) withObject:nil waitUntilDone:NO];
 	}];
 }
 
@@ -477,7 +455,7 @@
 #pragma mark Button actions
 
 - (void)takePhoto {
-	[_stillCamera capturePhotoProcessedUpToFilter:filter withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+	[_stillCamera capturePhotoProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(UIImage *processedImage, NSError *error) {
 		NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
 		[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
 		
@@ -591,6 +569,7 @@
 #pragma mark Option cell delegate methods
 
 - (void)optionsTableViewCell:(PAOptionsTableViewCell *)cell didChangeStatusForIdentifier:(NSString *)identifier {
+	//[config 
 	if ([identifier isEqualToString:@"photoGrid"]) {
 		BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:identifier];
 		CGFloat alpha;
@@ -602,17 +581,13 @@
 		if (enabled) [FTTracking logEvent:@"Camera: Grid enabled"];
 		else [FTTracking logEvent:@"Camera: Grid disabled"];
 	}
-	else if ([identifier isEqualToString:@"photoVignette"]) {
-		BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:identifier];
-		[vignette setX:((enabled) ? 0.75 : 0)];
-		[vignette setY:((enabled) ? 0.5 : 0)];
-		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
-		else [FTTracking logEvent:@"Camera: Vignette disabled"];
+	else {
+		[config didChangeValueForIdentifier:identifier];
 	}
 }
 
 - (void)optionsTableViewCell:(PAOptionsTableViewCell *)cell didChangeValueTo:(CGFloat)value forIdentifier:(NSString *)identifier {
-	if ([identifier isEqualToString:@"photoEffectIntensity"]) [(GPUImageSepiaFilter *)filter setIntensity:value];
+	[config setIntensity:value forIdentifier:identifier];
 }
 
 #pragma mark Tap detector
@@ -673,8 +648,8 @@
 
 - (NSString *)shareStringForImage {
 	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-	[dateFormat setDateFormat:@"dd. MM. yyyy"];
-	return [NSString stringWithFormat:@"Photo from %@ %@ app on %@", [PAConfig photoGalleryName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone"), [dateFormat stringFromDate:[NSDate date]]];
+	[dateFormat setDateFormat:[PAConfig appName]];
+	return [NSString stringWithFormat:@"Photo from %@ %@ app on %@", [PAConfig appName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone"), [dateFormat stringFromDate:[NSDate date]]];
 }
 
 - (UIImage *)imageForSharingFromAsset:(ALAsset *)asset {
@@ -781,9 +756,9 @@
 - (void)presentMailDialog:(NSData *)imageData {
 	MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
 	[mc setMailComposeDelegate:self];
-	[mc setSubject:[NSString stringWithFormat:@"Photo from %@ %@ app", [PAConfig photoGalleryName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone")]];
-	[mc setMessageBody:[NSString stringWithFormat:@"\n\n\n\%@ app by Fuerte International UK - http://www.fuerteint.com/", [PAConfig photoGalleryName]] isHTML:NO];
-	[mc setMessageBody:[NSString stringWithFormat:@"</br></br></br></br>%@ app by <a href='http://www.fuerteint.com/'>Fuerte International UK</a>", [PAConfig photoGalleryName]] isHTML:YES];
+	[mc setSubject:[NSString stringWithFormat:@"Photo from %@ %@ app", [PAConfig appName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone")]];
+	[mc setMessageBody:[NSString stringWithFormat:@"\n\n\n\%@ app by Fuerte International UK - http://www.fuerteint.com/", [PAConfig appName]] isHTML:NO];
+	[mc setMessageBody:[NSString stringWithFormat:@"</br></br></br></br>%@ app by <a href='http://www.fuerteint.com/'>Fuerte International UK</a>", [PAConfig appName]] isHTML:YES];
 	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:[NSString stringWithFormat:@"%@.png", [NSDate date]]];
 	imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PA_logo" ofType:@"png"]];
 	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:@"Fuerte_International_UK.png"];
@@ -831,6 +806,9 @@
 
 - (void)loadView {
 	[super loadView];
+	
+	config = [[PAConfig alloc] init];
+	
 	[self createMainView];
 	[self createCameraView];
 }

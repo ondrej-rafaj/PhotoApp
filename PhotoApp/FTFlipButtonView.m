@@ -71,7 +71,7 @@
 	[self addSubview:mainView];
 	
 	cameraView = [[UIView alloc] initWithFrame:self.bounds];
-	[cameraView setBackgroundColor:[UIColor orangeColor]];
+	[cameraView setBackgroundColor:[UIColor blackColor]];
 	[self configureSideView:cameraView];
 	[mainView addSubview:cameraView];
 	

@@ -7,13 +7,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "PhotoApp/PAHomeViewController.m"
-         timestampString = "357613009.702998"
+         filePath = "PhotoApp/PAConfig.m"
+         timestampString = "357647354.905886"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "440"
-         endingLineNumber = "440"
-         landmarkName = "-saveImage:"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
+         landmarkName = "-setIntensity:forIdentifier:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
