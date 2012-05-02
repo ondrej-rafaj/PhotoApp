@@ -7,10 +7,15 @@
 //
 
 #import "AQGridViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "PAGalleryShareButton.h"
+
 
 @interface PAGalleryViewCell : AQGridViewCell
 
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, assign) ALAsset *asset;
+@property (nonatomic, strong) PAGalleryShareButton *shareButton;
 
 
 @end

@@ -17,6 +17,8 @@
 #import "PAGalleryView.h"
 #import "MBProgressHUD.h"
 #import "GPUImage.h"
+#import "PASharingView.h"
+#import "PAPhotoDetailView.h"
 
 
 @interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate> {
@@ -46,6 +48,8 @@
 	
 	UIView *galleryMainView;
 	PAGalleryView *galleryDisplayView;
+	PASharingView *sharingView;
+	PAPhotoDetailView *galleryDetailView;
 	
 	NSMutableArray *optionsData;
 	

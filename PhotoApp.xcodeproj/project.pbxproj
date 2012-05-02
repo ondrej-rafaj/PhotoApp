@@ -81,6 +81,21 @@
 		4CC6E7E4154F444F007C524C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E7E1154F444F007C524C /* Default.png */; };
 		4CC6E7E5154F444F007C524C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E7E2154F444F007C524C /* Default@2x.png */; };
 		4CC6E7E6154F444F007C524C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6E7E2154F444F007C524C /* Default@2x.png */; };
+		4CF408BF1550035500D298C3 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408BE1550035500D298C3 /* UIDevice+Hardware.m */; };
+		4CF408C315501C7200D298C3 /* PASharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C215501C7200D298C3 /* PASharingView.m */; };
+		4CF408C71550259800D298C3 /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
+		4CF408CC15509AAC00D298C3 /* PA_share-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408C815509AAC00D298C3 /* PA_share-facebook.png */; };
+		4CF408CD15509AAC00D298C3 /* PA_share-facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408C915509AAC00D298C3 /* PA_share-facebook@2x.png */; };
+		4CF408CE15509AAC00D298C3 /* PA_share-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408CA15509AAC00D298C3 /* PA_share-twitter.png */; };
+		4CF408CF15509AAC00D298C3 /* PA_share-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408CB15509AAC00D298C3 /* PA_share-twitter@2x.png */; };
+		4CF408D31550A0B100D298C3 /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
+		4CF408D81550A71B00D298C3 /* PA_share-email.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408D41550A71B00D298C3 /* PA_share-email.png */; };
+		4CF408D91550A71B00D298C3 /* PA_share-email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408D51550A71B00D298C3 /* PA_share-email@2x.png */; };
+		4CF408DA1550A71B00D298C3 /* PA_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408D61550A71B00D298C3 /* PA_share.png */; };
+		4CF408DB1550A71B00D298C3 /* PA_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408D71550A71B00D298C3 /* PA_share@2x.png */; };
+		4CF408DE1550A84500D298C3 /* PA_gallery-bcg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408DC1550A84400D298C3 /* PA_gallery-bcg.png */; };
+		4CF408DF1550A84500D298C3 /* PA_gallery-bcg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF408DD1550A84500D298C3 /* PA_gallery-bcg@2x.png */; };
+		4CF408E31550AAB900D298C3 /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +190,26 @@
 		4CC6E7DC154F424B007C524C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		4CC6E7E1154F444F007C524C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4CC6E7E2154F444F007C524C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4CF408BD1550035500D298C3 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		4CF408BE1550035500D298C3 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		4CF408C115501C7200D298C3 /* PASharingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PASharingView.h; sourceTree = "<group>"; };
+		4CF408C215501C7200D298C3 /* PASharingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PASharingView.m; sourceTree = "<group>"; };
+		4CF408C51550259800D298C3 /* FTRedCameraButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTRedCameraButtonView.h; sourceTree = "<group>"; };
+		4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTRedCameraButtonView.m; sourceTree = "<group>"; };
+		4CF408C815509AAC00D298C3 /* PA_share-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-facebook.png"; sourceTree = "<group>"; };
+		4CF408C915509AAC00D298C3 /* PA_share-facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-facebook@2x.png"; sourceTree = "<group>"; };
+		4CF408CA15509AAC00D298C3 /* PA_share-twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-twitter.png"; sourceTree = "<group>"; };
+		4CF408CB15509AAC00D298C3 /* PA_share-twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-twitter@2x.png"; sourceTree = "<group>"; };
+		4CF408D11550A0B100D298C3 /* PAGalleryShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAGalleryShareButton.h; sourceTree = "<group>"; };
+		4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAGalleryShareButton.m; sourceTree = "<group>"; };
+		4CF408D41550A71B00D298C3 /* PA_share-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-email.png"; sourceTree = "<group>"; };
+		4CF408D51550A71B00D298C3 /* PA_share-email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-email@2x.png"; sourceTree = "<group>"; };
+		4CF408D61550A71B00D298C3 /* PA_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_share.png; sourceTree = "<group>"; };
+		4CF408D71550A71B00D298C3 /* PA_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share@2x.png"; sourceTree = "<group>"; };
+		4CF408DC1550A84400D298C3 /* PA_gallery-bcg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_gallery-bcg.png"; sourceTree = "<group>"; };
+		4CF408DD1550A84500D298C3 /* PA_gallery-bcg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_gallery-bcg@2x.png"; sourceTree = "<group>"; };
+		4CF408E11550AAB900D298C3 /* PAPhotoDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoDetailView.h; sourceTree = "<group>"; };
+		4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoDetailView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +375,8 @@
 		4C9575C31540A8B200A7141E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4CF408E01550AA7C00D298C3 /* Photo details */,
+				4CF408C015501C5A00D298C3 /* Sharing view */,
 				4CC6E6B4154EEAED007C524C /* Gallery view */,
 				4CC4860E15475C93007BADC2 /* Photo grid view */,
 				4CC486091547099A007BADC2 /* Cells */,
@@ -379,6 +416,8 @@
 			children = (
 				4C7B800D1540CB1A00DF8572 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
 				4C7B800E1540CB1A00DF8572 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
+				4CF408BD1550035500D298C3 /* UIDevice+Hardware.h */,
+				4CF408BE1550035500D298C3 /* UIDevice+Hardware.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -431,6 +470,7 @@
 		4CC4842215416AB1007BADC2 /* Camera button */ = {
 			isa = PBXGroup;
 			children = (
+				4CF408C41550257500D298C3 /* Red button */,
 				4C9575EF1540BD4E00A7141E /* FTCameraButtonView.h */,
 				4C9575F01540BD4E00A7141E /* FTCameraButtonView.m */,
 			);
@@ -467,6 +507,7 @@
 		4CC6E6B4154EEAED007C524C /* Gallery view */ = {
 			isa = PBXGroup;
 			children = (
+				4CF408D01550A09700D298C3 /* Share button */,
 				4CC6E6E6154EED26007C524C /* Gallery view cell */,
 				4CC6E6B5154EEB0D007C524C /* PAGalleryView.h */,
 				4CC6E6B6154EEB0D007C524C /* PAGalleryView.m */,
@@ -514,6 +555,16 @@
 		4CC6E7DA154F4206007C524C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4CF408DC1550A84400D298C3 /* PA_gallery-bcg.png */,
+				4CF408DD1550A84500D298C3 /* PA_gallery-bcg@2x.png */,
+				4CF408D41550A71B00D298C3 /* PA_share-email.png */,
+				4CF408D51550A71B00D298C3 /* PA_share-email@2x.png */,
+				4CF408D61550A71B00D298C3 /* PA_share.png */,
+				4CF408D71550A71B00D298C3 /* PA_share@2x.png */,
+				4CF408C815509AAC00D298C3 /* PA_share-facebook.png */,
+				4CF408C915509AAC00D298C3 /* PA_share-facebook@2x.png */,
+				4CF408CA15509AAC00D298C3 /* PA_share-twitter.png */,
+				4CF408CB15509AAC00D298C3 /* PA_share-twitter@2x.png */,
 				4CC6E7D5154F18D9007C524C /* PA_logo.png */,
 				4CC6E6FB154EFF06007C524C /* PA_checkmark.png */,
 				4CC6E6FC154EFF06007C524C /* PA_checkmark@2x.png */,
@@ -527,6 +578,42 @@
 				4CC486161547F42B007BADC2 /* PA_cameraButton@2x.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		4CF408C015501C5A00D298C3 /* Sharing view */ = {
+			isa = PBXGroup;
+			children = (
+				4CF408C115501C7200D298C3 /* PASharingView.h */,
+				4CF408C215501C7200D298C3 /* PASharingView.m */,
+			);
+			name = "Sharing view";
+			sourceTree = "<group>";
+		};
+		4CF408C41550257500D298C3 /* Red button */ = {
+			isa = PBXGroup;
+			children = (
+				4CF408C51550259800D298C3 /* FTRedCameraButtonView.h */,
+				4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */,
+			);
+			name = "Red button";
+			sourceTree = "<group>";
+		};
+		4CF408D01550A09700D298C3 /* Share button */ = {
+			isa = PBXGroup;
+			children = (
+				4CF408D11550A0B100D298C3 /* PAGalleryShareButton.h */,
+				4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */,
+			);
+			name = "Share button";
+			sourceTree = "<group>";
+		};
+		4CF408E01550AA7C00D298C3 /* Photo details */ = {
+			isa = PBXGroup;
+			children = (
+				4CF408E11550AAB900D298C3 /* PAPhotoDetailView.h */,
+				4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */,
+			);
+			name = "Photo details";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -617,6 +704,16 @@
 				4CC6E7DF154F424B007C524C /* Icon@2x.png in Resources */,
 				4CC6E7E3154F444F007C524C /* Default.png in Resources */,
 				4CC6E7E5154F444F007C524C /* Default@2x.png in Resources */,
+				4CF408CC15509AAC00D298C3 /* PA_share-facebook.png in Resources */,
+				4CF408CD15509AAC00D298C3 /* PA_share-facebook@2x.png in Resources */,
+				4CF408CE15509AAC00D298C3 /* PA_share-twitter.png in Resources */,
+				4CF408CF15509AAC00D298C3 /* PA_share-twitter@2x.png in Resources */,
+				4CF408D81550A71B00D298C3 /* PA_share-email.png in Resources */,
+				4CF408D91550A71B00D298C3 /* PA_share-email@2x.png in Resources */,
+				4CF408DA1550A71B00D298C3 /* PA_share.png in Resources */,
+				4CF408DB1550A71B00D298C3 /* PA_share@2x.png in Resources */,
+				4CF408DE1550A84500D298C3 /* PA_gallery-bcg.png in Resources */,
+				4CF408DF1550A84500D298C3 /* PA_gallery-bcg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +769,11 @@
 				4CC6E6B7154EEB0D007C524C /* PAGalleryView.m in Sources */,
 				4CC6E6E4154EEB98007C524C /* MBProgressHUD.m in Sources */,
 				4CC6E6E9154EED4A007C524C /* PAGalleryViewCell.m in Sources */,
+				4CF408BF1550035500D298C3 /* UIDevice+Hardware.m in Sources */,
+				4CF408C315501C7200D298C3 /* PASharingView.m in Sources */,
+				4CF408C71550259800D298C3 /* FTRedCameraButtonView.m in Sources */,
+				4CF408D31550A0B100D298C3 /* PAGalleryShareButton.m in Sources */,
+				4CF408E31550AAB900D298C3 /* PAPhotoDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

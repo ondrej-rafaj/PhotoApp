@@ -11,6 +11,7 @@
 #import "FTShare.h"
 
 
+@class PASharingView;
 @class PAGalleryView;
 
 @protocol PAGalleryViewDelegate <NSObject>
@@ -18,6 +19,9 @@
 - (void)galleryView:(PAGalleryView *)gallery requestsFacebookShareFor:(ALAsset *)asset;
 - (void)galleryView:(PAGalleryView *)gallery requestsEmailShareFor:(ALAsset *)asset;
 - (void)galleryView:(PAGalleryView *)gallery requestsTwitterShareFor:(ALAsset *)asset;
+
+- (void)galleryView:(PAGalleryView *)gallery requestsSharingOptionFor:(ALAsset *)asset;
+- (void)galleryView:(PAGalleryView *)gallery requestsDetailFor:(ALAsset *)asset;
 
 @end
 
@@ -34,6 +38,8 @@
 @property (nonatomic, assign) id <PAGalleryViewDelegate> delegate;
 
 - (void)reloadData;
+
+- (void)sharingView:(PASharingView *)sharingView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 
 @end

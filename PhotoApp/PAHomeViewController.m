@@ -12,6 +12,7 @@
 #import "PAViewStyles.h"
 #import "PAAppDelegate.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "UIDevice+Hardware.h"
 #import "UIImage+Tools.h"
 #import "FTTracking.h"
 #import "FTAlertView.h"
@@ -103,11 +104,11 @@
 	
 	[library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
 		if (group != nil) {
-			NSLog(@"Group name: %@", [group valueForProperty:ALAssetsGroupPropertyName]);
+			//NSLog(@"Group name: %@", [group valueForProperty:ALAssetsGroupPropertyName]);
 			if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:[PAConfig photoGalleryName]]) {
 				[group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
 					if (result != nil) {
-						NSLog(@"See asset: %@", result);
+						//NSLog(@"See asset: %@", result);
 						[assets addObject:result];
 						[galleryFlipButton.flipButton.frontButton setImage:[UIImage imageWithCGImage:[result thumbnail]] forState:UIControlStateNormal];
 					}
@@ -258,27 +259,39 @@
 	[self createOptionsTable];
 }
 
-- (void)replaceMainView {
+- (void)createMainView {
 	CGRect r = [[UIScreen mainScreen] bounds];
 	UIView *primaryView = [[UIView alloc] initWithFrame:r];
     [primaryView setBackgroundColor:[UIColor blackColor]];
 	[self setView:primaryView];
 	
 	mainView = [[UIView alloc] initWithFrame:r];
-	[self.view addSubview:mainView];
-	
-	r = mainView.bounds;
+	[self.view addSubview:mainView];	
+}
+
+- (void)createCameraView {
+	CGRect r = mainView.bounds;
 	cameraMainView = [[UIView alloc] initWithFrame:r];
 	[mainView addSubview:cameraMainView];
 	
 	r.origin.y -= 27;
-    cameraView = [[GPUImageView alloc] initWithFrame:r];
+	cameraView = [[GPUImageView alloc] initWithFrame:r];
+	
 	[cameraView setFillMode:kGPUImageFillModePreserveAspectRatio];
+	if ([[UIDevice currentDevice] iPhone4]) {
+		[cameraView setFillMode:kGPUImageFillModePreserveAspectRatioAndFill];
+	}
+	else {
+		[cameraView setFillMode:kGPUImageFillModePreserveAspectRatio];
+	}
+	
+	NSLog(@"Photo preset size: %@", AVCaptureSessionPresetPhoto);
+	
 	[cameraView setBackgroundColorRed:0 green:0 blue:0 alpha:0];
 	[cameraMainView addSubview:cameraView];
-
+	
 	stillCamera = [[GPUImageStillCamera alloc] init];
-    filter = [[GPUImageSepiaFilter alloc] init];
+	filter = [[GPUImageSepiaFilter alloc] init];
 	[filter prepareForImageCapture];
 	
 	vignette = [[GPUImageVignetteFilter alloc] init];
@@ -287,17 +300,17 @@
 	
 	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
 	[rotationFilter prepareForImageCapture];
-    [stillCamera addTarget:rotationFilter];
-    [rotationFilter addTarget:vignette];
-    [filter addTarget:cameraView];
+	[stillCamera addTarget:rotationFilter];
+	[rotationFilter addTarget:vignette];
+	[filter addTarget:cameraView];
 	
-	GPUImageSepiaFilter *s = [[GPUImageSepiaFilter alloc] init];
-	[s addTarget:cameraView];
-    
-    [stillCamera startCameraCapture];
+	//		GPUImageSepiaFilter *s = [[GPUImageSepiaFilter alloc] init];
+	//		[s addTarget:cameraView];
+	
+	[stillCamera startCameraCapture];
 }
 
-- (void)createCameraView {
+- (void)createCameraViewElements {
 	
 	/*
 	 
@@ -365,12 +378,25 @@
 	[self reloadData];
 }
 
+- (void)createSharingView {
+	sharingView = [[PASharingView alloc] initWithFrame:self.view.bounds];
+	[sharingView setGalleryDelegate:galleryDisplayView];
+	[self.view addSubview:sharingView];
+}
+
+- (void)createGalleryDetailView {
+	galleryDetailView = [[PAPhotoDetailView alloc] initWithFrame:self.view.bounds];
+	[self.view addSubview:galleryDetailView];
+}
+
 - (void)createAllElements {
 	library = [[ALAssetsLibrary alloc] init];
-	[self createCameraView];
+	[self createCameraViewElements];
 	[self createFunctionButtons];
 	[self createGalleryView];
 	[self createToolbar];
+	[self createGalleryDetailView];
+	[self createSharingView];
 }
 
 #pragma mark HUD delegate method
@@ -391,8 +417,8 @@
 			NSLog(@"Save image error: %@", [error description]);
 		}
 		else {
-			library = nil;
-			library = [[ALAssetsLibrary alloc] init];
+			//library = nil;
+			//library = [[ALAssetsLibrary alloc] init];
 		}
 		[progressHud setCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_checkmark.png"]]];
 		[progressHud setMode:MBProgressHUDModeCustomView];
@@ -591,20 +617,26 @@
 	else if (_orientation == UIInterfaceOrientationLandscapeRight) deg = 90;
 	else if (_orientation == UIInterfaceOrientationLandscapeLeft) deg = -90;
 	
-	//deg = -90;
-	
 	CGFloat rad = (deg == 0) ? 0 : degreesToRadians(deg);
 	
 	BOOL isShowingOptionsTable = (optionsTable.alpha > 0);
 	
 	[UIView animateWithDuration:0.3 animations:^{
+		// Setting alpha channels
 		[flashButton setAlpha:0];
 		[optionsButton setAlpha:0];
 		[optionsTable setAlpha:0];
+		// Setting rotations
 		[snapButton.imageView setTransform:CGAffineTransformMakeRotation(rad)];
 		[galleryFlipButton.flipButton setTransform:CGAffineTransformMakeRotation(rad)];
 		[progressHud setTransform:CGAffineTransformMakeRotation(rad)];
 		[galleryDisplayView setTransform:CGAffineTransformMakeRotation(rad)];
+		[sharingView.imageViewHolder setTransform:CGAffineTransformMakeRotation(rad)];
+		[sharingView.buttonHolder setTransform:CGAffineTransformMakeRotation(rad)];
+		[galleryDetailView.imageViewHolder setTransform:CGAffineTransformMakeRotation(rad)];
+		// Setting custom values
+		[galleryDetailView setOrientation:_orientation];
+		// Setting frames
 		[galleryDisplayView setFrame:[self frameForGalleryDisplayView]];
 	} completion:^(BOOL finished) {
 		[flashButton setTransform:CGAffineTransformMakeRotation(rad)];
@@ -627,26 +659,18 @@
 
 #pragma mark Gallery view sharing delegate
 
+- (NSString *)shareStringForImage {
+	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat:@"dd. MM. yyyy"];
+	return [NSString stringWithFormat:@"Photo from %@ %@ app on %@", [PAConfig photoGalleryName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone"), [dateFormat stringFromDate:[NSDate date]]];
+}
+
 - (UIImage *)imageForSharingFromAsset:(ALAsset *)asset {
 	ALAssetRepresentation *rep = [asset defaultRepresentation];
 	CGImageRef iref = [rep fullResolutionImage];
 	UIImage *inputImage = [UIImage imageWithCGImage:iref];
-	inputImage = [inputImage scaleWithMaxSize:800];
+	inputImage = [UIImage imageWithCGImage:[inputImage scaleWithMaxSize:800].CGImage scale:1 orientation:[rep orientation]];
 	return inputImage;
-	
-//	GPUImageTransformFilter *scale = [[GPUImageTransformFilter alloc] init];
-//	CGFloat mSize = (inputImage.size.width > inputImage.size.height) ? inputImage.size.width : inputImage.size.height;
-//	CGFloat x = (((800 * 100) / mSize) / 100);
-//	[scale setAffineTransform:CGAffineTransformMakeScale(x, x)];
-//	
-//	GPUImageCropFilter *crop = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0.f, 0.125f, 1.0f, 0.75f)];
-//	[crop addTarget:scale];
-//	
-//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
-//	[stillImageSource addTarget:crop];
-//	[stillImageSource processImage];
-//	
-//	return [crop imageFromCurrentlyProcessedOutput];
 }
 
 - (void)galleryView:(PAGalleryView *)gallery requestsFacebookShareFor:(ALAsset *)asset {
@@ -681,11 +705,21 @@
 	}
 }
 
+- (void)galleryView:(PAGalleryView *)gallery requestsSharingOptionFor:(ALAsset *)asset {
+	[sharingView showWithImage:[UIImage imageWithCGImage:[asset thumbnail]]];
+}
+
+- (void)galleryView:(PAGalleryView *)gallery requestsDetailFor:(ALAsset *)asset {
+	[galleryDetailView showWithAsset:asset];
+}
+
 #pragma mark Twitter sharing
 
 - (void)sendImageToTwitter:(UIImage *)img {
+	[super.loadingProgressView hide:YES];
 	if (NSClassFromString(@"TWTweetComposeViewController") && [TWTweetComposeViewController canSendTweet]) {
 		TWTweetComposeViewController *tweetController = [TWTweetComposeViewController new];
+		[tweetController setInitialText:[self shareStringForImage]];
 		[tweetController addImage:img];
 		[self presentViewController:tweetController animated:YES completion:nil];
 	}
@@ -707,7 +741,7 @@
 	
 	FTShareFacebookData *d = [[FTShareFacebookData alloc] init];
     FTShareFacebookPhoto *photo = [FTShareFacebookPhoto facebookPhotoFromImage:img];
-    [photo setMessage:[NSString stringWithFormat:@"%@ on %@", [PAConfig photoGalleryName], [NSDate date]]];
+    [photo setMessage:[self shareStringForImage]];
 	[d setUploadPhoto:photo];
     [d setType:FTShareFacebookRequestTypeAlbum];
     [d setHttpType:FTShareFacebookHttpTypePost];
@@ -784,7 +818,9 @@
 #pragma mark View lifecycle
 
 - (void)loadView {
-	[self replaceMainView];
+	[super loadView];
+	[self createMainView];
+	[self createCameraView];
 }
 
 - (void)viewDidLoad {
