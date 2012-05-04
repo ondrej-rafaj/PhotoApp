@@ -122,24 +122,26 @@
 		if (group != nil) {
 			//NSLog(@"Group name: %@", [group valueForProperty:ALAssetsGroupPropertyName]);
 			if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:[PAConfig appName]]) {
+				*stop = YES;
 				[group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
 					if (result != nil) {
 						//NSLog(@"See asset: %@", result);
 						[assets addObject:result];
-						[galleryFlipButton.flipButton.frontButton setImage:[UIImage imageWithCGImage:[result thumbnail]] forState:UIControlStateNormal];
 					}
 				}];
+				[galleryFlipButton.flipButton.frontButton setImage:[UIImage imageWithCGImage:[(ALAsset *)assets.lastObject thumbnail]] forState:UIControlStateNormal];
 			}
-		}
-		BOOL isData = ([assets count] > 0);
-		[galleryFlipButton.flipButton setUserInteractionEnabled:isData];
-		[UIView beginAnimations:nil context:nil];
-		[galleryFlipButton.flipButton setAlpha:(isData ? 1 : 0)];
-		[UIView commitAnimations];
-		
-		[galleryDisplayView setData:assets];
-		[galleryDisplayView reloadData];
-		
+		} else {
+			//end of enumeration
+			BOOL isData = ([assets count] > 0);
+			[galleryFlipButton.flipButton setUserInteractionEnabled:isData];
+			[UIView beginAnimations:nil context:nil];
+			[galleryFlipButton.flipButton setAlpha:(isData ? 1 : 0)];
+			[UIView commitAnimations];
+			
+			[galleryDisplayView setData:assets];
+			[galleryDisplayView reloadData];
+		}		
 	} failureBlock:^(NSError *error) {
 		
 	}];
