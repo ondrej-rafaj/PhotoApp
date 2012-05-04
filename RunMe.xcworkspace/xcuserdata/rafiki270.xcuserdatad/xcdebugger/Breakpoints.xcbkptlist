@@ -16,5 +16,18 @@
          landmarkName = "-setIntensity:forIdentifier:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../GPUImage/framework/Source/GPUImageStillCamera.m"
+         timestampString = "357812576.870206"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
+         landmarkName = "-capturePhotoProcessedUpToFilter:withCompletionHandler:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

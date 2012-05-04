@@ -19,6 +19,7 @@
 - (void)galleryView:(PAGalleryView *)gallery requestsFacebookShareFor:(ALAsset *)asset;
 - (void)galleryView:(PAGalleryView *)gallery requestsEmailShareFor:(ALAsset *)asset;
 - (void)galleryView:(PAGalleryView *)gallery requestsTwitterShareFor:(ALAsset *)asset;
+- (void)galleryView:(PAGalleryView *)gallery requestsPostcardFor:(ALAsset *)asset;
 
 - (void)galleryView:(PAGalleryView *)gallery requestsSharingOptionFor:(ALAsset *)asset;
 - (void)galleryView:(PAGalleryView *)gallery requestsDetailFor:(ALAsset *)asset;

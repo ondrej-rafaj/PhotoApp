@@ -52,11 +52,11 @@
 }
 
 - (CGFloat)getFlashButtonWidth {
-	AVCaptureTorchMode m = [PAConfig torchMode];
-	if (m == AVCaptureTorchModeAuto) {
-		return 88;
+	PAConfigFlashMode m = [PAConfig flashMode];
+	if (m == PAConfigFlashModeAuto) {
+		return 90;
 	}
-	else if (m == AVCaptureTorchModeOff) {
+	else if (m == PAConfigFlashModeOff || m == PAConfigFlashModeAlwaysOn) {
 		return 82;
 	}
 	else  {
@@ -77,6 +77,22 @@
 	}
 	else {
 		return CGRectMake((320 - 8 - [self getFlashButtonWidth]), 8, [self getFlashButtonWidth], 30);
+	}
+}
+
+- (CGRect)frameForCameraSwitchButton {
+	UIInterfaceOrientation o = _orientation;
+	if (o == UIInterfaceOrientationPortrait) {
+		return CGRectMake(((320 - 50) / 2), 8, 50, 30);
+	}
+	else if (o == UIInterfaceOrientationLandscapeLeft) {
+		return CGRectMake(8, ((480 - 53 - 50) / 2), 30, 50);
+	}
+	else if (o == UIInterfaceOrientationLandscapeRight) {
+		return CGRectMake((320 - 8 - 30), ((480 - 53 - 50) / 2), 30, 50);
+	}
+	else {
+		return CGRectMake(((320 - 50) / 2), 8, 50, 30);
 	}
 }
 
@@ -201,9 +217,15 @@
 }
 
 - (NSString *)getFlashButtonTitle {
-	AVCaptureTorchMode m = [PAConfig torchMode];
-	if (m == AVCaptureTorchModeOn) {
+	PAConfigFlashMode m = [PAConfig flashMode];
+	if (m == PAConfigFlashModeOn) {
 		return @"Flash On";
+	}
+	else if (m == PAConfigFlashModeAuto) {
+		return @"Flash Auto";
+	}
+	else if (m == PAConfigFlashModeAlwaysOn) {
+		return @"Flash On!";
 	}
 	else {
 		return @"Flash Off";
@@ -222,14 +244,22 @@
 	
 	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	if ([device hasTorch]) {
-		torchMode = [PAConfig torchMode];
+		flashMode = [PAConfig flashMode];
 		NSString *title = [self getFlashButtonTitle];
 		flashButton = [[FTCameraButtonView alloc] initWithFrame:[self frameForFlashButton]];
 		[flashButton addTarget:self action:@selector(didClickFlashPhoto:) forControlEvents:UIControlEventTouchUpInside];
 		[flashButton setTitle:title forState:UIControlStateNormal];
 		[cameraMainView addSubview:flashButton];
 	}
-	else torchMode = AVCaptureTorchModeOff;
+	else flashMode = PAConfigFlashModeOff;
+	
+	if (NO) {
+		cameraSwitchButton = [[FTCameraButtonView alloc] initWithFrame:[self frameForCameraSwitchButton]];
+		[cameraSwitchButton addTarget:self action:@selector(didClickSwitchCameraButton:) forControlEvents:UIControlEventTouchUpInside];
+		[cameraSwitchButton setTitle:@"" forState:UIControlStateNormal];
+		[cameraSwitchButton setImage:[UIImage imageNamed:@"PA_rotateCam.png"] forState:UIControlStateNormal];
+		[cameraMainView addSubview:cameraSwitchButton];
+	}
 	
 	optionsButton = [[FTCameraButtonView alloc] initWithFrame:[self frameForOptionsButton]];
 	[optionsButton addTarget:self action:@selector(didClickOptionsPhoto:) forControlEvents:UIControlEventTouchUpInside];
@@ -246,7 +276,15 @@
 	[self setView:primaryView];
 	
 	mainView = [[UIView alloc] initWithFrame:r];
-	[self.view addSubview:mainView];	
+	[self.view addSubview:mainView];
+	
+	mainViewAi = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	[mainViewAi startAnimating];
+	[mainViewAi setAlpha:0];
+	[mainView addSubview:mainViewAi];
+	[mainViewAi centerInSuperView];
+	[mainViewAi positionAtY:([mainViewAi yPosition] - 53)];
+	[mainViewAi setAutoresizingCenter];
 }
 
 - (void)createCameraView {
@@ -258,12 +296,11 @@
 	cameraView = [[GPUImageView alloc] initWithFrame:r];
 	
 	[cameraView setFillMode:kGPUImageFillModePreserveAspectRatio];
-	
 	if ([[UIDevice currentDevice] iPhone4]) {
-		
+		[cameraView setFillMode:kGPUImageFillModePreserveAspectRatioAndFill];
 	}
 	else {
-		
+		[cameraView setFillMode:kGPUImageFillModePreserveAspectRatio];
 	}
 	
 	[cameraView setBackgroundColorRed:0 green:0 blue:0 alpha:0];
@@ -271,16 +308,7 @@
 	
 	_stillCamera = [[GPUImageStillCamera alloc] init];
 	
-	GPUImageFilter *f = [config cameraFilter];
-	
-//	GPUImageSepiaFilter *s = [[GPUImageSepiaFilter alloc] init];
-//	[f addTarget:s];
-	
-	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
-	[rotationFilter prepareForImageCapture];
-	[_stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:f];
-	[f addTarget:cameraView];
+	[config configureForCamera:_stillCamera andCameraView:cameraView];
 	
 	[_stillCamera startCameraCapture];
 }
@@ -327,12 +355,7 @@
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapScreenOnce:)];
 	[touchDetector addGestureRecognizer:tap];
 	[cameraMainView addSubview:touchDetector];
-	
-	flyingView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-	[flyingView setBackgroundColor:[UIColor blackColor]];
-	[flyingView setAlpha:0];
-	[cameraMainView addSubview:flyingView];
-	
+		
 	progressHud = [[MBProgressHUD alloc] initWithView:self.view];
 	[progressHud setAnimationType:MBProgressHUDAnimationFade];
 	[progressHud setDelegate:self];
@@ -393,9 +416,6 @@
 	[progressHud setDetailsLabelText:nil];
 	[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
 	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hideHud) userInfo:nil repeats:NO];
-	[UIView beginAnimations:nil context:nil];
-	[flyingView setAlpha:0];
-	[UIView commitAnimations];
 }
 
 - (void)saveImage:(UIImage *)image {
@@ -434,25 +454,58 @@
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:galleryFlipButton.flipButton.rotationInterval];
 	if (screen == FTFlipButtonViewScreenFront) {
-		[FTTracking logEvent:@"Gallery"];
+		[FTTracking logEvent:@"Camera"];
 		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:mainView cache:YES];
 		[mainView addSubview:cameraMainView];
 		[galleryMainView removeFromSuperview];
 		
 	}
 	else {
-		[FTTracking logEvent:@"Camera"];
+		[FTTracking logEvent:@"Gallery"];
 		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:mainView cache:YES];
 		[mainView addSubview:galleryMainView];
 		[cameraMainView removeFromSuperview];
 	}
 	[UIView commitAnimations];
 	
-	if (screen == FTFlipButtonViewScreenFront) [self setButtonsForToolbarForFrontPage:YES animated:YES];
-	else [self setButtonsForToolbarForFrontPage:NO animated:YES];
+	if (screen == FTFlipButtonViewScreenFront) {
+		[self setButtonsForToolbarForFrontPage:YES animated:YES];
+		[NSTimer scheduledTimerWithTimeInterval:0.3 target:_stillCamera selector:@selector(startCameraCapture) userInfo:nil repeats:NO];
+	}
+	else {
+		[self setButtonsForToolbarForFrontPage:NO animated:YES];
+		[_stillCamera stopCameraCapture];
+	}
 }
 
 #pragma mark Button actions
+
+- (void)reloadTorch {
+	if ([_stillCamera.inputCamera isTorchAvailable]) {
+		NSError *error = nil;
+		if (![_stillCamera.inputCamera lockForConfiguration:&error])
+		{
+			NSLog(@"Error locking for configuration: %@", error);
+		}
+		if ([_stillCamera getCameraPosition] == AVCaptureDevicePositionBack) {
+			if (flashMode == PAConfigFlashModeAlwaysOn) {
+				[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOn];
+				[_stillCamera.inputCamera setFlashMode:AVCaptureFlashModeOn];
+			}
+			else {
+				[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOff];
+				if (flashMode == PAConfigFlashModeOn) [_stillCamera.inputCamera setFlashMode:AVCaptureFlashModeOn];
+				else if (flashMode == PAConfigFlashModeAuto) [_stillCamera.inputCamera setFlashMode:AVCaptureFlashModeAuto];
+				else [_stillCamera.inputCamera setFlashMode:AVCaptureFlashModeOff];
+			}
+		}
+		else {
+			[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOff];
+			[_stillCamera.inputCamera setFlashMode:AVCaptureFlashModeOff];
+		}
+		[_stillCamera.inputCamera unlockForConfiguration];
+	}
+}
 
 - (void)takePhoto {
 	[_stillCamera capturePhotoProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(UIImage *processedImage, NSError *error) {
@@ -464,31 +517,12 @@
 		[progressHud setDetailsLabelText:@"to the gallery"];
 		[progressHud show:YES];
 		
-		if (torchMode == AVCaptureTorchModeOn || torchMode == AVCaptureTorchModeAuto) {
-			NSError *error = nil;
-			if (![_stillCamera.inputCamera lockForConfiguration:&error])
-			{
-				NSLog(@"Error locking for configuration: %@", error);
-			}
-			[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOff];
-			[_stillCamera.inputCamera unlockForConfiguration];
-		}
 	}];
 }
 
 - (void)didClickTakePhoto:(UIBarButtonItem *)sender {
 	[FTTracking logEvent:@"Camera: Take photo"];
-	if (torchMode == AVCaptureTorchModeOn) {
-		NSError *error = nil;
-		if (![_stillCamera.inputCamera lockForConfiguration:&error])
-		{
-			NSLog(@"Error locking for configuration: %@", error);
-		}
-		[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOn];
-		[_stillCamera.inputCamera unlockForConfiguration];
-		[NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(takePhoto) userInfo:nil repeats:NO];
-	}
-	else [self takePhoto];
+	[self takePhoto];
 }
 
 - (void)didClickOptionsPhoto:(UIButton *)sender {
@@ -508,11 +542,15 @@
 
 - (void)didClickFlashPhoto:(UIButton *)sender {
 	[FTTracking logEvent:@"Camera: Toggle flash"];
-	AVCaptureTorchMode m = [PAConfig torchMode];
-	if (m == AVCaptureTorchModeOff) m = AVCaptureTorchModeOn;
-	else if (m == AVCaptureTorchModeOn) m = AVCaptureTorchModeOff;
-	torchMode = m;
-	[PAConfig setTorchMode:m];
+	
+	PAConfigFlashMode m = [PAConfig flashMode];
+	if (m == PAConfigFlashModeOff) m = PAConfigFlashModeAuto;
+	else if (m == PAConfigFlashModeAuto) m = PAConfigFlashModeOn;
+	else if (m == PAConfigFlashModeOn) m = PAConfigFlashModeAlwaysOn;
+	else if (m == PAConfigFlashModeAlwaysOn) m = PAConfigFlashModeOff;
+	flashMode = m;
+	[PAConfig setFlashMode:m];
+	
 	[flashButton setTitle:[self getFlashButtonTitle] forState:UIControlStateNormal];
 	CGRect r = flashButton.frame;
 	if (UIInterfaceOrientationIsPortrait(_orientation)) r.size.width = [self getFlashButtonWidth];
@@ -522,6 +560,42 @@
 	[UIView commitAnimations];
 	if (optionsTable.alpha > 0) [self didClickOptionsPhoto:optionsButton];
 	[optionsButton enableHighlight:NO];
+	
+	[self reloadTorch];
+}
+
+- (void)didClickSwitchCameraButton:(UIButton *)sender {
+	[mainToolbar setItems:nil animated:YES];
+	[_stillCamera stopCameraCapture];
+	[UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+		[cameraMainView positionAtX:-320];
+		[mainViewAi setAlpha:1];
+	} completion:^(BOOL finished) {
+		[cameraMainView positionAtX:320];
+		if ([_stillCamera getCameraPosition] == AVCaptureDevicePositionBack) {
+			flashMode = PAConfigFlashModeOff;
+			[self reloadTorch];
+		}
+		[_stillCamera rotateCamera];
+		[_stillCamera startCameraCapture];
+		if ([_stillCamera getCameraPosition] == AVCaptureDevicePositionBack) {
+			AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+			if ([device hasTorch]) {
+				[flashButton setHidden:NO];
+				flashMode = [PAConfig flashMode];
+			}
+		}
+		else {
+			[flashButton setHidden:YES];
+		}
+		[UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+			[cameraMainView positionAtX:0];
+			[mainViewAi setAlpha:0];
+		} completion:^(BOOL finished) {
+			[self setButtonsForToolbarForFrontPage:YES animated:YES];
+		}];
+	}];
+	[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadTorch) userInfo:nil repeats:NO];
 }
 
 #pragma mark Options table data source & delegate methods
@@ -612,6 +686,7 @@
 		// Setting alpha channels
 		[flashButton setAlpha:0];
 		[optionsButton setAlpha:0];
+		[cameraSwitchButton setAlpha:0];
 		[optionsTable setAlpha:0];
 		// Setting rotations
 		[snapButton.imageView setTransform:CGAffineTransformMakeRotation(rad)];
@@ -628,15 +703,18 @@
 	} completion:^(BOOL finished) {
 		[flashButton setTransform:CGAffineTransformMakeRotation(rad)];
 		[optionsButton setTransform:CGAffineTransformMakeRotation(rad)];
+		[cameraSwitchButton setTransform:CGAffineTransformMakeRotation(rad)];
 		[optionsTable setTransform:CGAffineTransformMakeRotation(rad)];
 		
 		[optionsButton setFrame:[self frameForOptionsButton]];
 		[flashButton setFrame:[self frameForFlashButton]];
+		[cameraSwitchButton setFrame:[self frameForCameraSwitchButton]];
 		[optionsTable setFrame:[self frameForOptionsTable]];
 		
 		[UIView animateWithDuration:0.3 animations:^{
 			[flashButton setAlpha:1];
 			[optionsButton setAlpha:1];
+			[cameraSwitchButton setAlpha:1];
 			if (isShowingOptionsTable) [optionsTable setAlpha:1];
 		} completion:^(BOOL finished) {
 			
@@ -692,6 +770,15 @@
 	}
 }
 
+- (void)galleryView:(PAGalleryView *)gallery requestsPostcardFor:(ALAsset *)asset {
+	ALAssetRepresentation *rep = [asset defaultRepresentation];
+	CGImageRef iref = [rep fullResolutionImage];
+	SYSincerelyController *controller = [[SYSincerelyController alloc] initWithImages:[NSArray arrayWithObject:[UIImage imageWithCGImage:iref]] product:SYProductTypePostcard applicationKey:[PAConfig sincerelyApiKey] delegate:self];
+	if (controller) {
+		[self presentModalViewController:controller animated:YES];
+	}
+}
+
 - (void)galleryView:(PAGalleryView *)gallery requestsSharingOptionFor:(ALAsset *)asset {
 	[sharingView showWithImage:[UIImage imageWithCGImage:[asset thumbnail]]];
 }
@@ -699,6 +786,20 @@
 - (void)galleryView:(PAGalleryView *)gallery requestsDetailFor:(ALAsset *)asset {
 	[galleryDetailView showWithAsset:asset];
 }
+
+#pragma mark Sincerely delegate methods
+
+- (void)sincerelyControllerDidFinish:(SYSincerelyController *)controller {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)sincerelyControllerDidCancel:(SYSincerelyController *)controller {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)sincerelyControllerDidFailInitiationWithError:(NSError *)error {
+    NSLog(@"Error: %@", error);
+} 
 
 #pragma mark Twitter sharing
 
@@ -820,6 +921,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	[self reloadTorch];
 }
 
 - (void)viewDidUnload {

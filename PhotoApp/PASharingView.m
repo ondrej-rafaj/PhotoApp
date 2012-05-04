@@ -16,6 +16,7 @@
 @synthesize buttonHolder = _buttonHolder;
 @synthesize imageViewHolder = _imageViewHolder;
 @synthesize imageView = _imageView;
+@synthesize sendPostcard = _sendPostcard;
 @synthesize sharingFacebook = _sharingFacebook;
 @synthesize sharingEmail = _sharingEmail;
 @synthesize sharingTwitter = _sharingTwitter;
@@ -53,16 +54,21 @@
 		[_imageViewHolder addSubview:_imageView];
 		[_imageView makeMarginInSuperView:5];
 		
-		_buttonHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (width + 20), ((30 * 4) + 50))];
+		_buttonHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (width + 20), ((30 * 5) + 60))];
 		[_buttonHolder setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5]];
 		[_buttonHolder.layer setCornerRadius:15];
 		[_buttonHolder.layer setBorderWidth:1];
 		[_buttonHolder.layer setBorderColor:[UIColor darkGrayColor].CGColor];
 		[self addSubview:_buttonHolder];
 		[_buttonHolder centerInSuperView];
-		[_buttonHolder positionAtY:([_buttonHolder yPosition] + 50)];
+		[_buttonHolder positionAtY:([_buttonHolder yPosition] + 40)];
 		
-        _sharingFacebook = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, 10, width, 30)];
+		_sendPostcard = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, 10, width, 30)];
+		[_sendPostcard setTitle:@"Send postcard" forState:UIControlStateNormal];
+		[_sendPostcard addTarget:self action:@selector(didTapPostcard:) forControlEvents:UIControlEventTouchUpInside];
+		[_buttonHolder addSubview:_sendPostcard];
+		
+        _sharingFacebook = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sendPostcard bottomPosition] + 10), width, 30)];
 		[_sharingFacebook setTitle:@"Facebook" forState:UIControlStateNormal];
 		[_sharingFacebook addTarget:self action:@selector(didTapFacebook:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sharingFacebook];
@@ -134,6 +140,10 @@
 
 - (void)didTapTwitter:(UIButton *)sender {
 	[_galleryDelegate sharingView:self clickedButtonAtIndex:2];
+}
+
+- (void)didTapPostcard:(UIButton *)sender {
+	[_galleryDelegate sharingView:self clickedButtonAtIndex:3];
 }
 
 

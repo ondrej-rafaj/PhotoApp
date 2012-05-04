@@ -7,6 +7,8 @@
 //
 
 #import "PAPhotoDetailView.h"
+#import "UIImage+Tools.h"
+
 
 @implementation PAPhotoDetailView
 
@@ -35,6 +37,13 @@
 	[_imageViewHolder addSubview:_imageView];
 	[_imageView makeMarginInSuperView:10];
 	[_imageView setContentMode:UIViewContentModeScaleAspectFill];
+	
+	ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+	[ai setAlpha:0];
+	[ai startAnimating];
+	[_imageView addSubview:ai];
+	[ai centerInSuperView];
+	[ai setAutoresizingCenter];
 }
 
 - (void)setFrameForImage {
@@ -53,6 +62,7 @@
 }
 
 - (void)show {
+	[_imageView setImage:nil];
 	[self setHidden:NO];
 	[UIView animateWithDuration:0.3 animations:^{
 		[self setAlpha:1];
@@ -66,10 +76,29 @@
 	[self show];
 }
 
-- (void)showWithAsset:(ALAsset *)asset {
-	ALAssetRepresentation *rep = [asset defaultRepresentation];
-	CGImageRef iref = [rep fullResolutionImage];
-	[self showWithImage:[UIImage imageWithCGImage:iref scale:1 orientation:[rep orientation]]];
+- (void)loadAssetOnBackground {
+	@autoreleasepool {
+		ALAssetRepresentation *rep = [asset defaultRepresentation];
+		CGImageRef iref = [rep fullResolutionImage];
+		//sleep(2);
+		UIImage *img = [[UIImage imageWithCGImage:iref scale:1 orientation:[rep orientation]] scaleWithMaxSize:500];
+		[self performSelectorOnMainThread:@selector(setImage:) withObject:img waitUntilDone:NO];
+	}
+}
+
+- (void)prepareAssetForBackgroundLoading {
+	@autoreleasepool {
+		[self performSelectorInBackground:@selector(loadAssetOnBackground) withObject:nil];
+	}
+}
+
+- (void)showWithAsset:(ALAsset *)_asset {
+	asset = _asset;
+	[self show];
+	[UIView beginAnimations:nil context:nil];
+	[ai setAlpha:1];
+	[UIView commitAnimations];
+	[NSThread detachNewThreadSelector:@selector(prepareAssetForBackgroundLoading) toTarget:self withObject:nil];
 }
 
 - (void)dismiss {
@@ -84,6 +113,9 @@
 - (void)setImage:(UIImage *)image {
 	[_imageView setImage:image];
 	[self setFrameForImage];
+	[UIView beginAnimations:nil context:nil];
+	[ai setAlpha:0];
+	[UIView commitAnimations];
 }
 
 - (void)didTapDismissView:(UITapGestureRecognizer *)recognizer {

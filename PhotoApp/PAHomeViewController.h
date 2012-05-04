@@ -10,6 +10,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MessageUI/MessageUI.h>
+#import <Sincerely/Sincerely.h>
 #import "FTCameraButtonView.h"
 #import "FTFlipButtonView.h"
 #import "FTPhotoGridView.h"
@@ -22,7 +23,7 @@
 #import "PAConfig.h"
 
 
-@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate> {
+@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate, SYSincerelyControllerDelegate> {
 	
 	PAConfig *config;
 	
@@ -30,6 +31,7 @@
 	FTFlipBarButtonItem *galleryFlipButton;
 	
 	UIView *mainView;
+	UIActivityIndicatorView *mainViewAi;
 	
 	UIView *cameraMainView;
 	GPUImageView *cameraView;
@@ -38,12 +40,11 @@
 	UITableView *optionsTable;
 	FTCameraButtonView *flashButton;
 	FTCameraButtonView *optionsButton;
+    FTCameraButtonView *cameraSwitchButton;
     UISlider *filterSettingsSlider;
-	AVCaptureSession *avSession;
-	AVCaptureTorchMode torchMode;
+	PAConfigFlashMode flashMode;
 	UIButton *snapButton;
 	CGFloat optionsTableHeight;
-	UIImageView *flyingView;
 	MBProgressHUD *progressHud;
 	
 	UIView *galleryMainView;

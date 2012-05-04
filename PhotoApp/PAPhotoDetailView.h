@@ -14,6 +14,8 @@
 	
 	CGFloat maxHeight;
 	UIInterfaceOrientation orientation;
+	ALAsset *asset;
+	UIActivityIndicatorView *ai;
 	
 }
 

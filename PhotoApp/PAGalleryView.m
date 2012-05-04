@@ -116,7 +116,12 @@
 			}
 		}
 	}
-	if (!isConnection && buttonIndex != 3 && buttonIndex != 1) {
+	else if (buttonIndex == 3) {
+		if ([_delegate respondsToSelector:@selector(galleryView:requestsPostcardFor:)]) {
+			[_delegate galleryView:self requestsPostcardFor:[_data objectAtIndex:_selectedAssetIndex]];
+		}
+	}
+	if (!isConnection && buttonIndex != 4 && buttonIndex != 1) {
 		FTAlertWithTitleAndMessage(@"No connection", @"No internet conection available");
 	}
 }
