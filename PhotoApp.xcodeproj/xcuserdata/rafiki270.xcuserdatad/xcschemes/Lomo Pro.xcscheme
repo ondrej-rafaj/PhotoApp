@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C519BC9155347FE0050D4B5"
-               BuildableName = "PhotoApp copy.app"
+               BuildableName = "Lomo Pro.app"
                BlueprintName = "Lomo Pro"
                ReferencedContainer = "container:PhotoApp.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C519BC9155347FE0050D4B5"
-            BuildableName = "PhotoApp copy.app"
+            BuildableName = "Lomo Pro.app"
             BlueprintName = "Lomo Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
@@ -46,12 +46,13 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      enablesOpenGLESFrameCapture = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C519BC9155347FE0050D4B5"
-            BuildableName = "PhotoApp copy.app"
+            BuildableName = "Lomo Pro.app"
             BlueprintName = "Lomo Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
@@ -69,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C519BC9155347FE0050D4B5"
-            BuildableName = "PhotoApp copy.app"
+            BuildableName = "Lomo Pro.app"
             BlueprintName = "Lomo Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
