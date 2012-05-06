@@ -336,6 +336,11 @@
 		4CF408C71550259800D298C3 /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
 		4CF408D31550A0B100D298C3 /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
 		4CF408E31550AAB900D298C3 /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
+		4CF7AC15155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
+		4CF7AC16155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
+		4CF7AC17155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
+		4CF7AC18155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
+		4CF7AC19155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -391,7 +396,7 @@
 		4C519CD215562AAD0050D4B5 /* PA_share-twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-twitter@2x.png"; sourceTree = "<group>"; };
 		4C519CD315562AAD0050D4B5 /* PA_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_share.png; sourceTree = "<group>"; };
 		4C519CD415562AAD0050D4B5 /* PA_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share@2x.png"; sourceTree = "<group>"; };
-		4C519D7115563BD00050D4B5 /* Sepia Pro copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sepia Pro copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C519D7115563BD00050D4B5 /* Sketch Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sketch Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C519D7615563C960050D4B5 /* PAConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAConfig.m; sourceTree = "<group>"; };
 		4C519D7715563C960050D4B5 /* PhotoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PhotoApp-Info.plist"; sourceTree = "<group>"; };
 		4C519D7915563C960050D4B5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -475,6 +480,7 @@
 		4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAGalleryShareButton.m; sourceTree = "<group>"; };
 		4CF408E11550AAB900D298C3 /* PAPhotoDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoDetailView.h; sourceTree = "<group>"; };
 		4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoDetailView.m; sourceTree = "<group>"; };
+		4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PA_sound_camera.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -707,6 +713,7 @@
 		4C519CBD15562AAD0050D4B5 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */,
 				4C519CBE15562AAD0050D4B5 /* PA_bottomBar.png */,
 				4C519CBF15562AAD0050D4B5 /* PA_bottomBar@2x.png */,
 				4C519CC015562AAD0050D4B5 /* PA_cameraButton.png */,
@@ -810,7 +817,7 @@
 				4C9575AA1540A85200A7141E /* PhotoAppTests.octest */,
 				4C519BBE1552F0910050D4B5 /* B&W Pro.app */,
 				4C519C20155347FE0050D4B5 /* Lomo Pro.app */,
-				4C519D7115563BD00050D4B5 /* Sepia Pro copy.app */,
+				4C519D7115563BD00050D4B5 /* Sketch Pro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1155,7 +1162,7 @@
 			);
 			name = "Sketch Pro";
 			productName = PhotoApp;
-			productReference = 4C519D7115563BD00050D4B5 /* Sepia Pro copy.app */;
+			productReference = 4C519D7115563BD00050D4B5 /* Sketch Pro.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4C9575881540A85100A7141E /* Sepia Pro */ = {
@@ -1260,6 +1267,7 @@
 				4C519D1215562AAD0050D4B5 /* PA_share-twitter@2x.png in Resources */,
 				4C519D1515562AAD0050D4B5 /* PA_share.png in Resources */,
 				4C519D1815562AAD0050D4B5 /* PA_share@2x.png in Resources */,
+				4CF7AC17155651EC001EB017 /* PA_sound_camera.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1297,6 +1305,7 @@
 				4C519D1315562AAD0050D4B5 /* PA_share-twitter@2x.png in Resources */,
 				4C519D1615562AAD0050D4B5 /* PA_share.png in Resources */,
 				4C519D1915562AAD0050D4B5 /* PA_share@2x.png in Resources */,
+				4CF7AC18155651EC001EB017 /* PA_sound_camera.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,6 +1343,7 @@
 				4C519D8015563C960050D4B5 /* Default@2x.png in Resources */,
 				4C519D8115563C960050D4B5 /* Icon.png in Resources */,
 				4C519D8215563C960050D4B5 /* Icon@2x.png in Resources */,
+				4CF7AC19155651EC001EB017 /* PA_sound_camera.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,6 +1381,7 @@
 				4C519D1415562AAD0050D4B5 /* PA_share.png in Resources */,
 				4C519D1715562AAD0050D4B5 /* PA_share@2x.png in Resources */,
 				4C519D8315563CAA0050D4B5 /* PhotoApp-Info.plist in Resources */,
+				4CF7AC15155651EC001EB017 /* PA_sound_camera.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,6 +1391,7 @@
 			files = (
 				4C9575B61540A85200A7141E /* InfoPlist.strings in Resources */,
 				4C519C2A155348930050D4B5 /* PhotoApp-Info.plist in Resources */,
+				4CF7AC16155651EC001EB017 /* PA_sound_camera.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1692,7 +1704,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Sepia Pro copy";
+				PRODUCT_NAME = "Sketch Pro";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1721,7 +1733,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Sepia Pro copy";
+				PRODUCT_NAME = "Sketch Pro";
 				PROVISIONING_PROFILE = "0775F3FE-150B-4EFC-AC3F-8223AF8393ED";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0775F3FE-150B-4EFC-AC3F-8223AF8393ED";
 				VALID_ARCHS = "armv6 armv7";

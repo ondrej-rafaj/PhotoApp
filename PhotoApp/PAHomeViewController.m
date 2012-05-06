@@ -9,6 +9,7 @@
 #import "PAHomeViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Twitter/Twitter.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "PAViewStyles.h"
 #import "PAAppDelegate.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
@@ -115,36 +116,46 @@
 
 #pragma mark Data management
 
+- (void)reloadGalleryElements {
+	BOOL isData = ([assets count] > 0);
+	if (isData) {
+		[galleryFlipButton.flipButton.frontButton setImage:[UIImage imageWithCGImage:[(ALAsset *)[assets objectAtIndex:0] thumbnail]] forState:UIControlStateNormal];
+	}
+	[galleryFlipButton.flipButton setUserInteractionEnabled:isData];
+	[UIView beginAnimations:nil context:nil];
+	[galleryFlipButton.flipButton setAlpha:(isData ? 1 : 0)];
+	[UIView commitAnimations];
+	
+	[galleryDisplayView setData:assets];
+	[galleryDisplayView reloadData];
+}
+
 - (void)reloadData {
 	assets = [NSMutableArray array];
-	
+	__block BOOL isGroup = NO;
 	[library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-		if (group != nil) {
-			//NSLog(@"Group name: %@", [group valueForProperty:ALAssetsGroupPropertyName]);
+		if (group) {
 			if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:[PAConfig appName]]) {
-				*stop = YES;
-				[group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-					if (result != nil) {
-						//NSLog(@"See asset: %@", result);
+				isGroup = YES;
+				[group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+					if (result) {
 						[assets addObject:result];
 					}
 				}];
-				[galleryFlipButton.flipButton.frontButton setImage:[UIImage imageWithCGImage:[(ALAsset *)assets.lastObject thumbnail]] forState:UIControlStateNormal];
 			}
-		} else {
-			//end of enumeration
-			BOOL isData = ([assets count] > 0);
-			[galleryFlipButton.flipButton setUserInteractionEnabled:isData];
-			[UIView beginAnimations:nil context:nil];
-			[galleryFlipButton.flipButton setAlpha:(isData ? 1 : 0)];
-			[UIView commitAnimations];
-			
-			[galleryDisplayView setData:assets];
-			[galleryDisplayView reloadData];
-		}		
-	} failureBlock:^(NSError *error) {
+		}
 		
+		[self performSelectorOnMainThread:@selector(reloadGalleryElements) withObject:nil waitUntilDone:NO];
+	} failureBlock:^(NSError *error) {
+		NSLog(@"Asset library error: %@", error);
 	}];
+	if (!isGroup) {
+		[library addAssetsGroupAlbumWithName:[PAConfig appName] resultBlock:^(ALAssetsGroup *group) {
+			NSLog(@"Library has been added: %@", group);
+		} failureBlock:^(NSError *error) {
+			NSLog(@"Add library error: %@", error);
+		}];
+	}
 }
 
 #pragma mark Creating elements
@@ -389,6 +400,19 @@
 	[self.view addSubview:galleryDetailView];
 }
 
+- (void)enableVolumeButtonAsCameraShutter {
+	AVAudioPlayer* p = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"PA_sound_camera" ofType:@"wav"]] error:NULL];
+	[p prepareToPlay];
+	[p stop];
+	
+	CGRect frame = CGRectMake(-1000, -1000, 100, 100);
+	MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:frame];
+	[volumeView sizeToFit];
+	[self.view addSubview:volumeView];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+}
+
 - (void)createAllElements {
 	library = [[ALAssetsLibrary alloc] init];
 	[self createCameraViewElements];
@@ -397,6 +421,7 @@
 	[self createToolbar];
 	[self createGalleryDetailView];
 	[self createSharingView];
+	[self enableVolumeButtonAsCameraShutter];
 }
 
 #pragma mark HUD delegate method
@@ -408,7 +433,8 @@
 #pragma mark Saving photo
 
 - (void)hideHud {
-	[progressHud hide:YES];	
+	[progressHud hide:YES];
+	isTakingPhoto = NO;
 }
 
 - (void)finishSavingImage {
@@ -416,7 +442,7 @@
 	[progressHud setMode:MBProgressHUDModeCustomView];
 	[progressHud setLabelText:@"Completed"];
 	[progressHud setDetailsLabelText:nil];
-	[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
+	[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
 	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hideHud) userInfo:nil repeats:NO];
 }
 
@@ -442,9 +468,7 @@
 		}
 		[self performSelectorOnMainThread:@selector(finishSavingImage) withObject:nil waitUntilDone:NO];
 	}];
-	image = [image scaleWithMaxSize:80];
-	//ALAsset *a = [[ALAsset alloc] init];
-	//[a setImageData:<#(NSData *)#> metadata:<#(NSDictionary *)#> completionBlock:<#^(NSURL *assetURL, NSError *error)completionBlock#>
+	//image = [image scaleWithMaxSize:80];
 }
 
 - (void)startBackgroundSaving:(UIImage *)image {
@@ -513,21 +537,37 @@
 }
 
 - (void)takePhoto {
-	[_stillCamera capturePhotoProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(UIImage *processedImage, NSError *error) {
-		NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
-		[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
+	if (!isTakingPhoto) {
+		isTakingPhoto = YES;
 		
-		[progressHud setMode:MBProgressHUDModeIndeterminate];
-		[progressHud setLabelText:@"Saving photo"];
-		[progressHud setDetailsLabelText:@"to the gallery"];
-		[progressHud show:YES];
+		CATransition *animation = [CATransition animation];
+		[animation setDelegate:self];
+		[animation setDuration:0.4];
+		animation.timingFunction = UIViewAnimationCurveEaseInOut;
+		[animation setType:@"cameraIris"];
+		[cameraView.layer addAnimation:animation forKey:nil];
 		
-	}];
+		[_stillCamera capturePhotoProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+			NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
+			[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
+			
+			[progressHud setMode:MBProgressHUDModeIndeterminate];
+			[progressHud setLabelText:@"Saving photo"];
+			[progressHud setDetailsLabelText:@"to the gallery"];
+			[progressHud show:YES];
+			
+		}];
+	}
 }
 
 - (void)didClickTakePhoto:(UIBarButtonItem *)sender {
 	[FTTracking logEvent:@"Camera: Take photo"];
 	[self takePhoto];
+}
+
+- (void)volumeChanged:(NSNotification *)notification{
+	[FTTracking logEvent:@"Camera: Take photo using volume button"];
+    [self takePhoto];   
 }
 
 - (void)didClickOptionsPhoto:(UIButton *)sender {

@@ -57,7 +57,7 @@
 	ALAssetsLibrary *library;
 	NSMutableArray *assets;
 	
-	
+	BOOL isTakingPhoto;
 	
 }
 
