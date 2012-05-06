@@ -11,8 +11,9 @@
 
 
 @interface PAConfig () {
-	GPUImageSepiaFilter *filter;
+	GPUImageFilterGroup *filter;
     GPUImageVignetteFilter *vignette;
+	UIImage *radialImage;
 }
 
 @end
@@ -78,50 +79,52 @@
 - (NSMutableArray *)optionsData {
 	NSMutableArray * optionsData = [NSMutableArray array];
 	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
-	[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
-	//[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the sepia effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
+	//[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
+	[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
 	return optionsData;
 }
 
-- (UIImage *)radialGradientMaskForVintageEffect:(CGSize)size withColor:(UIColor *)color inverted:(BOOL)inverted {
-	UIGraphicsBeginImageContextWithOptions(size, NO, 1);
-	
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    
-	CGFloat BGLocations[3] = { 0.0, 1.0 };
-	
-	CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
-	
-	const CGFloat *c = CGColorGetComponents(color.CGColor);
-    
-	CGGradientRef bgRadialGradient;
-	
-	if (CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor)) == kCGColorSpaceModelMonochrome) {
-		CGFloat BgComponents[8] = { 0, 0, 0 , (inverted ? 1 : 0), c[0], c[0], c[0], (inverted ? 0 : c[3]) };
-		bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 2);
-	}
-	else {
-		CGFloat BgComponents[8] = { 0, 0, 0 , (inverted ? 1 : 0), c[0], c[1], c[2], (inverted ? 0 : c[3]) };
-		bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 2);
-	}
-	
-    CGPoint startBg = CGPointMake((size.width / 2), (size.height / 2)); 
-    CGFloat endRadius= (size.width > size.height) ? size.width : size.height;
-	CGFloat randMax = ((endRadius * 20) / 100);
-	NSInteger rand = (((arc4random() % (int)randMax) + ((endRadius * 10) / 100)) - ((randMax + ((endRadius * 20) / 100)) / 2));
-	endRadius -= randMax;
-	startBg.x += rand;
-	startBg.y += rand;
-	
-	CGContextDrawRadialGradient(context, bgRadialGradient, startBg, 0, startBg, endRadius, kCGGradientDrawsAfterEndLocation);
-    CGColorSpaceRelease(BgRGBColorspace);
-    CGGradientRelease(bgRadialGradient);
-	
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-	
-    UIGraphicsEndImageContext();
-    return image;
-}
+//- (UIImage *)radialGradientMaskForVintageEffect:(CGSize)size withColor:(UIColor *)color inverted:(BOOL)inverted {
+//	if (radialImage) return radialImage;
+//	UIGraphicsBeginImageContextWithOptions(size, NO, 1);
+//	
+//	CGContextRef context = UIGraphicsGetCurrentContext();
+//    
+//	CGFloat BGLocations[3] = { 0.0, 1.0 };
+//	
+//	CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
+//	
+//	const CGFloat *c = CGColorGetComponents(color.CGColor);
+//    
+//	CGGradientRef bgRadialGradient;
+//	
+//	if (CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor)) == kCGColorSpaceModelMonochrome) {
+//		CGFloat BgComponents[8] = { 0, 0, 0 , (inverted ? 1 : 0), c[0], c[0], c[0], (inverted ? 0 : c[3]) };
+//		bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 2);
+//	}
+//	else {
+//		CGFloat BgComponents[8] = { 0, 0, 0 , (inverted ? 1 : 0), c[0], c[1], c[2], (inverted ? 0 : c[3]) };
+//		bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 2);
+//	}
+//	
+//    CGPoint startBg = CGPointMake((size.width / 2), (size.height / 2)); 
+//    CGFloat endRadius= (size.width > size.height) ? size.width : size.height;
+//	CGFloat randMax = ((endRadius * 20) / 100);
+//	NSInteger rand = (((arc4random() % (int)randMax) + ((endRadius * 10) / 100)) - ((randMax + ((endRadius * 20) / 100)) / 2));
+//	endRadius -= randMax;
+//	startBg.x += rand;
+//	startBg.y += rand;
+//	
+//	CGContextDrawRadialGradient(context, bgRadialGradient, startBg, 0, startBg, endRadius, kCGGradientDrawsAfterEndLocation);
+//    CGColorSpaceRelease(BgRGBColorspace);
+//    CGGradientRelease(bgRadialGradient);
+//	
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//	
+//    UIGraphicsEndImageContext();
+//	radialImage = image;
+//    return image;
+//}
 
 /*
  
@@ -195,51 +198,59 @@
  */
 
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
-	filter = [[GPUImageSepiaFilter alloc] init];
-	[filter setIntensity:0.25];
-	[filter prepareForImageCapture];
+	filter = [[GPUImageFilterGroup alloc] init];
 	
-	GPUImageExposureFilter *exposure = [[GPUImageExposureFilter alloc] init];
-	[exposure setExposure:-0.2];
-	[exposure addTarget:filter];
-	[exposure prepareForImageCapture];
+	GPUImageSepiaFilter *sepiaFilter = [[GPUImageSepiaFilter alloc] init];
+	[sepiaFilter setIntensity:0.25];
+	[filter addFilter:sepiaFilter];
 	
-	//UIImage *gradient = [self radialGradientMaskForVintageEffect:CGSizeMake(500, 500) withColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1] inverted:YES];
-	//GPUImageSoftLightBlendFilter *blend = [[GPUImageSoftLightBlendFilter alloc] init];
-	//[blend set
-	
-//	GPUImageColorBurnBlendFilter *colorBurn = [[GPUImageColorBurnBlendFilter alloc] init];
-//	[colorBurn initializeAttributes];
-//	[colorBurn addTarget:exposure];
-	
-//	GPUImageColorInvertFilter *invert = [[GPUImageColorInvertFilter alloc] init];
-//	[invert addTarget:exposure];
+//	GPUImageExposureFilter *exposure = [[GPUImageExposureFilter alloc] init];
+//	[exposure setExposure:-0.2];
+//	[filter addFilter:exposure];
+//	[sepiaFilter addTarget:exposure];
 	
 	GPUImageContrastFilter *contrast = [[GPUImageContrastFilter alloc] init];
 	[contrast setContrast:2];
-	[contrast addTarget:exposure];
+	[sepiaFilter addTarget:contrast];
 	
 	vignette = [[GPUImageVignetteFilter alloc] init];
-	[vignette addTarget:contrast];
-	[vignette prepareForImageCapture];
+	[filter addTarget:vignette];
+	[contrast addTarget:vignette];
 	
+	[filter setInitialFilters:[NSArray arrayWithObjects:sepiaFilter, contrast, nil]];
+	[filter setTerminalFilter:vignette];
 	
-	// Do not touch if you don't have to :)
+	[filter prepareForImageCapture];
+	
 	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
 	[rotationFilter prepareForImageCapture];
 	[stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:vignette];
+	[rotationFilter addTarget:filter];
 	[filter addTarget:cameraView];
 }
 
 - (GPUImageFilter *)upToCameraFilter {
-	return filter;
+	return (GPUImageFilter *)filter;
+}
+
+- (void)configureSlider:(UISlider *)slider forIdentifier:(NSString *)identifier {
+	if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
+		[slider setTransform:CGAffineTransformMakeScale(-1, 1)];
+		[slider setMaximumTrackTintColor:[UIColor darkGrayColor]];
+		[slider setMinimumTrackTintColor:[UIColor lightGrayColor]];
+		[slider setMinimumValue:-1.0];
+		[slider setMaximumValue:0.74];
+		[slider setValue:0.33];
+		[[NSUserDefaults standardUserDefaults] setFloat:slider.value forKey:identifier];
+		[[NSUserDefaults standardUserDefaults]synchronize];
+		[self setIntensity:slider.value forIdentifier:identifier];
+	}
 }
 
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier {
-	//intensity = ((in
-	if ([identifier isEqualToString:@"photoEffectIntensity"]) {
-		//[(GPUImageSepiaFilter *)filter setIntensity:intensity];
+	if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
+		NSLog(@"Vignette intensity: %f", intensity);
+		[vignette setY:intensity];
 	}
 }
 
@@ -247,7 +258,7 @@
 	if ([identifier isEqualToString:@"photoVignette"]) {
 		BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:identifier];
 		[vignette setX:((enabled) ? 0.75 : 0)];
-		[vignette setY:((enabled) ? 0.5 : 0)];
+		[vignette setY:((enabled) ? 0.33 : 0)];
 		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
 		else [FTTracking logEvent:@"Camera: Vignette disabled"];
 	}

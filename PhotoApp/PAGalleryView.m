@@ -76,20 +76,24 @@
 }
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index {
-	_selectedAssetIndex = index;
-	if ([_delegate respondsToSelector:@selector(galleryView:requestsDetailFor:)]) {
-		[_delegate galleryView:self requestsDetailFor:(ALAsset *)[_data objectAtIndex:_selectedAssetIndex]];
+	if (index < [_data count]) {
+		_selectedAssetIndex = index;
+		if ([_delegate respondsToSelector:@selector(galleryView:requestsDetailFor:)]) {
+			[_delegate galleryView:self requestsDetailFor:(ALAsset *)[_data objectAtIndex:_selectedAssetIndex]];
+		}
 	}
 }
 
 - (void)didClickShareButton:(PAGalleryShareButton *)sender {
-	_selectedAssetIndex = sender.buttonIndex;
-	if ([_delegate respondsToSelector:@selector(galleryView:requestsSharingOptionFor:)]) {
-		[_delegate galleryView:self requestsSharingOptionFor:(ALAsset *)[_data objectAtIndex:_selectedAssetIndex]];
-	}
-	else {
-		UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"Share photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Email", @"Twitter", nil];
-		[as showInView:self.superview];
+	if (sender.buttonIndex < [_data count]) {
+		_selectedAssetIndex = sender.buttonIndex;
+		if ([_delegate respondsToSelector:@selector(galleryView:requestsSharingOptionFor:)]) {
+			[_delegate galleryView:self requestsSharingOptionFor:(ALAsset *)[_data objectAtIndex:_selectedAssetIndex]];
+		}
+		else {
+			UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"Share photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Email", @"Twitter", nil];
+			[as showInView:self.superview];
+		}
 	}
 }
 

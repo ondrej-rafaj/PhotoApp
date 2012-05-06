@@ -442,6 +442,9 @@
 		}
 		[self performSelectorOnMainThread:@selector(finishSavingImage) withObject:nil waitUntilDone:NO];
 	}];
+	image = [image scaleWithMaxSize:80];
+	//ALAsset *a = [[ALAsset alloc] init];
+	//[a setImageData:<#(NSData *)#> metadata:<#(NSDictionary *)#> completionBlock:<#^(NSURL *assetURL, NSError *error)completionBlock#>
 }
 
 - (void)startBackgroundSaving:(UIImage *)image {
@@ -630,8 +633,10 @@
 	[cell.titleLabel setText:[d objectForKey:@"name"]];
 	[cell.descriptionLabel setText:[d objectForKey:@"description"]];
 	[cell setType:[d objectForKey:@"type"]];
-//#warning Make me dynamic
-	[cell.valueSlider setMinimumValue:0.5];
+	
+	if ([[d objectForKey:@"type"] isEqualToString:@"slider"]) {
+		[config configureSlider:cell.valueSlider forIdentifier:[d objectForKey:@"identifier"]];
+	}
 	
 	[cell setDelegate:self];
 	[cell reloadData];

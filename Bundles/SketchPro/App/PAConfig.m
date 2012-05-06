@@ -41,15 +41,15 @@
 #pragma mark General settings
 
 + (NSString *)appName {
-	return @"B&W Pro";
+	return @"Sketch Pro";
 }
 
 + (NSString *)flurryCode {
-	return @"7Y2DGF9BIEFLMNNY6RN4";
+	return @"EDKF2VKRX4965DAYZVGM";
 }
 
 + (NSString *)facebookAppId {
-	return @"378064265568103";
+	return @"327140727359224";
 }
 
 + (NSString *)dateFormat {
@@ -57,7 +57,7 @@
 }
 
 + (NSString *)sincerelyApiKey {
-	return @"OEETCEGPKAKLSUAJKNYM27CGXPJDYBG3MAVAN0BY";
+	return @"FO5KHRT6KP3982GQ55KNPK8AX2WQ5IF8R140SS6F";
 }
 
 #pragma mark GPU Image section
@@ -79,23 +79,25 @@
 	NSMutableArray * optionsData = [NSMutableArray array];
 	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
 	//[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
-	[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
+	//[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
 	return optionsData;
 }
 
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
-	filter = [[GPUImageGrayscaleFilter alloc] init];
+	filter = [[GPUImageSketchFilter alloc] init];
 	[filter prepareForImageCapture];
 	
-	vignette = [[GPUImageVignetteFilter alloc] init];
-	[vignette addTarget:filter];
-	[vignette prepareForImageCapture];
+//	vignette = [[GPUImageVignetteFilter alloc] init];
+//	[vignette setY:0];
+//	[vignette setX:0];
+//	[vignette addTarget:filter];
+//	[vignette prepareForImageCapture];
 	
 	// Do not touch if you don't have to :)
 	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
-	[rotationFilter prepareForImageCapture];
+	//[rotationFilter prepareForImageCapture];
 	[stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:vignette];
+	[rotationFilter addTarget:filter];
 	[filter addTarget:cameraView];
 }
 

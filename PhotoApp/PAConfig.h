@@ -44,6 +44,7 @@ PAConfigFlashMode;
 - (NSMutableArray *)optionsData;
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView;
 - (GPUImageFilter *)upToCameraFilter;
+- (void)configureSlider:(UISlider *)slider forIdentifier:(NSString *)identifier;
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier;
 - (void)didChangeValueForIdentifier:(NSString *)identifier;
 

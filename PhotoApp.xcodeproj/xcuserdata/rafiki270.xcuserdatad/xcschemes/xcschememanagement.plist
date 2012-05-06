@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Sketch Pro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>4C519BC9155347FE0050D4B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C519D1B15563BD00050D4B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

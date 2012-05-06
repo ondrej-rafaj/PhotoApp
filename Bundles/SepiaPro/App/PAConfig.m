@@ -78,7 +78,8 @@
 - (NSMutableArray *)optionsData {
 	NSMutableArray * optionsData = [NSMutableArray array];
 	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
-	[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
+	//[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
+	[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
 	[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the sepia effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
 	return optionsData;
 }
@@ -103,10 +104,30 @@
 	return filter;
 }
 
+- (void)configureSlider:(UISlider *)slider forIdentifier:(NSString *)identifier {
+	if ([identifier isEqualToString:@"photoEffectIntensity"]) {
+		[slider setMinimumValue:0.5];
+		[slider setMaximumValue:1];
+	}
+	else if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
+		[slider setTransform:CGAffineTransformMakeScale(-1, 1)];
+		[slider setMaximumTrackTintColor:[UIColor darkGrayColor]];
+		[slider setMinimumTrackTintColor:[UIColor lightGrayColor]];
+		[slider setMinimumValue:-1.0];
+		[slider setMaximumValue:0.74];
+		[slider setValue:0.5];
+		[[NSUserDefaults standardUserDefaults] setFloat:slider.value forKey:identifier];
+		[[NSUserDefaults standardUserDefaults]synchronize];
+		[self setIntensity:slider.value forIdentifier:identifier];
+	}
+}
+
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier {
-	//intensity = ((in
 	if ([identifier isEqualToString:@"photoEffectIntensity"]) {
 		[(GPUImageSepiaFilter *)filter setIntensity:intensity];
+	}
+	else if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
+		[vignette setY:intensity];
 	}
 }
 
