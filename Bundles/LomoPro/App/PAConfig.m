@@ -264,5 +264,9 @@
 	}
 }
 
+- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+	return image;
+}
+
 
 @end

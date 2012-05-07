@@ -11,7 +11,7 @@
 
 
 @interface PAConfig () {
-	GPUImageFilter *filter;
+	GPUImageSepiaFilter *filter;
     GPUImageVignetteFilter *vignette;
 }
 
@@ -139,6 +139,23 @@
 		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
 		else [FTTracking logEvent:@"Camera: Vignette disabled"];
 	}
+}
+
+- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+    GPUImageSepiaFilter *sepiaImageFilter = [[GPUImageSepiaFilter alloc] init];
+	[sepiaImageFilter setIntensity:filter.intensity];
+	
+    GPUImageVignetteFilter *vignetteImageFilter = [[GPUImageVignetteFilter alloc] init];
+    //vignetteImageFilter.x = vignette.x;
+    //vignetteImageFilter.y = vignette.y;
+        
+    [stillImageSource addTarget:sepiaImageFilter];
+    [sepiaImageFilter addTarget:vignetteImageFilter];
+    [vignetteImageFilter prepareForImageCapture];
+    [stillImageSource processImage];
+    
+    return [vignetteImageFilter imageFromCurrentlyProcessedOutput];
 }
 
 

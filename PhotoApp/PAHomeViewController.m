@@ -442,8 +442,8 @@
 	[progressHud setMode:MBProgressHUDModeCustomView];
 	[progressHud setLabelText:@"Completed"];
 	[progressHud setDetailsLabelText:nil];
-	[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
-	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hideHud) userInfo:nil repeats:NO];
+	[NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
+	[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(hideHud) userInfo:nil repeats:NO];
 }
 
 - (void)saveImage:(UIImage *)image {
@@ -471,9 +471,23 @@
 	//image = [image scaleWithMaxSize:80];
 }
 
+- (void)prepareImage:(UIImage *)image {
+	@autoreleasepool {
+		image = [config applyFiltersManuallyOnImage:image];
+		[self saveImage:image];
+		[_stillCamera startCameraCapture];
+	}
+}
+
 - (void)startBackgroundSaving:(UIImage *)image {
 	@autoreleasepool {
 		[self performSelectorInBackground:@selector(saveImage:) withObject:image];
+	}
+}
+
+- (void)startBackgroundSavingOnLowPixelGPU:(UIImage *)image {
+	@autoreleasepool {
+		[self performSelectorInBackground:@selector(prepareImage:) withObject:image];
 	}
 }
 
@@ -556,6 +570,15 @@
 			[progressHud setDetailsLabelText:@"to the gallery"];
 			[progressHud show:YES];
 			
+		} andCompletionHandler:^(UIImage *processedImage, NSError *error) {
+			[_stillCamera stopCameraCapture];
+			NSLog(@"Did finish picking photo with size on iPhone 4: %@", NSStringFromCGSize(processedImage.size));
+			[NSThread detachNewThreadSelector:@selector(startBackgroundSavingOnLowPixelGPU:) toTarget:self withObject:processedImage];
+			
+			[progressHud setMode:MBProgressHUDModeIndeterminate];
+			[progressHud setLabelText:@"Saving photo"];
+			[progressHud setDetailsLabelText:@"to the gallery"];
+			[progressHud show:YES];
 		}];
 	}
 }

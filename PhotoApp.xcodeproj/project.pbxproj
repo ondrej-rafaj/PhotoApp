@@ -744,8 +744,8 @@
 		4C519D7415563C960050D4B5 /* SketchPro */ = {
 			isa = PBXGroup;
 			children = (
-				4C519D7515563C960050D4B5 /* App */,
 				4C519D7815563C960050D4B5 /* System */,
+				4C519D7515563C960050D4B5 /* App */,
 			);
 			path = SketchPro;
 			sourceTree = "<group>";

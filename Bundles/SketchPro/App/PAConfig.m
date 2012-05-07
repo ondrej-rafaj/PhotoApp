@@ -78,8 +78,6 @@
 - (NSMutableArray *)optionsData {
 	NSMutableArray * optionsData = [NSMutableArray array];
 	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
-	//[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
-	//[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
 	return optionsData;
 }
 
@@ -87,15 +85,7 @@
 	filter = [[GPUImageSketchFilter alloc] init];
 	[filter prepareForImageCapture];
 	
-//	vignette = [[GPUImageVignetteFilter alloc] init];
-//	[vignette setY:0];
-//	[vignette setX:0];
-//	[vignette addTarget:filter];
-//	[vignette prepareForImageCapture];
-	
-	// Do not touch if you don't have to :)
 	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
-	//[rotationFilter prepareForImageCapture];
 	[stillCamera addTarget:rotationFilter];
 	[rotationFilter addTarget:filter];
 	[filter addTarget:cameraView];
@@ -133,6 +123,16 @@
 		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
 		else [FTTracking logEvent:@"Camera: Vignette disabled"];
 	}
+}
+
+- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+	GPUImageSketchFilter *stillImageFilter = [[GPUImageSketchFilter alloc] init];
+	
+	[stillImageSource addTarget:stillImageFilter];
+	[stillImageSource processImage];
+	
+	return [stillImageFilter imageFromCurrentlyProcessedOutput];
 }
 
 
