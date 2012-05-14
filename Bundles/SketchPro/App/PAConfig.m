@@ -82,13 +82,27 @@
 }
 
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
-	filter = [[GPUImageSketchFilter alloc] init];
-	[filter prepareForImageCapture];
+	//stillCamera = [[GPUImageStillCamera alloc] init];
+	//    stillCamera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
+	//    filter = [[GPUImageGammaFilter alloc] init];
+    filter = [[GPUImageSketchFilter alloc] init];
+    [(GPUImageSketchFilter *)filter setTexelHeight:(1.0 / 1024.0)];
+    [(GPUImageSketchFilter *)filter setTexelWidth:(1.0 / 768.0)];
+	//    filter = [[GPUImageSmoothToonFilter alloc] init];
+	//    filter = [[GPUImageSepiaFilter alloc] init];
 	
-	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
-	[stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:filter];
-	[filter addTarget:cameraView];
+	[filter prepareForImageCapture];
+    
+    [stillCamera addTarget:filter];
+    GPUImageView *filterView = (GPUImageView *)cameraView;
+    [filter addTarget:filterView];
+    
+	//    [stillCamera.inputCamera lockForConfiguration:nil];
+	//    [stillCamera.inputCamera setFlashMode:AVCaptureFlashModeOn];
+	//    [stillCamera.inputCamera unlockForConfiguration];
+    
+    //	[stillCamera startCameraCapture];
+
 }
 
 - (GPUImageFilter *)upToCameraFilter {
@@ -125,15 +139,15 @@
 	}
 }
 
-- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
-	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
-	GPUImageSketchFilter *stillImageFilter = [[GPUImageSketchFilter alloc] init];
-	
-	[stillImageSource addTarget:stillImageFilter];
-	[stillImageSource processImage];
-	
-	return [stillImageFilter imageFromCurrentlyProcessedOutput];
-}
+//- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+//	GPUImageSketchFilter *stillImageFilter = [[GPUImageSketchFilter alloc] init];
+//	
+//	[stillImageSource addTarget:stillImageFilter];
+//	[stillImageSource processImage];
+//	
+//	return [stillImageFilter imageFromCurrentlyProcessedOutput];
+//}
 
 
 @end

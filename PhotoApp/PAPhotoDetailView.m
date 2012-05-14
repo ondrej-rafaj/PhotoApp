@@ -81,7 +81,8 @@
 		ALAssetRepresentation *rep = [asset defaultRepresentation];
 		CGImageRef iref = [rep fullResolutionImage];
 		//sleep(2);
-		UIImage *img = [[UIImage imageWithCGImage:iref scale:1 orientation:[rep orientation]] scaleWithMaxSize:500];
+		//UIImage *img = [[UIImage imageWithCGImage:iref scale:1 orientation:[rep orientation]] scaleWithMaxSize:500];
+		UIImage *img = [UIImage imageWithCGImage:iref scale:1 orientation:[rep orientation]];
 		[self performSelectorOnMainThread:@selector(setImage:) withObject:img waitUntilDone:NO];
 	}
 }

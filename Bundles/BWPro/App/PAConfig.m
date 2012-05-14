@@ -86,17 +86,13 @@
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
 	filter = [[GPUImageGrayscaleFilter alloc] init];
 	[filter prepareForImageCapture];
-	
+    
 	vignette = [[GPUImageVignetteFilter alloc] init];
 	[vignette addTarget:filter];
 	[vignette prepareForImageCapture];
-	
-	// Do not touch if you don't have to :)
-	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
-	[rotationFilter prepareForImageCapture];
-	[stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:vignette];
-	[filter addTarget:cameraView];
+    
+    [stillCamera addTarget:vignette];
+    [filter addTarget:cameraView];
 }
 
 - (GPUImageFilter *)upToCameraFilter {
@@ -133,20 +129,20 @@
 	}
 }
 
-- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
-//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+//- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+////	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+////	
+////	GPUImageGrayscaleFilter *g = [[GPUImageGrayscaleFilter alloc] init];
+////	[g prepareForImageCapture];
 //	
-//	GPUImageGrayscaleFilter *g = [[GPUImageGrayscaleFilter alloc] init];
-//	[g prepareForImageCapture];
-	
-	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
-	GPUImageGrayscaleFilter *gray = [[GPUImageGrayscaleFilter alloc] init];
-	
-	[stillImageSource addTarget:gray];
-	[stillImageSource processImage];
-	
-	return [gray imageFromCurrentlyProcessedOutput];
-}
+//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+//	GPUImageGrayscaleFilter *gray = [[GPUImageGrayscaleFilter alloc] init];
+//	
+//	[stillImageSource addTarget:gray];
+//	[stillImageSource processImage];
+//	
+//	return [gray imageFromCurrentlyProcessedOutput];
+//}
 
 
 @end

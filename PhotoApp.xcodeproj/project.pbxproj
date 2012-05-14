@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C14E83D15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
+		4C14E83E15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
+		4C14E83F15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
+		4C14E84015593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
+		4C14E84115593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
+		4C14E86B15596BC3008A9D54 /* GPUImageLomoFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E86A15596BC3008A9D54 /* GPUImageLomoFilter.m */; };
 		4C519B6A1552F0910050D4B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9575991540A85200A7141E /* main.m */; };
 		4C519B6B1552F0910050D4B5 /* PAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C95759D1540A85200A7141E /* PAAppDelegate.m */; };
 		4C519B6C1552F0910050D4B5 /* PAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9575A01540A85200A7141E /* PAViewController.m */; };
@@ -354,6 +360,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C14E83B15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPUImageStillCamera+LowPixelHandling.h"; sourceTree = "<group>"; };
+		4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GPUImageStillCamera+LowPixelHandling.m"; sourceTree = "<group>"; };
+		4C14E86915596BC3008A9D54 /* GPUImageLomoFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageLomoFilter.h; sourceTree = "<group>"; };
+		4C14E86A15596BC3008A9D54 /* GPUImageLomoFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageLomoFilter.m; sourceTree = "<group>"; };
 		4C519B671552BE070050D4B5 /* PAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAConfig.h; sourceTree = "<group>"; };
 		4C519BBE1552F0910050D4B5 /* B&W Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "B&W Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C519BC31552F0E20050D4B5 /* PAConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAConfig.m; sourceTree = "<group>"; };
@@ -641,6 +651,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C14E86715596B46008A9D54 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				4C14E86915596BC3008A9D54 /* GPUImageLomoFilter.h */,
+				4C14E86A15596BC3008A9D54 /* GPUImageLomoFilter.m */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
 		4C519BC11552F0E20050D4B5 /* BWPro */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,6 +953,7 @@
 		4C9575C41540A8B800A7141E /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				4C14E86715596B46008A9D54 /* Filters */,
 				4C9575EB1540AF6500A7141E /* Styles */,
 			);
 			name = Libs;
@@ -961,6 +981,8 @@
 				4C7B800E1540CB1A00DF8572 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
 				4CF408BD1550035500D298C3 /* UIDevice+Hardware.h */,
 				4CF408BE1550035500D298C3 /* UIDevice+Hardware.m */,
+				4C14E83B15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.h */,
+				4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1438,6 +1460,7 @@
 				4C519B7B1552F0910050D4B5 /* PAGalleryShareButton.m in Sources */,
 				4C519B7C1552F0910050D4B5 /* PAPhotoDetailView.m in Sources */,
 				4C519C29155348870050D4B5 /* PAConfig.m in Sources */,
+				4C14E83F15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1465,6 +1488,8 @@
 				4C519BDC155347FE0050D4B5 /* PAGalleryShareButton.m in Sources */,
 				4C519BDD155347FE0050D4B5 /* PAPhotoDetailView.m in Sources */,
 				4C519C271553481B0050D4B5 /* PAConfig.m in Sources */,
+				4C14E84015593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
+				4C14E86B15596BC3008A9D54 /* GPUImageLomoFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1492,6 +1517,7 @@
 				4C519D2E15563BD00050D4B5 /* PAGalleryShareButton.m in Sources */,
 				4C519D2F15563BD00050D4B5 /* PAPhotoDetailView.m in Sources */,
 				4C519D7D15563C960050D4B5 /* PAConfig.m in Sources */,
+				4C14E84115593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1519,6 +1545,7 @@
 				4CF408D31550A0B100D298C3 /* PAGalleryShareButton.m in Sources */,
 				4CF408E31550AAB900D298C3 /* PAPhotoDetailView.m in Sources */,
 				4C519BC81552F2AB0050D4B5 /* PAConfig.m in Sources */,
+				4C14E83D15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,6 +1561,7 @@
 				4CC6E6EA154EED4A007C524C /* PAGalleryViewCell.m in Sources */,
 				4C519BC71552F0F20050D4B5 /* PAConfig.m in Sources */,
 				4C519C2C15534AE80050D4B5 /* PAHomeViewController.m in Sources */,
+				4C14E83E15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

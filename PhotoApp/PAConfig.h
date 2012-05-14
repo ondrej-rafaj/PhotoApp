@@ -47,7 +47,7 @@ PAConfigFlashMode;
 - (void)configureSlider:(UISlider *)slider forIdentifier:(NSString *)identifier;
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier;
 - (void)didChangeValueForIdentifier:(NSString *)identifier;
-- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image;
+//- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image;
 
 
 @end

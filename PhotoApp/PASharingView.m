@@ -68,12 +68,16 @@
 		[_sendPostcard addTarget:self action:@selector(didTapPostcard:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sendPostcard];
 		
-        _sharingFacebook = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sendPostcard bottomPosition] + 10), width, 30)];
+        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-postcard.png"]];
+		[_buttonHolder addSubview:icon];
+		[icon positionAtX:(width - 16) andY:([_sendPostcard yPosition] - 4)];
+		
+		_sharingFacebook = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sendPostcard bottomPosition] + 10), width, 30)];
 		[_sharingFacebook setTitle:@"Facebook" forState:UIControlStateNormal];
 		[_sharingFacebook addTarget:self action:@selector(didTapFacebook:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sharingFacebook];
 		
-		UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-facebook.png"]];
+		icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-facebook.png"]];
 		[_buttonHolder addSubview:icon];
 		[icon positionAtX:(width - 16) andY:([_sharingFacebook yPosition] - 4)];
 		
@@ -81,6 +85,10 @@
 		[_sharingEmail setTitle:@"Email" forState:UIControlStateNormal];
 		[_sharingEmail addTarget:self action:@selector(didTapEmail:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sharingEmail];
+		
+		icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-email.png"]];
+		[_buttonHolder addSubview:icon];
+		[icon positionAtX:(width - 16) andY:([_sharingEmail yPosition] - 4)];
 		
 		_sharingTwitter = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sharingEmail bottomPosition] + 10), width, 30)];
 		[_sharingTwitter setTitle:@"Twitter" forState:UIControlStateNormal];

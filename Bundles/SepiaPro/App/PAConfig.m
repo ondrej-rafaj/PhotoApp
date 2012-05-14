@@ -91,13 +91,9 @@
 	vignette = [[GPUImageVignetteFilter alloc] init];
 	[vignette addTarget:filter];
 	[vignette prepareForImageCapture];
-	
-	// Do not touch if you don't have to :)
-	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
-	[rotationFilter prepareForImageCapture];
-	[stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:vignette];
-	[filter addTarget:cameraView];
+    
+    [stillCamera addTarget:vignette];
+    [filter addTarget:cameraView];
 }
 
 - (GPUImageFilter *)upToCameraFilter {
@@ -141,22 +137,22 @@
 	}
 }
 
-- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
-	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
-    GPUImageSepiaFilter *sepiaImageFilter = [[GPUImageSepiaFilter alloc] init];
-	[sepiaImageFilter setIntensity:filter.intensity];
-	
-    GPUImageVignetteFilter *vignetteImageFilter = [[GPUImageVignetteFilter alloc] init];
-    //vignetteImageFilter.x = vignette.x;
-    //vignetteImageFilter.y = vignette.y;
-        
-    [stillImageSource addTarget:sepiaImageFilter];
-    [sepiaImageFilter addTarget:vignetteImageFilter];
-    [vignetteImageFilter prepareForImageCapture];
-    [stillImageSource processImage];
-    
-    return [vignetteImageFilter imageFromCurrentlyProcessedOutput];
-}
+//- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+//    GPUImageSepiaFilter *sepiaImageFilter = [[GPUImageSepiaFilter alloc] init];
+//	[sepiaImageFilter setIntensity:filter.intensity];
+//	
+//    GPUImageVignetteFilter *vignetteImageFilter = [[GPUImageVignetteFilter alloc] init];
+//    //vignetteImageFilter.x = vignette.x;
+//    //vignetteImageFilter.y = vignette.y;
+//        
+//    [stillImageSource addTarget:sepiaImageFilter];
+//    [sepiaImageFilter addTarget:vignetteImageFilter];
+//    [vignetteImageFilter prepareForImageCapture];
+//    [stillImageSource processImage];
+//    
+//    return [vignetteImageFilter imageFromCurrentlyProcessedOutput];
+//}
 
 
 @end

@@ -13,6 +13,7 @@
 #import "PAViewStyles.h"
 #import "PAAppDelegate.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "GPUImageStillCamera+LowPixelHandling.h"
 #import "UIDevice+Hardware.h"
 #import "UIImage+Tools.h"
 #import "FTTracking.h"
@@ -320,6 +321,7 @@
 	[cameraMainView addSubview:cameraView];
 	
 	_stillCamera = [[GPUImageStillCamera alloc] init];
+	[_stillCamera setOutputImageOrientation:UIInterfaceOrientationPortrait];
 	
 	[config configureForCamera:_stillCamera andCameraView:cameraView];
 	
@@ -471,13 +473,13 @@
 	//image = [image scaleWithMaxSize:80];
 }
 
-- (void)prepareImage:(UIImage *)image {
-	@autoreleasepool {
-		image = [config applyFiltersManuallyOnImage:image];
-		[self saveImage:image];
-		[_stillCamera startCameraCapture];
-	}
-}
+//- (void)prepareImage:(UIImage *)image {
+//	@autoreleasepool {
+//		image = [config applyFiltersManuallyOnImage:image];
+//		[self saveImage:image];
+//		[_stillCamera startCameraCapture];
+//	}
+//}
 
 - (void)startBackgroundSaving:(UIImage *)image {
 	@autoreleasepool {
@@ -485,11 +487,11 @@
 	}
 }
 
-- (void)startBackgroundSavingOnLowPixelGPU:(UIImage *)image {
-	@autoreleasepool {
-		[self performSelectorInBackground:@selector(prepareImage:) withObject:image];
-	}
-}
+//- (void)startBackgroundSavingOnLowPixelGPU:(UIImage *)image {
+//	@autoreleasepool {
+//		[self performSelectorInBackground:@selector(prepareImage:) withObject:image];
+//	}
+//}
 
 #pragma mark Flip button delegate methods
 
@@ -530,7 +532,7 @@
 		{
 			NSLog(@"Error locking for configuration: %@", error);
 		}
-		if ([_stillCamera getCameraPosition] == AVCaptureDevicePositionBack) {
+		if (_stillCamera.cameraPosition == AVCaptureDevicePositionBack) {
 			if (flashMode == PAConfigFlashModeAlwaysOn) {
 				[_stillCamera.inputCamera setTorchMode:AVCaptureTorchModeOn];
 				[_stillCamera.inputCamera setFlashMode:AVCaptureFlashModeOn];
@@ -561,7 +563,8 @@
 		[animation setType:@"cameraIris"];
 		[cameraView.layer addAnimation:animation forKey:nil];
 		
-		[_stillCamera capturePhotoProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+		[_stillCamera capturePhotoAsJPEGProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(NSData *processedJPEG, NSError *error) {
+			UIImage *processedImage = [UIImage imageWithData:processedJPEG];
 			NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
 			[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
 			
@@ -569,9 +572,21 @@
 			[progressHud setLabelText:@"Saving photo"];
 			[progressHud setDetailsLabelText:@"to the gallery"];
 			[progressHud show:YES];
+		}];
+		
+		/*
+		[_stillCamera capturePhotoAsJPEGProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(NSData *processedJPEG, NSError *error) {
+			UIImage *processedImage = [UIImage imageWithData:processedJPEG];
+			NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
+			[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
 			
-		} andCompletionHandler:^(UIImage *processedImage, NSError *error) {
+			[progressHud setMode:MBProgressHUDModeIndeterminate];
+			[progressHud setLabelText:@"Saving photo"];
+			[progressHud setDetailsLabelText:@"to the gallery"];
+			[progressHud show:YES];
+		} andLowPixelTextureHandler:^(NSData *processedJPEG, NSError *error) {
 			[_stillCamera stopCameraCapture];
+			UIImage *processedImage = [UIImage imageWithData:processedJPEG];
 			NSLog(@"Did finish picking photo with size on iPhone 4: %@", NSStringFromCGSize(processedImage.size));
 			[NSThread detachNewThreadSelector:@selector(startBackgroundSavingOnLowPixelGPU:) toTarget:self withObject:processedImage];
 			
@@ -580,6 +595,7 @@
 			[progressHud setDetailsLabelText:@"to the gallery"];
 			[progressHud show:YES];
 		}];
+		//*/
 	}
 }
 
@@ -640,13 +656,13 @@
 		[mainViewAi setAlpha:1];
 	} completion:^(BOOL finished) {
 		[cameraMainView positionAtX:320];
-		if ([_stillCamera getCameraPosition] == AVCaptureDevicePositionBack) {
+		if (_stillCamera.cameraPosition == AVCaptureDevicePositionBack) {
 			flashMode = PAConfigFlashModeOff;
 			[self reloadTorch];
 		}
 		[_stillCamera rotateCamera];
 		[_stillCamera startCameraCapture];
-		if ([_stillCamera getCameraPosition] == AVCaptureDevicePositionBack) {
+		if (_stillCamera.cameraPosition == AVCaptureDevicePositionBack) {
 			AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 			if ([device hasTorch]) {
 				[flashButton setHidden:NO];
