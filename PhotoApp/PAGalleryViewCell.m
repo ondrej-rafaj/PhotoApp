@@ -38,8 +38,8 @@
 		[_imageView positionAtY:([v yPosition] + 5)];
 		
 		_shareButton = [[PAGalleryShareButton alloc] init];
-		[_shareButton setFrame:CGRectMake(([_imageView rightPosition] - 20), 8, 34, 34)];
-		[_shareButton setImage:[UIImage imageNamed:@"PA_share.png"] forState:UIControlStateNormal];
+		[_shareButton setFrame:CGRectMake(([_imageView rightPosition] - 20), 8, 34, 30)];
+		[_shareButton setImage:[UIImage imageNamed:@"PP_btn_share.png"] forState:UIControlStateNormal];
 		[_shareButton setBackgroundColor:[UIColor clearColor]];
 		[self.contentView addSubview:_shareButton];
     }

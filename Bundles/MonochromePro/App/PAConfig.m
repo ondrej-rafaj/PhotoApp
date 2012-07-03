@@ -11,8 +11,12 @@
 
 
 @interface PAConfig () {
-	GPUImageSepiaFilter *filter;
+	GPUImageMonochromeFilter *filter;
     GPUImageVignetteFilter *vignette;
+	
+	CGFloat r;
+	CGFloat g;
+	CGFloat b;
 }
 
 @end
@@ -41,15 +45,15 @@
 #pragma mark General settings
 
 + (NSString *)appName {
-	return @"Sepia Pro";
+	return @"Monochrome Pro";
 }
 
 + (NSString *)flurryCode {
-	return @"6THGBQVWHALTY5KPVBID"; // Sepia Pro
+	return @"XXXXXXXXXXXX"; // Monochrome Pro
 }
 
 + (NSString *)facebookAppId {
-	return @"221860844593941"; // Sepia Pro
+	return @"XXXXXXXXXXXX"; // Monochrome Pro
 }
 
 + (NSString *)dateFormat {
@@ -57,10 +61,20 @@
 }
 
 + (NSString *)sincerelyApiKey {
-	return @"1BRX0B0D4M2ZD32DL1UU3DA7Q28NKIDJSAISMTQE";
+	return @"XXXXXXXXXXX";
 }
 
 #pragma mark GPU Image section
+
+- (id)init {
+	self = [super init];
+	if (self) {
+		r = 1;
+		g = 0;
+		b = 0;
+	}
+	return self;
+}
 
 - (NSMutableDictionary *)dictionaryWithName:(NSString *)name withDescription:(NSString *)desc withIdentifier:(NSString *)identifier andType:(NSString *)type {
 	NSMutableDictionary *d = [NSMutableDictionary dictionary];
@@ -80,13 +94,21 @@
 	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
 	//[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
 	[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
-	[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the sepia effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
+	
+	[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
+	
+	[optionsData addObject:[self dictionaryWithName:@"Red" withDescription:@"Intensity of the red color" withIdentifier:@"photoEffectIntensityRed" andType:@"slider"]];
+	
+	[optionsData addObject:[self dictionaryWithName:@"Green" withDescription:@"Intensity of the green color" withIdentifier:@"photoEffectIntensityGreen" andType:@"slider"]];
+	
+	[optionsData addObject:[self dictionaryWithName:@"Blue" withDescription:@"Intensity of the blue color" withIdentifier:@"photoEffectIntensityBlue" andType:@"slider"]];
 	return optionsData;
 }
 
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
-	filter = [[GPUImageSepiaFilter alloc] init];
+	filter = [[GPUImageMonochromeFilter alloc] init];
 	[filter prepareForImageCapture];
+	[filter setColorRed:0 green:1 blue:0];
 	
 	vignette = [[GPUImageVignetteFilter alloc] init];
 	[vignette addTarget:filter];
@@ -101,8 +123,9 @@
 }
 
 - (void)configureSlider:(UISlider *)slider forIdentifier:(NSString *)identifier {
+	[slider setTransform:CGAffineTransformMakeScale(1, 1)];
 	if ([identifier isEqualToString:@"photoEffectIntensity"]) {
-		[slider setMinimumValue:0.5];
+		[slider setMinimumValue:0.1];
 		[slider setMaximumValue:1];
 	}
 	else if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
@@ -112,15 +135,45 @@
 		[slider setMinimumValue:-1.0];
 		[slider setMaximumValue:0.74];
 		[slider setValue:0.5];
+		[[NSUserDefaults standardUserDefaults] setFloat:slider.value forKey:identifier];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		[self setIntensity:slider.value forIdentifier:identifier];
+	}
+	else {
+		if ([identifier isEqualToString:@"photoEffectIntensityRed"]) {
+			[slider setMinimumTrackTintColor:[UIColor redColor]];
+		}
+		else if ([identifier isEqualToString:@"photoEffectIntensityGreen"]) {
+			[slider setMinimumTrackTintColor:[UIColor greenColor]];
+		}
+		else if ([identifier isEqualToString:@"photoEffectIntensityBlue"]) {
+			[slider setMinimumTrackTintColor:[UIColor blueColor]];
+		}
+		[slider setMinimumValue:0];
+		[slider setMaximumValue:1];
+		[[NSUserDefaults standardUserDefaults] setFloat:slider.value forKey:identifier];
+		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
 }
 
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier {
 	if ([identifier isEqualToString:@"photoEffectIntensity"]) {
-		[(GPUImageSepiaFilter *)filter setIntensity:intensity];
+		[(GPUImageMonochromeFilter *)filter setIntensity:intensity];
 	}
 	else if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
 		[vignette setVignetteStart:intensity];
+	}
+	else if ([identifier isEqualToString:@"photoEffectIntensityRed"]) {
+		r = intensity;
+		[filter setColorRed:r green:g blue:b];
+	}
+	else if ([identifier isEqualToString:@"photoEffectIntensityGreen"]) {
+		g = intensity;
+		[filter setColorRed:r green:g blue:b];
+	}
+	else if ([identifier isEqualToString:@"photoEffectIntensityBlue"]) {
+		b = intensity;
+		[filter setColorRed:r green:g blue:b];
 	}
 }
 
@@ -136,18 +189,21 @@
 
 - (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
 	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
-	GPUImageSepiaFilter *sepiaFilter = [[GPUImageSepiaFilter alloc] init];
-	[sepiaFilter setIntensity:filter.intensity];
+	GPUImageMonochromeFilter *localFilter = [[GPUImageMonochromeFilter alloc] init];
+	[localFilter setIntensity:filter.intensity];
+	[localFilter setColorRed:0 green:1 blue:0];
 	
 	GPUImageVignetteFilter *vignetteFilter = [[GPUImageVignetteFilter alloc] init];
 	[vignetteFilter setVignetteEnd:vignette.vignetteEnd];
 	[vignetteFilter setVignetteStart:vignette.vignetteStart];
-	[vignette addTarget:sepiaFilter];
+	[vignette addTarget:localFilter];
 	
-	[stillImageSource addTarget:sepiaFilter];
+	
+	
+	[stillImageSource addTarget:localFilter];
 	[stillImageSource processImage];
 	
-	return [sepiaFilter imageFromCurrentlyProcessedOutput];
+	return [localFilter imageFromCurrentlyProcessedOutput];
 }
 
 

@@ -192,7 +192,8 @@
 	flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	[arr addObject:flex];
 	
-	if (front) {
+	// TODO: Load image from library
+	if (YES) {
 		UIBarButtonItem *fixed = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 		[fixed setWidth:34];
 		[arr addObject:fixed];
@@ -224,9 +225,14 @@
 			optionsTableHeight += [self tableView:optionsTable heightForRowAtIndexPath:[NSIndexPath indexPathForRow:x inSection:i]];
 		}
 	}
+	BOOL scrollable = NO;
+	if (optionsTableHeight > 240) {
+		optionsTableHeight = 240;
+		scrollable = YES;
+	}
 	optionsTable = [[UITableView alloc] initWithFrame:[self frameForOptionsTable] style:UITableViewStylePlain];
 	[optionsTable setAlpha:0];
-	[optionsTable setScrollEnabled:NO];
+	[optionsTable setScrollEnabled:scrollable];
 	[optionsTable setDelegate:self];
 	[optionsTable setDataSource:self];
 	[optionsTable setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.6]];
@@ -273,7 +279,7 @@
 	}
 	else flashMode = PAConfigFlashModeOff;
 	//[AVCaptureDevice
-	if (YES) {
+	if (NO) {
 		cameraSwitchButton = [[FTCameraButtonView alloc] initWithFrame:[self frameForCameraSwitchButton]];
 		[cameraSwitchButton addTarget:self action:@selector(didClickSwitchCameraButton:) forControlEvents:UIControlEventTouchUpInside];
 		[cameraSwitchButton setTitle:@"" forState:UIControlStateNormal];
@@ -371,8 +377,7 @@
 }
 
 - (void)createGalleryDetailView {
-	galleryDetailView = [[PAPhotoDetailView alloc] initWithFrame:self.view.bounds];
-	[self.view addSubview:galleryDetailView];
+	// Creating dynamically everytime an image is clicked
 }
 
 - (void)enableVolumeButtonAsCameraShutter {
@@ -514,15 +519,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
 	[picker dismissModalViewControllerAnimated:YES];
 	
-	//image = [config applyFiltersManuallyOnImage:image];
-	
 	NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(image.size));
 	[NSThread detachNewThreadSelector:@selector(startBackgroundSavingFromLibrary:) toTarget:self withObject:image];
-	
-	[progressHud setMode:MBProgressHUDModeIndeterminate];
-	[progressHud setLabelText:@"Saving photo"];
-	[progressHud setDetailsLabelText:@"to the gallery"];
-	[progressHud show:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -569,6 +567,11 @@
 	if (!isTakingPhoto) {
 		isTakingPhoto = YES;
 		
+		[progressHud setMode:MBProgressHUDModeIndeterminate];
+		[progressHud setLabelText:@"Saving photo"];
+		[progressHud setDetailsLabelText:@"to the gallery"];
+		[progressHud show:YES];
+		
 		CATransition *animation = [CATransition animation];
 		[animation setDelegate:self];
 		[animation setDuration:0.4];
@@ -586,29 +589,6 @@
 			[progressHud setDetailsLabelText:@"to the gallery"];
 			[progressHud show:YES];
 		}];
-		
-		/*
-		[_stillCamera capturePhotoAsJPEGProcessedUpToFilter:[config upToCameraFilter] withCompletionHandler:^(NSData *processedJPEG, NSError *error) {
-			UIImage *processedImage = [UIImage imageWithData:processedJPEG];
-			NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
-			[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
-			
-			[progressHud setMode:MBProgressHUDModeIndeterminate];
-			[progressHud setLabelText:@"Saving photo"];
-			[progressHud setDetailsLabelText:@"to the gallery"];
-			[progressHud show:YES];
-		} andLowPixelTextureHandler:^(NSData *processedJPEG, NSError *error) {
-			[_stillCamera stopCameraCapture];
-			UIImage *processedImage = [UIImage imageWithData:processedJPEG];
-			NSLog(@"Did finish picking photo with size on iPhone 4: %@", NSStringFromCGSize(processedImage.size));
-			[NSThread detachNewThreadSelector:@selector(startBackgroundSavingOnLowPixelGPU:) toTarget:self withObject:processedImage];
-			
-			[progressHud setMode:MBProgressHUDModeIndeterminate];
-			[progressHud setLabelText:@"Saving photo"];
-			[progressHud setDetailsLabelText:@"to the gallery"];
-			[progressHud show:YES];
-		}];
-		//*/
 	}
 }
 
@@ -729,7 +709,15 @@
 	[cell setType:[d objectForKey:@"type"]];
 	
 	if ([[d objectForKey:@"type"] isEqualToString:@"slider"]) {
+		[cell.valueSlider setMinimumTrackTintColor:[UIColor darkGrayColor]];
+		[cell.valueSlider setMaximumTrackTintColor:[UIColor lightGrayColor]];
 		[config configureSlider:cell.valueSlider forIdentifier:[d objectForKey:@"identifier"]];
+		[cell.enableSwitch setHidden:YES];
+		[cell.valueSlider setHidden:NO];
+	}
+	else {
+		[cell.valueSlider setHidden:YES];
+		[cell.enableSwitch setHidden:NO];
 	}
 	
 	[cell setDelegate:self];
@@ -881,11 +869,21 @@
 }
 
 - (void)galleryView:(PAGalleryView *)gallery requestsSharingOptionFor:(ALAsset *)asset {
-	[sharingView showWithImage:[UIImage imageWithCGImage:[asset thumbnail]]];
+//	[sharingView showWithImage:[UIImage imageWithCGImage:[asset thumbnail]]];
+	
+	[self galleryView:gallery requestsPostcardFor:asset];
 }
 
 - (void)galleryView:(PAGalleryView *)gallery requestsDetailFor:(ALAsset *)asset {
-	[galleryDetailView showWithAsset:asset];
+//	if (galleryDetailView) {
+//		[galleryDetailView removeFromSuperview];
+//		galleryDetailView = nil;
+//	}
+//	galleryDetailView = [[PAPhotoDetailView alloc] initWithFrame:self.view.bounds];
+//	[self.view addSubview:galleryDetailView];
+//	[galleryDetailView showWithAsset:asset];
+	
+	[sharingView showWithImage:[UIImage imageWithCGImage:[asset thumbnail]]];
 }
 
 #pragma mark Sincerely delegate methods
