@@ -123,36 +123,35 @@
 		[(GPUImageSepiaFilter *)filter setIntensity:intensity];
 	}
 	else if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
-		[vignette setY:intensity];
+		[vignette setVignetteStart:intensity];
 	}
 }
 
 - (void)didChangeValueForIdentifier:(NSString *)identifier {
 	if ([identifier isEqualToString:@"photoVignette"]) {
 		BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:identifier];
-		[vignette setX:((enabled) ? 0.75 : 0)];
-		[vignette setY:((enabled) ? 0.5 : 0)];
+		[vignette setVignetteEnd:((enabled) ? 0.75 : 0)];
+		[vignette setVignetteStart:((enabled) ? 0.5 : 0)];
 		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
 		else [FTTracking logEvent:@"Camera: Vignette disabled"];
 	}
 }
 
-//- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
-//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
-//    GPUImageSepiaFilter *sepiaImageFilter = [[GPUImageSepiaFilter alloc] init];
-//	[sepiaImageFilter setIntensity:filter.intensity];
-//	
-//    GPUImageVignetteFilter *vignetteImageFilter = [[GPUImageVignetteFilter alloc] init];
-//    //vignetteImageFilter.x = vignette.x;
-//    //vignetteImageFilter.y = vignette.y;
-//        
-//    [stillImageSource addTarget:sepiaImageFilter];
-//    [sepiaImageFilter addTarget:vignetteImageFilter];
-//    [vignetteImageFilter prepareForImageCapture];
-//    [stillImageSource processImage];
-//    
-//    return [vignetteImageFilter imageFromCurrentlyProcessedOutput];
-//}
+- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+	GPUImageSepiaFilter *sepiaFilter = [[GPUImageSepiaFilter alloc] init];
+	[sepiaFilter setIntensity:filter.intensity];
+	
+	GPUImageVignetteFilter *vignetteFilter = [[GPUImageVignetteFilter alloc] init];
+	[vignetteFilter setVignetteEnd:vignette.vignetteEnd];
+	[vignetteFilter setVignetteStart:vignette.vignetteStart];
+	[vignette addTarget:sepiaFilter];
+	
+	[stillImageSource addTarget:sepiaFilter];
+	[stillImageSource processImage];
+	
+	return [sepiaFilter imageFromCurrentlyProcessedOutput];
+}
 
 
 @end

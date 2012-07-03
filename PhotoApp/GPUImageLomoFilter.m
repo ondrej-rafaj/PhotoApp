@@ -37,7 +37,7 @@ NSString *const kGPUImageLomoFragmentShaderString = SHADER_STRING
 }
  );
 
-NSString *const kGPUImageContrastFragmentShaderString = SHADER_STRING
+NSString *const kGPUImageContrastFragmentShaderString2 = SHADER_STRING
 ( 
  varying highp vec2 textureCoordinate;
  

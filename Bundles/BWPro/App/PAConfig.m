@@ -115,15 +115,15 @@
 
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier {
 	if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
-		[vignette setY:intensity];
+		[vignette setVignetteStart:intensity];
 	}
 }
 
 - (void)didChangeValueForIdentifier:(NSString *)identifier {
 	if ([identifier isEqualToString:@"photoVignette"]) {
 		BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:identifier];
-		[vignette setX:((enabled) ? 0.75 : 0)];
-		[vignette setY:((enabled) ? 0.5 : 0)];
+		[vignette setVignetteEnd:((enabled) ? 0.75 : 0)];
+		[vignette setVignetteStart:((enabled) ? 0.5 : 0)];
 		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
 		else [FTTracking logEvent:@"Camera: Vignette disabled"];
 	}

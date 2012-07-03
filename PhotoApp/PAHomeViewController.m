@@ -192,9 +192,15 @@
 	flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	[arr addObject:flex];
 	
-	UIBarButtonItem *fixed = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-	[fixed setWidth:34];
-	[arr addObject:flex];
+	if (front) {
+		UIBarButtonItem *fixed = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+		[fixed setWidth:34];
+		[arr addObject:fixed];
+	}
+	else {
+		UIBarButtonItem *lib = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(selectImageFromImagePicker:)];
+		[arr addObject:lib];
+	}
 	
 	[mainToolbar setItems:arr animated:animated];
 }
@@ -266,8 +272,8 @@
 		[cameraMainView addSubview:flashButton];
 	}
 	else flashMode = PAConfigFlashModeOff;
-	
-	if (NO) {
+	//[AVCaptureDevice
+	if (YES) {
 		cameraSwitchButton = [[FTCameraButtonView alloc] initWithFrame:[self frameForCameraSwitchButton]];
 		[cameraSwitchButton addTarget:self action:@selector(didClickSwitchCameraButton:) forControlEvents:UIControlEventTouchUpInside];
 		[cameraSwitchButton setTitle:@"" forState:UIControlStateNormal];
@@ -329,39 +335,6 @@
 }
 
 - (void)createCameraViewElements {
-	
-	/*
-	 
-	 - (UIImage*)lomo
-	 {
-	 UIImage *image = [[self saturate:1.2] contrast:1.15];
-	 NSArray *redPoints = [NSArray arrayWithObjects:
-	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-	 [NSValue valueWithCGPoint:CGPointMake(137, 118)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 nil];
-	 NSArray *greenPoints = [NSArray arrayWithObjects:
-	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-	 [NSValue valueWithCGPoint:CGPointMake(64, 54)],
-	 [NSValue valueWithCGPoint:CGPointMake(175, 194)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 nil];
-	 NSArray *bluePoints = [NSArray arrayWithObjects:
-	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-	 [NSValue valueWithCGPoint:CGPointMake(59, 64)],
-	 [NSValue valueWithCGPoint:CGPointMake(203, 189)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 nil];
-	 image = [[[image applyCurve:redPoints toChannel:CurveChannelRed] 
-	 applyCurve:greenPoints toChannel:CurveChannelGreen]
-	 applyCurve:bluePoints toChannel:CurveChannelBlue];
-	 
-	 return [image darkVignette];
-	 }
-	 
-	 */
-	
 	gridView = [[FTPhotoGridView alloc] init];
 	[cameraMainView addSubview:gridView];
 
@@ -473,13 +446,26 @@
 	//image = [image scaleWithMaxSize:80];
 }
 
-//- (void)prepareImage:(UIImage *)image {
-//	@autoreleasepool {
-//		image = [config applyFiltersManuallyOnImage:image];
-//		[self saveImage:image];
-//		[_stillCamera startCameraCapture];
-//	}
-//}
+- (void)saveImageWithoutOrientation:(UIImage *)image {
+	[library saveImage:image toAlbum:[PAConfig appName] withCompletionBlock:^(NSError *error) {
+		if (error != nil) {
+			NSLog(@"Save image error: %@", [error description]);
+		}
+		else {
+			//library = nil;
+			library = [[ALAssetsLibrary alloc] init];
+		}
+		[self performSelectorOnMainThread:@selector(finishSavingImage) withObject:nil waitUntilDone:NO];
+	}];
+}
+
+- (void)prepareImage:(UIImage *)image {
+	@autoreleasepool {
+		image = [config applyFiltersManuallyOnImage:image];
+		[self saveImageWithoutOrientation:image];
+		//[_stillCamera startCameraCapture];
+	}
+}
 
 - (void)startBackgroundSaving:(UIImage *)image {
 	@autoreleasepool {
@@ -487,11 +473,11 @@
 	}
 }
 
-//- (void)startBackgroundSavingOnLowPixelGPU:(UIImage *)image {
-//	@autoreleasepool {
-//		[self performSelectorInBackground:@selector(prepareImage:) withObject:image];
-//	}
-//}
+- (void)startBackgroundSavingFromLibrary:(UIImage *)image {
+	@autoreleasepool {
+		[self performSelectorInBackground:@selector(prepareImage:) withObject:image];
+	}
+}
 
 #pragma mark Flip button delegate methods
 
@@ -523,7 +509,34 @@
 	}
 }
 
+#pragma mark Image picker delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+	[picker dismissModalViewControllerAnimated:YES];
+	
+	//image = [config applyFiltersManuallyOnImage:image];
+	
+	NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(image.size));
+	[NSThread detachNewThreadSelector:@selector(startBackgroundSavingFromLibrary:) toTarget:self withObject:image];
+	
+	[progressHud setMode:MBProgressHUDModeIndeterminate];
+	[progressHud setLabelText:@"Saving photo"];
+	[progressHud setDetailsLabelText:@"to the gallery"];
+	[progressHud show:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+	[picker dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark Button actions
+
+- (void)selectImageFromImagePicker:(UIBarButtonItem *)sender {
+	UIImagePickerController *c = [[UIImagePickerController alloc] init];
+	[c setDelegate:self];
+	[c setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+	[self presentModalViewController:c animated:YES];
+}
 
 - (void)reloadTorch {
 	if ([_stillCamera.inputCamera isTorchAvailable]) {
@@ -668,9 +681,11 @@
 				[flashButton setHidden:NO];
 				flashMode = [PAConfig flashMode];
 			}
+			[cameraView setTransform:CGAffineTransformMakeScale(1, 1)];
 		}
 		else {
 			[flashButton setHidden:YES];
+			[cameraView setTransform:CGAffineTransformMakeScale(-1, 1)];
 		}
 		[UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
 			[cameraMainView positionAtX:0];

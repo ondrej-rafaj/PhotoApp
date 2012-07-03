@@ -34,75 +34,77 @@
 		[self setHidden:YES];
 		
 		_dismissView = [[UIView alloc] initWithFrame:self.bounds];
-		[_dismissView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9]];
+		[_dismissView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
 		[self addSubview:_dismissView];
 		
 		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapDismissView:)];
 		[_dismissView addGestureRecognizer:tap];
 		
-		CGFloat width = 220;
+		CGFloat width = 230;
 		
 		CGRect r = CGRectMake(0, 0, 100, 100);
 		_imageViewHolder = [[UIView alloc] initWithFrame:r];
 		[_imageViewHolder setBackgroundColor:[UIColor whiteColor]];
 		[self addSubview:_imageViewHolder];
 		[_imageViewHolder centerInSuperView];
-		[_imageViewHolder positionAtY:50];
+		[_imageViewHolder positionAtY:40];
 		
 		_imageView = [[UIImageView alloc] initWithFrame:r];
 		[_imageView setBackgroundColor:[UIColor grayColor]];
 		[_imageViewHolder addSubview:_imageView];
 		[_imageView makeMarginInSuperView:5];
 		
-		_buttonHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (width + 20), ((30 * 5) + 60))];
-		[_buttonHolder setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5]];
-		[_buttonHolder.layer setCornerRadius:15];
-		[_buttonHolder.layer setBorderWidth:1];
-		[_buttonHolder.layer setBorderColor:[UIColor darkGrayColor].CGColor];
+		_buttonHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 222)];
 		[self addSubview:_buttonHolder];
-		[_buttonHolder centerInSuperView];
-		[_buttonHolder positionAtY:([_buttonHolder yPosition] + 40)];
 		
-		_sendPostcard = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, 10, width, 30)];
-		[_sendPostcard setTitle:@"Send postcard" forState:UIControlStateNormal];
+		_sendPostcard = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, 52)];
 		[_sendPostcard addTarget:self action:@selector(didTapPostcard:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sendPostcard];
+        UIImage *icon = [[UIImage imageNamed:@"PP_btn_sendpost.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:26];
+		[_sendPostcard setBackgroundImage:icon forState:UIControlStateNormal];
+		UIImage *text = [UIImage imageNamed:@"PP_txt_sendpost.png"];
+		[_sendPostcard setImage:text forState:UIControlStateNormal];
+		[_sendPostcard setImageEdgeInsets:UIEdgeInsetsMake(1, 25, 0, 80)];
 		
-        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-postcard.png"]];
-		[_buttonHolder addSubview:icon];
-		[icon positionAtX:(width - 16) andY:([_sendPostcard yPosition] - 4)];
-		
-		_sharingFacebook = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sendPostcard bottomPosition] + 10), width, 30)];
-		[_sharingFacebook setTitle:@"Facebook" forState:UIControlStateNormal];
+		_sharingFacebook = [[UIButton alloc] initWithFrame:CGRectMake(0, ([_sendPostcard bottomPosition] + 10), width, 40)];
 		[_sharingFacebook addTarget:self action:@selector(didTapFacebook:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sharingFacebook];
+		icon = [[UIImage imageNamed:@"PP_btn_facebook.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:26];
+		[_sharingFacebook setBackgroundImage:icon forState:UIControlStateNormal];
+		text = [UIImage imageNamed:@"PP_txt_facebook.png"];
+		[_sharingFacebook setImage:text forState:UIControlStateNormal];
+		[_sharingFacebook setImageEdgeInsets:UIEdgeInsetsMake(0, 25, 0, 80)];
 		
-		icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-facebook.png"]];
-		[_buttonHolder addSubview:icon];
-		[icon positionAtX:(width - 16) andY:([_sharingFacebook yPosition] - 4)];
-		
-		_sharingEmail = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sharingFacebook bottomPosition] + 10), width, 30)];
-		[_sharingEmail setTitle:@"Email" forState:UIControlStateNormal];
+		_sharingEmail = [[UIButton alloc] initWithFrame:CGRectMake(0, ([_sharingFacebook bottomPosition] + 4), width, 40)];
 		[_sharingEmail addTarget:self action:@selector(didTapEmail:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sharingEmail];
+		icon = [[UIImage imageNamed:@"PP_btn_email.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:26];
+		[_sharingEmail setBackgroundImage:icon forState:UIControlStateNormal];
+		text = [UIImage imageNamed:@"PP_txt_email.png"];
+		[_sharingEmail setImage:text forState:UIControlStateNormal];
+		[_sharingEmail setImageEdgeInsets:UIEdgeInsetsMake(0, 25, 0, 80)];
 		
-		icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-email.png"]];
-		[_buttonHolder addSubview:icon];
-		[icon positionAtX:(width - 16) andY:([_sharingEmail yPosition] - 4)];
-		
-		_sharingTwitter = [[FTCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sharingEmail bottomPosition] + 10), width, 30)];
-		[_sharingTwitter setTitle:@"Twitter" forState:UIControlStateNormal];
+		_sharingTwitter = [[UIButton alloc] initWithFrame:CGRectMake(0, ([_sharingEmail bottomPosition] + 4), width, 40)];
 		[_sharingTwitter addTarget:self action:@selector(didTapTwitter:) forControlEvents:UIControlEventTouchUpInside];
 		[_buttonHolder addSubview:_sharingTwitter];
+		icon = [[UIImage imageNamed:@"PP_btn_twitter.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:26];
+		[_sharingTwitter setBackgroundImage:icon forState:UIControlStateNormal];
+		text = [UIImage imageNamed:@"PP_txt_twitter.png"];
+		[_sharingTwitter setImage:text forState:UIControlStateNormal];
+		[_sharingTwitter setImageEdgeInsets:UIEdgeInsetsMake(0, 25, 0, 80)];
 		
-		icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_share-twitter.png"]];
-		[_buttonHolder addSubview:icon];
-		[icon positionAtX:(width - 16) andY:([_sharingTwitter yPosition] - 4)];
-		
-		_sharingCancel = [[FTRedCameraButtonView alloc] initWithFrame:CGRectMake(10, ([_sharingTwitter bottomPosition] + 10), width, 30)];
-		[_sharingCancel setTitle:@"Cancel" forState:UIControlStateNormal];
+		_sharingCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, ([_sharingTwitter bottomPosition] + 4), width, 40)];
 		[_buttonHolder addSubview:_sharingCancel];
 		[_sharingCancel addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+		icon = [[UIImage imageNamed:@"PP_btn_cancel.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:26];
+		[_sharingCancel setBackgroundImage:icon forState:UIControlStateNormal];
+		text = [UIImage imageNamed:@"PP_txt_cancel.png"];
+		[_sharingCancel setImage:text forState:UIControlStateNormal];
+		[_sharingCancel setImageEdgeInsets:UIEdgeInsetsMake(0, 25, 0, 80)];
+		
+		[_buttonHolder setHeight:[_sharingCancel bottomPosition]];
+		[_buttonHolder centerInSuperView];
+		[_buttonHolder positionAtY:([_buttonHolder yPosition] + 40)];
     }
     return self;
 }

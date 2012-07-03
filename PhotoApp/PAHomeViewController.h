@@ -23,7 +23,7 @@
 #import "PAConfig.h"
 
 
-@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate, SYSincerelyControllerDelegate> {
+@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate, SYSincerelyControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
 	
 	PAConfig *config;
 	

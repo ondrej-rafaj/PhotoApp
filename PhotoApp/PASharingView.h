@@ -23,11 +23,11 @@
 @property (nonatomic, strong) UIView *imageViewHolder;
 @property (nonatomic, strong) UIImageView *imageView;
 
-@property (nonatomic, strong) FTCameraButtonView *sendPostcard;
-@property (nonatomic, strong) FTCameraButtonView *sharingFacebook;
-@property (nonatomic, strong) FTCameraButtonView *sharingTwitter;
-@property (nonatomic, strong) FTCameraButtonView *sharingEmail;
-@property (nonatomic, strong) FTRedCameraButtonView *sharingCancel;
+@property (nonatomic, strong) UIButton *sendPostcard;
+@property (nonatomic, strong) UIButton *sharingFacebook;
+@property (nonatomic, strong) UIButton *sharingTwitter;
+@property (nonatomic, strong) UIButton *sharingEmail;
+@property (nonatomic, strong) UIButton *sharingCancel;
 
 @property (nonatomic, assign) PAGalleryView *galleryDelegate;
 

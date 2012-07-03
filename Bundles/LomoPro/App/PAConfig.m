@@ -8,7 +8,7 @@
 
 #import "PAConfig.h"
 #import "FTTracking.h"
-#import "GPUImageLomoFilter.h"
+#import "GPUImageSepiaFilter.h"
 
 
 @interface PAConfig () {
@@ -86,9 +86,45 @@
 }
 
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
+
+	
+	/*
+	 
+	 - (UIImage*)lomo
+	 {
+	 UIImage *image = [[self saturate:1.2] contrast:1.15];
+	 NSArray *redPoints = [NSArray arrayWithObjects:
+	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
+	 [NSValue valueWithCGPoint:CGPointMake(137, 118)],
+	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
+	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
+	 nil];
+	 NSArray *greenPoints = [NSArray arrayWithObjects:
+	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
+	 [NSValue valueWithCGPoint:CGPointMake(64, 54)],
+	 [NSValue valueWithCGPoint:CGPointMake(175, 194)],
+	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
+	 nil];
+	 NSArray *bluePoints = [NSArray arrayWithObjects:
+	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
+	 [NSValue valueWithCGPoint:CGPointMake(59, 64)],
+	 [NSValue valueWithCGPoint:CGPointMake(203, 189)],
+	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
+	 nil];
+	 image = [[[image applyCurve:redPoints toChannel:CurveChannelRed] 
+	 applyCurve:greenPoints toChannel:CurveChannelGreen]
+	 applyCurve:bluePoints toChannel:CurveChannelBlue];
+	 
+	 return [image darkVignette];
+	 }
+	 
+	 */
+	
+
+	
 	filter = [[GPUImageFilterGroup alloc] init];
 	
-	GPUImageLomoFilter *sepiaFilter = [[GPUImageLomoFilter alloc] init];
+	GPUImageSepiaFilter *sepiaFilter = [[GPUImageSepiaFilter alloc] init];
 	[sepiaFilter setIntensity:0.25];
 	[filter addFilter:sepiaFilter];
 	
@@ -110,11 +146,8 @@
 	
 	[filter prepareForImageCapture];
 	
-	GPUImageRotationFilter *rotationFilter = [[GPUImageRotationFilter alloc] initWithRotation:kGPUImageRotateRight];
-	[rotationFilter prepareForImageCapture];
-	[stillCamera addTarget:rotationFilter];
-	[rotationFilter addTarget:filter];
-	[filter addTarget:cameraView];
+	[stillCamera addTarget:vignette];
+    [filter addTarget:cameraView];
 }
 
 - (GPUImageFilter *)upToCameraFilter {
@@ -138,15 +171,15 @@
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier {
 	if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
 		NSLog(@"Vignette intensity: %f", intensity);
-		[vignette setY:intensity];
+		[vignette setVignetteStart:intensity];
 	}
 }
 
 - (void)didChangeValueForIdentifier:(NSString *)identifier {
 	if ([identifier isEqualToString:@"photoVignette"]) {
 		BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:identifier];
-		[vignette setX:((enabled) ? 0.75 : 0)];
-		[vignette setY:((enabled) ? 0.33 : 0)];
+		[vignette setVignetteEnd:((enabled) ? 0.75 : 0)];
+		[vignette setVignetteStart:((enabled) ? 0.5 : 0)];
 		if (enabled) [FTTracking logEvent:@"Camera: Vignette enabled"];
 		else [FTTracking logEvent:@"Camera: Vignette disabled"];
 	}
