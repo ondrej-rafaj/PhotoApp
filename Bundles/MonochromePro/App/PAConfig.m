@@ -45,7 +45,7 @@
 #pragma mark General settings
 
 + (NSString *)appName {
-	return @"Monochrome Pro";
+	return @"Colors Pro";
 }
 
 + (NSString *)flurryCode {
@@ -92,7 +92,7 @@
 - (NSMutableArray *)optionsData {
 	NSMutableArray * optionsData = [NSMutableArray array];
 	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
-	//[optionsData addObject:[self dictionaryWithName:@"Vignette" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
+	
 	[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
 	
 	[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];

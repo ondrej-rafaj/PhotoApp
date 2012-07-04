@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-               BuildableName = "Sepia Pro copy.app"
+               BuildableName = "Monochrome Pro.app"
                BlueprintName = "Monochrome Pro"
                ReferencedContainer = "container:PhotoApp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-            BuildableName = "Sepia Pro copy.app"
+            BuildableName = "Monochrome Pro.app"
             BlueprintName = "Monochrome Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
@@ -47,12 +47,13 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      enablesOpenGLESFrameCapture = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-            BuildableName = "Sepia Pro copy.app"
+            BuildableName = "Monochrome Pro.app"
             BlueprintName = "Monochrome Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
@@ -70,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-            BuildableName = "Sepia Pro copy.app"
+            BuildableName = "Monochrome Pro.app"
             BlueprintName = "Monochrome Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>

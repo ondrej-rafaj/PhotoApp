@@ -103,8 +103,6 @@
 		[slider setMinimumValue:-1.0];
 		[slider setMaximumValue:0.74];
 		[slider setValue:0.5];
-		[[NSUserDefaults standardUserDefaults] setFloat:slider.value forKey:identifier];
-		[[NSUserDefaults standardUserDefaults]synchronize];
 		[self setIntensity:slider.value forIdentifier:identifier];
 	}
 }

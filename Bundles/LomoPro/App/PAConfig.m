@@ -86,52 +86,11 @@
 }
 
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
-
-	
-	/*
-	 
-	 - (UIImage*)lomo
-	 {
-	 UIImage *image = [[self saturate:1.2] contrast:1.15];
-	 NSArray *redPoints = [NSArray arrayWithObjects:
-	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-	 [NSValue valueWithCGPoint:CGPointMake(137, 118)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 nil];
-	 NSArray *greenPoints = [NSArray arrayWithObjects:
-	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-	 [NSValue valueWithCGPoint:CGPointMake(64, 54)],
-	 [NSValue valueWithCGPoint:CGPointMake(175, 194)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 nil];
-	 NSArray *bluePoints = [NSArray arrayWithObjects:
-	 [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-	 [NSValue valueWithCGPoint:CGPointMake(59, 64)],
-	 [NSValue valueWithCGPoint:CGPointMake(203, 189)],
-	 [NSValue valueWithCGPoint:CGPointMake(255, 255)],
-	 nil];
-	 image = [[[image applyCurve:redPoints toChannel:CurveChannelRed] 
-	 applyCurve:greenPoints toChannel:CurveChannelGreen]
-	 applyCurve:bluePoints toChannel:CurveChannelBlue];
-	 
-	 return [image darkVignette];
-	 }
-	 
-	 */
-	
-
-	
 	filter = [[GPUImageFilterGroup alloc] init];
 	
 	GPUImageSepiaFilter *sepiaFilter = [[GPUImageSepiaFilter alloc] init];
 	[sepiaFilter setIntensity:0.25];
 	[filter addFilter:sepiaFilter];
-	
-//	GPUImageExposureFilter *exposure = [[GPUImageExposureFilter alloc] init];
-//	[exposure setExposure:-0.2];
-//	[filter addFilter:exposure];
-//	[sepiaFilter addTarget:exposure];
 	
 	GPUImageContrastFilter *contrast = [[GPUImageContrastFilter alloc] init];
 	[contrast setContrast:2];
@@ -162,8 +121,6 @@
 		[slider setMinimumValue:-1.0];
 		[slider setMaximumValue:0.74];
 		[slider setValue:0.33];
-		[[NSUserDefaults standardUserDefaults] setFloat:slider.value forKey:identifier];
-		[[NSUserDefaults standardUserDefaults]synchronize];
 		[self setIntensity:slider.value forIdentifier:identifier];
 	}
 }
