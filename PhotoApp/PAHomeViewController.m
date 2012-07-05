@@ -809,13 +809,13 @@
 			
 		}];
 	}];
-}
+}	
 
 #pragma mark Gallery view sharing delegate
 
 - (NSString *)shareStringForImage {
 	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-	[dateFormat setDateFormat:[PAConfig appName]];
+	[dateFormat setDateFormat:[PAConfig dateFormat]];
 	return [NSString stringWithFormat:@"Photo from %@ %@ app on %@", [PAConfig appName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone"), [dateFormat stringFromDate:[NSDate date]]];
 }
 

@@ -11,8 +11,12 @@
 
 
 @interface PAConfig () {
-	GPUImageFilter *filter;
+	GPUImageMonochromeFilter *filter;
     GPUImageVignetteFilter *vignette;
+	
+	CGFloat r;
+	CGFloat g;
+	CGFloat b;
 }
 
 @end
@@ -41,15 +45,15 @@
 #pragma mark General settings
 
 + (NSString *)appName {
-	return @"B&W Pro";
+	return @"Noir Pro";
 }
 
 + (NSString *)flurryCode {
-	return @"7Y2DGF9BIEFLMNNY6RN4";
+	return @"4HQ5H9WPMXPF9NKR4MGY"; // Monochrome Pro
 }
 
 + (NSString *)facebookAppId {
-	return @"378064265568103";
+	return @"293927774039379"; // Monochrome Pro
 }
 
 + (NSString *)dateFormat {
@@ -57,10 +61,20 @@
 }
 
 + (NSString *)sincerelyApiKey {
-	return @"OEETCEGPKAKLSUAJKNYM27CGXPJDYBG3MAVAN0BY";
+	return @"O138T1YU6GY1HZ2E22PP86G46MAY2SUM09FIW3LD";
 }
 
 #pragma mark GPU Image section
+
+- (id)init {
+	self = [super init];
+	if (self) {
+		r = 0;
+		g = 0;
+		b = 0;
+	}
+	return self;
+}
 
 - (NSMutableDictionary *)dictionaryWithName:(NSString *)name withDescription:(NSString *)desc withIdentifier:(NSString *)identifier andType:(NSString *)type {
 	NSMutableDictionary *d = [NSMutableDictionary dictionary];
@@ -78,15 +92,19 @@
 - (NSMutableArray *)optionsData {
 	NSMutableArray * optionsData = [NSMutableArray array];
 	[optionsData addObject:[self dictionaryWithName:@"Grid" withDescription:@"Enables photo grid" andIdentifier:@"photoGrid"]];
-	//[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Enables vignette around picture" andIdentifier:@"photoVignette"]];
+	
 	[optionsData addObject:[self dictionaryWithName:@"Vignette size" withDescription:@"Size of the vignette" withIdentifier:@"photoVignetteIntensity" andType:@"slider"]];
+	
+	[optionsData addObject:[self dictionaryWithName:@"Intensity" withDescription:@"Intensity of the noir effect" withIdentifier:@"photoEffectIntensity" andType:@"slider"]];
+	
 	return optionsData;
 }
 
 - (void)configureForCamera:(GPUImageStillCamera *)stillCamera andCameraView:(GPUImageView *)cameraView {
-	filter = [[GPUImageGrayscaleFilter alloc] init];
+	filter = [[GPUImageMonochromeFilter alloc] init];
 	[filter prepareForImageCapture];
-    
+	[filter setColorRed:0 green:0 blue:0];
+	
 	vignette = [[GPUImageVignetteFilter alloc] init];
 	[vignette addTarget:filter];
 	[vignette prepareForImageCapture];
@@ -100,19 +118,29 @@
 }
 
 - (void)configureSlider:(UISlider *)slider forIdentifier:(NSString *)identifier {
-	if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
+	[slider setTransform:CGAffineTransformMakeScale(1, 1)];
+	if ([identifier isEqualToString:@"photoEffectIntensity"]) {
+		[slider setMinimumValue:0.75];
+		[slider setMaximumValue:1];
+	}
+	else if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
 		[slider setTransform:CGAffineTransformMakeScale(-1, 1)];
 		[slider setMaximumTrackTintColor:[UIColor darkGrayColor]];
 		[slider setMinimumTrackTintColor:[UIColor lightGrayColor]];
 		[slider setMinimumValue:-1.0];
 		[slider setMaximumValue:0.74];
 		[slider setValue:0.5];
+		[[NSUserDefaults standardUserDefaults] setFloat:slider.value forKey:identifier];
+		[[NSUserDefaults standardUserDefaults] synchronize];
 		[self setIntensity:slider.value forIdentifier:identifier];
 	}
 }
 
 - (void)setIntensity:(CGFloat)intensity forIdentifier:(NSString *)identifier {
-	if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
+	if ([identifier isEqualToString:@"photoEffectIntensity"]) {
+		[(GPUImageMonochromeFilter *)filter setIntensity:intensity];
+	}
+	else if ([identifier isEqualToString:@"photoVignetteIntensity"]) {
 		[vignette setVignetteStart:intensity];
 	}
 }
@@ -127,20 +155,22 @@
 	}
 }
 
-//- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
-////	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
-////	
-////	GPUImageGrayscaleFilter *g = [[GPUImageGrayscaleFilter alloc] init];
-////	[g prepareForImageCapture];
-//	
-//	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
-//	GPUImageGrayscaleFilter *gray = [[GPUImageGrayscaleFilter alloc] init];
-//	
-//	[stillImageSource addTarget:gray];
-//	[stillImageSource processImage];
-//	
-//	return [gray imageFromCurrentlyProcessedOutput];
-//}
+- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+	GPUImageMonochromeFilter *localFilter = [[GPUImageMonochromeFilter alloc] init];
+	[localFilter setIntensity:filter.intensity];
+	[localFilter setColorRed:0 green:0 blue:0];
+	
+	GPUImageVignetteFilter *vignetteFilter = [[GPUImageVignetteFilter alloc] init];
+	[vignetteFilter setVignetteEnd:vignette.vignetteEnd];
+	[vignetteFilter setVignetteStart:vignette.vignetteStart];
+	[vignette addTarget:localFilter];
+	
+	[stillImageSource addTarget:localFilter];
+	[stillImageSource processImage];
+	
+	return [localFilter imageFromCurrentlyProcessedOutput];
+}
 
 
 @end

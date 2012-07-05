@@ -45,23 +45,23 @@
 #pragma mark General settings
 
 + (NSString *)appName {
-	return @"Colors Pro";
+	return @"Color Pro";
 }
 
 + (NSString *)flurryCode {
-	return @"XXXXXXXXXXXX"; // Monochrome Pro
+	return @"76TKQYP23HBKY689K748"; // Color Pro
 }
 
 + (NSString *)facebookAppId {
-	return @"XXXXXXXXXXXX"; // Monochrome Pro
+	return @"236959269757639"; // Color Pro
 }
 
 + (NSString *)dateFormat {
-	return @"dd MM yyyy";
+	return @"dd. MM. yyyy";
 }
 
 + (NSString *)sincerelyApiKey {
-	return @"XXXXXXXXXXX";
+	return @"8450SLLP9YMT3L9H4D4J4BQOL50QZCNEDXPGNSQQ";
 }
 
 #pragma mark GPU Image section

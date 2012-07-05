@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-               BuildableName = "Monochrome Pro.app"
-               BlueprintName = "Monochrome Pro"
+               BuildableName = "Color Pro.app"
+               BlueprintName = "Color Pro"
                ReferencedContainer = "container:PhotoApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-            BuildableName = "Monochrome Pro.app"
-            BlueprintName = "Monochrome Pro"
+            BuildableName = "Color Pro.app"
+            BlueprintName = "Color Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,8 +53,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-            BuildableName = "Monochrome Pro.app"
-            BlueprintName = "Monochrome Pro"
+            BuildableName = "Color Pro.app"
+            BlueprintName = "Color Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,8 +71,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4CAF462D15A2EBAF002B5DAA"
-            BuildableName = "Monochrome Pro.app"
-            BlueprintName = "Monochrome Pro"
+            BuildableName = "Color Pro.app"
+            BlueprintName = "Color Pro"
             ReferencedContainer = "container:PhotoApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

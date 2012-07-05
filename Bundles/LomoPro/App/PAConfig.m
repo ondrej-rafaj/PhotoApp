@@ -55,7 +55,7 @@
 }
 
 + (NSString *)dateFormat {
-	return @"dd MM yyyy";
+	return @"dd. MM. yyyy";
 }
 
 + (NSString *)sincerelyApiKey {
