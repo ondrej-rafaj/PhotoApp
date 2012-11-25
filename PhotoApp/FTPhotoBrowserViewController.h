@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Sincerely/Sincerely.h>
+#import <MessageUI/MessageUI.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "FT2PageScrollView.h"
+#import "FTViewController.h"
 
 
 @class FTPhotoBrowserViewController;
@@ -18,6 +22,7 @@
 - (NSInteger)numberOfItemsInPhotoBrowserViewController:(FTPhotoBrowserViewController *)controller;
 - (UIImage *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsThumbnailImageWithIndex:(NSInteger)index;
 - (UIImage *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsImageWithIndex:(NSInteger)index;
+- (ALAsset *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsAssetWithIndex:(NSInteger)index;
 
 @optional
 
@@ -35,7 +40,7 @@
 @end
 
 
-@interface FTPhotoBrowserViewController : UIViewController <FT2PageScrollViewDataSource, FT2PageScrollViewDelegate>
+@interface FTPhotoBrowserViewController : FTViewController <FT2PageScrollViewDataSource, FT2PageScrollViewDelegate, SYSincerelyControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic, weak) id<FTPhotoBrowserViewControllerDataSource> dataSource;
 @property (nonatomic, weak) id<FTPhotoBrowserViewControllerDelegate> delegate;

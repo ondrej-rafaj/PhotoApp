@@ -9,7 +9,7 @@
 #import "PAViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
-#import <MessageUI/MessageUI.h>
+//#import <MessageUI/MessageUI.h>
 #import <Sincerely/Sincerely.h>
 #import "FTCameraButtonView.h"
 #import "FTFlipButtonView.h"

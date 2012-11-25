@@ -16,6 +16,8 @@
 
 @protocol PAGalleryViewDelegate <NSObject>
 
+@optional
+
 - (void)galleryView:(PAGalleryView *)gallery requestsFacebookShareFor:(ALAsset *)asset;
 - (void)galleryView:(PAGalleryView *)gallery requestsEmailShareFor:(ALAsset *)asset;
 - (void)galleryView:(PAGalleryView *)gallery requestsTwitterShareFor:(ALAsset *)asset;

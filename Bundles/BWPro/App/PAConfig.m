@@ -127,7 +127,8 @@
 	}
 }
 
-//- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+- (UIImage *)applyFiltersManuallyOnImage:(UIImage *)image {
+    return image;
 ////	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
 ////	
 ////	GPUImageGrayscaleFilter *g = [[GPUImageGrayscaleFilter alloc] init];
@@ -140,7 +141,7 @@
 //	[stillImageSource processImage];
 //	
 //	return [gray imageFromCurrentlyProcessedOutput];
-//}
+}
 
 
 @end

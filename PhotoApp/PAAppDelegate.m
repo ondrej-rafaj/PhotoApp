@@ -11,6 +11,7 @@
 #import "FTTracking.h"
 #import "FTProjectInitialization.h"
 #import "PAConfig.h"
+#import "UINavigationController+RotationIn_IOS6.h"
 
 
 @implementation PAAppDelegate

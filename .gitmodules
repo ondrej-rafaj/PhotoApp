@@ -1,3 +1,6 @@
 [submodule "Thirdparty/GPUImage"]
 	path = Thirdparty/GPUImage
 	url = git://github.com/BradLarson/GPUImage.git
+[submodule "Thirdparty/IconActionSheet"]
+	path = Thirdparty/IconActionSheet
+	url = git@github.com:FuerteInternational/IconActionSheet.git

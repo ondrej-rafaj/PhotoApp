@@ -892,11 +892,20 @@
 	[self galleryView:gallery requestsPostcardFor:asset];
 }
 
+#define DegreesToRadians(x) ((x) * M_PI / 180.0)
+
 - (void)galleryView:(PAGalleryView *)gallery requestsDetailFor:(ALAsset *)asset {
     NSInteger index = [galleryDisplayView.data indexOfObject:asset];
     FTPhotoBrowserViewController *c = [[FTPhotoBrowserViewController alloc] init];
+    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PA_logo"]];
+    [c.view addSubview:logo];
+    [logo positionAtX:-50 andY:120];
+    [c.view sendSubviewToBack:logo];
+    CGAffineTransform rotationTransform = CGAffineTransformIdentity;
+    rotationTransform = CGAffineTransformRotate(rotationTransform, DegreesToRadians(-90));
+    logo.transform = rotationTransform;
     [c setStartIndex:index];
-    [c.view setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
+    [c.view setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
     [c setDataSource:self];
     [c setDelegate:self];
     [self.navigationController pushViewController:c animated:YES];
@@ -929,6 +938,11 @@
 - (UIImage *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsImageForSharingWithIndex:(NSInteger)index {
     if (index >= [galleryDisplayView.data count]) return nil;
     return nil;
+}
+
+- (ALAsset *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsAssetWithIndex:(NSInteger)index {
+    ALAsset *asset = [galleryDisplayView.data objectAtIndex:index];
+    return asset;
 }
 
 - (void)photoBrowserViewController:(FTPhotoBrowserViewController *)controller didScrollToPageWithIndex:(NSInteger)index {
@@ -1082,6 +1096,10 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)viewDidUnload {
