@@ -175,7 +175,7 @@
     };
     controller.completionHandler = myBlock;
     
-    [controller setInitialText:[NSString stringWithFormat:@"Photo from #%@ iPhone app", [PAConfig appName]]];
+    [controller setInitialText:[NSString stringWithFormat:@"Photo from #%@ iPhone app", [[PAConfig appName] stringByReplacingOccurrencesOfString:@" " withString:@""]]];
     //[controller addURL:[NSURL URLWithString:@"http://www.fuerteint.com/"]];
     [controller addImage:img];
     [self presentViewController:controller animated:YES completion:Nil];
