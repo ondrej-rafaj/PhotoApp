@@ -15,8 +15,8 @@
 - (NSString *)platformString;
 
 - (BOOL)iPhone4;
-
 - (BOOL)iPhone4s;
+- (BOOL)iPhone5iPod5;
 
 - (BOOL)hasRetinaDisplay;
 

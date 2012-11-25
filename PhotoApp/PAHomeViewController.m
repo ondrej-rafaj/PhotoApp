@@ -37,6 +37,19 @@
 
 #pragma mark Positioning
 
+- (CGFloat)screenHeight {
+    if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
+        CGFloat scale = [[UIScreen mainScreen] scale];
+        
+        if (scale > 1.0) {
+            if([[UIScreen mainScreen] bounds].size.height == 568) {
+                return 568;
+            }
+        }
+    }
+    return 480;
+}
+
 - (CGRect)frameForOptionsButton {
 	UIInterfaceOrientation o = _orientation;
 	if (o == UIInterfaceOrientationPortrait) {
@@ -72,7 +85,7 @@
 		return CGRectMake(8, 8, [self getFlashButtonWidth], 30);
 	}
 	else if (o == UIInterfaceOrientationLandscapeLeft) {
-		return CGRectMake(8, (480 - 53 - [self getFlashButtonWidth] - 8), 30, [self getFlashButtonWidth]);
+		return CGRectMake(8, ([self screenHeight] - 53 - [self getFlashButtonWidth] - 8), 30, [self getFlashButtonWidth]);
 	}
 	else if (o == UIInterfaceOrientationLandscapeRight) {
 		return CGRectMake((320 - 8 - 30), 8, 30, [self getFlashButtonWidth]);
@@ -207,7 +220,8 @@
 }
 
 - (void)createToolbar {
-	mainToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, (480 - 53), 320, 53)];
+    CGFloat x = [self screenHeight];
+	mainToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, (x - 53), 320, 53)];
 	[mainToolbar setBackgroundImage:[UIImage imageNamed:@"PA_bottomBar.png"] forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
 	[PAViewStyles setStylesToToolbar:mainToolbar];
 	[self.view addSubview:mainToolbar];
@@ -322,7 +336,7 @@
 	cameraView = [[GPUImageView alloc] initWithFrame:r];
 	
 	[cameraView setFillMode:kGPUImageFillModePreserveAspectRatio];
-	if ([[UIDevice currentDevice] iPhone4]) {
+	if ([[UIDevice currentDevice] iPhone4] || [[UIDevice currentDevice] iPhone5iPod5]) {
 		[cameraView setFillMode:kGPUImageFillModePreserveAspectRatioAndFill];
 	}
 	else {
@@ -524,7 +538,9 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-	[picker dismissModalViewControllerAnimated:YES];
+	[picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark Button actions
@@ -533,7 +549,9 @@
 	UIImagePickerController *c = [[UIImagePickerController alloc] init];
 	[c setDelegate:self];
 	[c setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-	[self presentModalViewController:c animated:YES];
+	[self presentViewController:c animated:YES completion:^{
+        
+    }];
 }
 
 - (void)reloadTorch {
@@ -598,8 +616,8 @@
 }
 
 - (void)volumeChanged:(NSNotification *)notification{
-	[FTTracking logEvent:@"Camera: Take photo using volume button"];
-    [self takePhoto];   
+	//[FTTracking logEvent:@"Camera: Take photo using volume button"];
+    //[self takePhoto];
 }
 
 - (void)didClickOptionsPhoto:(UIButton *)sender {
@@ -827,180 +845,219 @@
 	return inputImage;
 }
 
-- (void)galleryView:(PAGalleryView *)gallery requestsFacebookShareFor:(ALAsset *)asset {
-	if ([FTSystem isInternetAvailable]) {
-		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") andAnimationStyle:FTProgressViewAnimationFade];
-		[NSThread detachNewThreadSelector:@selector(prepareForFacebook:) toTarget:self withObject:asset];
-		[FTTracking logEvent:@"Sharing: Post on Facebook"];
-	}
-	else {
-		FTAlertWithTitleAndMessage(FTLangGet(@"No internet connection"), FTLangGet(@"Please connect to the internet!"));
-	}
-}
-
-- (void)galleryView:(PAGalleryView *)gallery requestsEmailShareFor:(ALAsset *)asset {
-	if ([MFMailComposeViewController canSendMail]) {
-		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareEmail:) onTarget:self withObject:asset animated:YES];
-	}
-	else {
-		//[UIAlertView showMessage:FTLangGet(@"Please setup an email account on your device first") withTitle:FTLangGet(@"No Email Account")];
-		FTAlertWithTitleAndMessage(FTLangGet(@"No Email Account"), FTLangGet(@"Please setup an email account on your device first"));
-	}
-}
-
-- (void)galleryView:(PAGalleryView *)gallery requestsTwitterShareFor:(ALAsset *)asset {
-	if ([FTSystem isInternetAvailable]) {
-		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") andAnimationStyle:FTProgressViewAnimationFade];
-		[NSThread detachNewThreadSelector:@selector(prepareForTwitter:) toTarget:self withObject:asset];
-		[FTTracking logEvent:@"Sharing: Post on Twitter"];
-	}
-	else {
-		FTAlertWithTitleAndMessage(FTLangGet(@"No internet connection"), FTLangGet(@"Please connect to the internet!"));
-	}
-}
+//- (void)galleryView:(PAGalleryView *)gallery requestsFacebookShareFor:(ALAsset *)asset {
+//	if ([FTSystem isInternetAvailable]) {
+//		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") andAnimationStyle:FTProgressViewAnimationFade];
+//		[NSThread detachNewThreadSelector:@selector(prepareForFacebook:) toTarget:self withObject:asset];
+//		[FTTracking logEvent:@"Sharing: Post on Facebook"];
+//	}
+//	else {
+//		FTAlertWithTitleAndMessage(FTLangGet(@"No internet connection"), FTLangGet(@"Please connect to the internet!"));
+//	}
+//}
+//
+//- (void)galleryView:(PAGalleryView *)gallery requestsEmailShareFor:(ALAsset *)asset {
+//	if ([MFMailComposeViewController canSendMail]) {
+//		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareEmail:) onTarget:self withObject:asset animated:YES];
+//	}
+//	else {
+//		//[UIAlertView showMessage:FTLangGet(@"Please setup an email account on your device first") withTitle:FTLangGet(@"No Email Account")];
+//		FTAlertWithTitleAndMessage(FTLangGet(@"No Email Account"), FTLangGet(@"Please setup an email account on your device first"));
+//	}
+//}
+//
+//- (void)galleryView:(PAGalleryView *)gallery requestsTwitterShareFor:(ALAsset *)asset {
+//	if ([FTSystem isInternetAvailable]) {
+//		[self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") andAnimationStyle:FTProgressViewAnimationFade];
+//		[NSThread detachNewThreadSelector:@selector(prepareForTwitter:) toTarget:self withObject:asset];
+//		[FTTracking logEvent:@"Sharing: Post on Twitter"];
+//	}
+//	else {
+//		FTAlertWithTitleAndMessage(FTLangGet(@"No internet connection"), FTLangGet(@"Please connect to the internet!"));
+//	}
+//}
 
 - (void)galleryView:(PAGalleryView *)gallery requestsPostcardFor:(ALAsset *)asset {
 	ALAssetRepresentation *rep = [asset defaultRepresentation];
 	CGImageRef iref = [rep fullResolutionImage];
 	SYSincerelyController *controller = [[SYSincerelyController alloc] initWithImages:[NSArray arrayWithObject:[UIImage imageWithCGImage:iref]] product:SYProductTypePostcard applicationKey:[PAConfig sincerelyApiKey] delegate:self];
 	if (controller) {
-		[self presentModalViewController:controller animated:YES];
+		[self presentViewController:controller animated:YES completion:^{
+            
+        }];
 	}
 }
 
 - (void)galleryView:(PAGalleryView *)gallery requestsSharingOptionFor:(ALAsset *)asset {
-//	[sharingView showWithImage:[UIImage imageWithCGImage:[asset thumbnail]]];
-	
 	[self galleryView:gallery requestsPostcardFor:asset];
 }
 
 - (void)galleryView:(PAGalleryView *)gallery requestsDetailFor:(ALAsset *)asset {
-//	if (galleryDetailView) {
-//		[galleryDetailView removeFromSuperview];
-//		galleryDetailView = nil;
-//	}
-//	galleryDetailView = [[PAPhotoDetailView alloc] initWithFrame:self.view.bounds];
-//	[self.view addSubview:galleryDetailView];
-//	[galleryDetailView showWithAsset:asset];
-	
-	[sharingView showWithImage:[UIImage imageWithCGImage:[asset thumbnail]]];
+    NSInteger index = [galleryDisplayView.data indexOfObject:asset];
+    FTPhotoBrowserViewController *c = [[FTPhotoBrowserViewController alloc] init];
+    [c setStartIndex:index];
+    [c.view setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
+    [c setDataSource:self];
+    [c setDelegate:self];
+    [self.navigationController pushViewController:c animated:YES];
+}
+
+#pragma mark Photo view controller delegate and data source methods
+
+- (NSInteger)numberOfItemsInPhotoBrowserViewController:(FTPhotoBrowserViewController *)controller {
+    return [galleryDisplayView.data count];
+}
+
+- (UIImage *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsImageWithIndex:(NSInteger)index {
+    if (index >= [galleryDisplayView.data count] || index < 0) return nil;
+    ALAsset *asset = [galleryDisplayView.data objectAtIndex:index];
+    ALAssetRepresentation *rep = [asset defaultRepresentation];
+	CGImageRef iref = [rep fullResolutionImage];
+	UIImage *image = [UIImage imageWithCGImage:iref];
+    return image;
+}
+
+- (UIImage *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsThumbnailImageWithIndex:(NSInteger)index {
+    if (index >= [galleryDisplayView.data count] || index < 0) return nil;
+    ALAsset *asset = [galleryDisplayView.data objectAtIndex:index];
+    ALAssetRepresentation *rep = [asset defaultRepresentation];
+	CGImageRef iref = [rep fullScreenImage];
+	UIImage *image = [UIImage imageWithCGImage:iref];
+    return image;
+}
+
+- (UIImage *)photoBrowserViewController:(FTPhotoBrowserViewController *)controller requestsImageForSharingWithIndex:(NSInteger)index {
+    if (index >= [galleryDisplayView.data count]) return nil;
+    return nil;
+}
+
+- (void)photoBrowserViewController:(FTPhotoBrowserViewController *)controller didScrollToPageWithIndex:(NSInteger)index {
+    
 }
 
 #pragma mark Sincerely delegate methods
 
 - (void)sincerelyControllerDidFinish:(SYSincerelyController *)controller {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)sincerelyControllerDidCancel:(SYSincerelyController *)controller {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)sincerelyControllerDidFailInitiationWithError:(NSError *)error {
     NSLog(@"Error: %@", error);
 } 
 
-#pragma mark Twitter sharing
-
-- (void)sendImageToTwitter:(UIImage *)img {
-	[super.loadingProgressView hide:YES];
-	if (NSClassFromString(@"TWTweetComposeViewController") && [TWTweetComposeViewController canSendTweet]) {
-		TWTweetComposeViewController *tweetController = [TWTweetComposeViewController new];
-		[tweetController setInitialText:[self shareStringForImage]];
-		[tweetController addImage:img];
-		[self presentViewController:tweetController animated:YES completion:nil];
-	}
-	else FTAlertWithTitleAndMessage(FTLangGet(@"Twitter error"), FTLangGet(@"Error posting to Twitter"));
-}
-
-- (void)prepareForTwitter:(ALAsset *)asset {
-	UIImage *img = [self imageForSharingFromAsset:asset];
-	[self performSelectorOnMainThread:@selector(sendImageToTwitter:) withObject:img waitUntilDone:NO];
-}
-
-#pragma mark Facebook sharing
-
-- (void)sendImageOnFacebook:(UIImage *)img {
-	[super.loadingProgressView setLabelText:FTLangGet(@"Posting to Facebook")];
-	PAAppDelegate *appDel = (PAAppDelegate *)[UIApplication sharedApplication].delegate;
-	[appDel.share setReferencedController:self];
-    [appDel.share setUpFacebookWithAppID:[PAConfig facebookAppId] permissions:FTShareFacebookPermissionPublish | FTShareFacebookPermissionOffLine andDelegate:self];
-	
-	FTShareFacebookData *d = [[FTShareFacebookData alloc] init];
-    FTShareFacebookPhoto *photo = [FTShareFacebookPhoto facebookPhotoFromImage:img];
-    [photo setMessage:[self shareStringForImage]];
-	[d setUploadPhoto:photo];
-    [d setType:FTShareFacebookRequestTypeAlbum];
-    [d setHttpType:FTShareFacebookHttpTypePost];
-	//[d setCaption:self.canvasData.title];
-	[appDel.share shareViaFacebook:d];
-}
-
-- (void)prepareForFacebook:(ALAsset *)asset {
-	UIImage *img = [self imageForSharingFromAsset:asset];
-	[self performSelectorOnMainThread:@selector(sendImageOnFacebook:) withObject:img waitUntilDone:NO];
-}
-
-#pragma mark FTShareFacebook delegate
-
-- (void)facebookDidPost:(NSError *)error {
-	NSString *message = FTLangGet(@"Your photo has been successfuly posted");
-	if (error) message = [FTLangGet(@"Error occured while posting image on Facebook: ") stringByAppendingString:[error localizedDescription]];
-    FTAlertWithTitleAndMessage(FTLangGet(@"Facebook"), message);
-	[FTTracking logEvent:@"Sharing: Post on Facebook finished"];
-	[super.loadingProgressView hide:YES];
-}
-
-#pragma Email sharing
-
-- (void)presentMailDialog:(NSData *)imageData {
-	MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-	[mc setMailComposeDelegate:self];
-	[mc setSubject:[NSString stringWithFormat:@"Photo from %@ %@ app", [PAConfig appName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone")]];
-	[mc setMessageBody:[NSString stringWithFormat:@"\n\n\n\%@ app by Fuerte International UK - http://www.fuerteint.com/", [PAConfig appName]] isHTML:NO];
-	[mc setMessageBody:[NSString stringWithFormat:@"</br></br></br></br>%@ app by <a href='http://www.fuerteint.com/'>Fuerte International UK</a>", [PAConfig appName]] isHTML:YES];
-	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:[NSString stringWithFormat:@"%@.png", [NSDate date]]];
-	imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PA_logo" ofType:@"png"]];
-	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:@"Fuerte_International_UK.png"];
-	[mc setModalPresentationStyle:UIModalPresentationPageSheet];
-	[self presentModalViewController:mc animated:YES];
-	[FTTracking logEvent:@"Mail: Sending image"];
-}
-
-- (void)prepareEmail:(ALAsset *)asset {
-	NSData *imageData = UIImagePNGRepresentation([self imageForSharingFromAsset:asset]);
-	[self performSelectorOnMainThread:@selector(presentMailDialog:) withObject:imageData waitUntilDone:NO];
-}
-
-#pragma mark Email delegate method
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-	switch (result) {
-		case MFMailComposeResultCancelled:
-			NSLog(@"Mail send canceled.");
-			[FTTracking logEvent:@"Mail: Mail canceled"];
-			break;
-		case MFMailComposeResultSaved:
-			//[UIAlertView showMessage:FTLangGet(@"Your email has been saved") withTitle:FTLangGet(@"Email")];
-			[FTTracking logEvent:@"Mail: Mail saved"];
-			break;
-		case MFMailComposeResultSent:
-			NSLog(@"Mail sent.");
-			[FTTracking logEvent:@"Mail: Mail sent"];
-			//[UIAlertView showMessage:FTLangGet(@"Your email has been sent") withTitle:FTLangGet(@"Email")];
-			break;
-		case MFMailComposeResultFailed:
-			NSLog(@"Mail send error: %@.", [error localizedDescription]);
-			//[UIAlertView showMessage:[error localizedDescription] withTitle:FTLangGet(@"Error")];
-			FTAlertWithTitleAndMessage(FTLangGet(@"Error"), [error localizedDescription]);
-			[FTTracking logEvent:@"Mail: Mail send failed"];
-			break;
-		default:
-			break;
-	}
-	// hide the modal view controller
-	[self dismissModalViewControllerAnimated:YES];
-}
+//#pragma mark Twitter sharing
+//
+//- (void)sendImageToTwitter:(UIImage *)img {
+//	[super.loadingProgressView hide:YES];
+////	if (NSClassFromString(@"TWTweetComposeViewController") && [TWTweetComposeViewController canSendTweet]) {
+////		TWTweetComposeViewController *tweetController = [TWTweetComposeViewController new];
+////		[tweetController setInitialText:[self shareStringForImage]];
+////		[tweetController addImage:img];
+////		[self presentViewController:tweetController animated:YES completion:nil];
+////	}
+////	else FTAlertWithTitleAndMessage(FTLangGet(@"Twitter error"), FTLangGet(@"Error posting to Twitter"));
+//}
+//
+//- (void)prepareForTwitter:(ALAsset *)asset {
+//	UIImage *img = [self imageForSharingFromAsset:asset];
+//	[self performSelectorOnMainThread:@selector(sendImageToTwitter:) withObject:img waitUntilDone:NO];
+//}
+//
+//#pragma mark Facebook sharing
+//
+//- (void)sendImageOnFacebook:(UIImage *)img {
+//	[super.loadingProgressView setLabelText:FTLangGet(@"Posting to Facebook")];
+////	PAAppDelegate *appDel = (PAAppDelegate *)[UIApplication sharedApplication].delegate;
+////	[appDel.share setReferencedController:self];
+////    [appDel.share setUpFacebookWithAppID:[PAConfig facebookAppId] permissions:FTShareFacebookPermissionPublish | FTShareFacebookPermissionOffLine andDelegate:self];
+////	
+////	FTShareFacebookData *d = [[FTShareFacebookData alloc] init];
+////    FTShareFacebookPhoto *photo = [FTShareFacebookPhoto facebookPhotoFromImage:img];
+////    [photo setMessage:[self shareStringForImage]];
+////	[d setUploadPhoto:photo];
+////    [d setType:FTShareFacebookRequestTypeAlbum];
+////    [d setHttpType:FTShareFacebookHttpTypePost];
+////	//[d setCaption:self.canvasData.title];
+////	[appDel.share shareViaFacebook:d];
+//}
+//
+//- (void)prepareForFacebook:(ALAsset *)asset {
+//	UIImage *img = [self imageForSharingFromAsset:asset];
+//	[self performSelectorOnMainThread:@selector(sendImageOnFacebook:) withObject:img waitUntilDone:NO];
+//}
+//
+//#pragma mark FTShareFacebook delegate
+//
+//- (void)facebookDidPost:(NSError *)error {
+//	NSString *message = FTLangGet(@"Your photo has been successfuly posted");
+//	if (error) message = [FTLangGet(@"Error occured while posting image on Facebook: ") stringByAppendingString:[error localizedDescription]];
+//    FTAlertWithTitleAndMessage(FTLangGet(@"Facebook"), message);
+//	[FTTracking logEvent:@"Sharing: Post on Facebook finished"];
+//	[super.loadingProgressView hide:YES];
+//}
+//
+//#pragma Email sharing
+//
+//- (void)presentMailDialog:(NSData *)imageData {
+//	MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+//	[mc setMailComposeDelegate:self];
+//	[mc setSubject:[NSString stringWithFormat:@"Photo from %@ %@ app", [PAConfig appName], ([FTSystem isTabletSize] ? @"iPad" : @"iPhone")]];
+//	[mc setMessageBody:[NSString stringWithFormat:@"\n\n\n\%@ app by Fuerte International UK - http://www.fuerteint.com/", [PAConfig appName]] isHTML:NO];
+//	[mc setMessageBody:[NSString stringWithFormat:@"</br></br></br></br>%@ app by <a href='http://www.fuerteint.com/'>Fuerte International UK</a>", [PAConfig appName]] isHTML:YES];
+//	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:[NSString stringWithFormat:@"%@.png", [NSDate date]]];
+//	imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PA_logo" ofType:@"png"]];
+//	[mc addAttachmentData:imageData mimeType:@"image/png" fileName:@"Fuerte_International_UK.png"];
+//	[mc setModalPresentationStyle:UIModalPresentationPageSheet];
+//	[self presentViewController:mc animated:YES completion:^{
+//        
+//    }];
+//	[FTTracking logEvent:@"Mail: Sending image"];
+//}
+//
+//- (void)prepareEmail:(ALAsset *)asset {
+//	NSData *imageData = UIImagePNGRepresentation([self imageForSharingFromAsset:asset]);
+//	[self performSelectorOnMainThread:@selector(presentMailDialog:) withObject:imageData waitUntilDone:NO];
+//}
+//
+//#pragma mark Email delegate method
+//
+//- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+//	switch (result) {
+//		case MFMailComposeResultCancelled:
+//			NSLog(@"Mail send canceled.");
+//			[FTTracking logEvent:@"Mail: Mail canceled"];
+//			break;
+//		case MFMailComposeResultSaved:
+//			//[UIAlertView showMessage:FTLangGet(@"Your email has been saved") withTitle:FTLangGet(@"Email")];
+//			[FTTracking logEvent:@"Mail: Mail saved"];
+//			break;
+//		case MFMailComposeResultSent:
+//			NSLog(@"Mail sent.");
+//			[FTTracking logEvent:@"Mail: Mail sent"];
+//			//[UIAlertView showMessage:FTLangGet(@"Your email has been sent") withTitle:FTLangGet(@"Email")];
+//			break;
+//		case MFMailComposeResultFailed:
+//			NSLog(@"Mail send error: %@.", [error localizedDescription]);
+//			//[UIAlertView showMessage:[error localizedDescription] withTitle:FTLangGet(@"Error")];
+//			FTAlertWithTitleAndMessage(FTLangGet(@"Error"), [error localizedDescription]);
+//			[FTTracking logEvent:@"Mail: Mail send failed"];
+//			break;
+//		default:
+//			break;
+//	}
+//	// hide the modal view controller
+//	[self dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//}
 
 #pragma mark View lifecycle
 
@@ -1021,6 +1078,10 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[self reloadTorch];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)viewDidUnload {

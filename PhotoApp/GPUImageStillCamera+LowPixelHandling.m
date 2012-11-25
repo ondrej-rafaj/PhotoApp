@@ -13,7 +13,7 @@
 @implementation GPUImageStillCamera (LowPixelHandling)
 
 - (void)capturePhotoAsJPEGProcessedUpToFilter:(GPUImageOutput<GPUImageInput> *)finalFilterInChain withCompletionHandler:(void (^)(NSData *, NSError *))block andLowPixelTextureHandler:(void (^)(NSData *, NSError *))lowPixelBlock {
-    report_memory(@"Before still image capture");
+//    report_memory(@"Before still image capture");
 //    [photoOutput captureStillImageAsynchronouslyFromConnection:[[photoOutput connections] objectAtIndex:0] completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
 //        report_memory(@"Before filter processing");
 //        

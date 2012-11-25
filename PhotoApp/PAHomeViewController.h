@@ -21,9 +21,10 @@
 #import "PASharingView.h"
 #import "PAPhotoDetailView.h"
 #import "PAConfig.h"
+#import "FTPhotoBrowserViewController.h"
 
 
-@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, FTShareFacebookDelegate, FTShareEmailDelegate, MFMailComposeViewControllerDelegate, SYSincerelyControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface PAHomeViewController : PAViewController <FTFlipButtonViewDelegate, UITableViewDelegate, UITableViewDataSource, PAOptionsTableViewCellDelegate, MBProgressHUDDelegate, PAGalleryViewDelegate, SYSincerelyControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FTPhotoBrowserViewControllerDataSource, FTPhotoBrowserViewControllerDelegate> {
 	
 	PAConfig *config;
 	

@@ -5,9 +5,9 @@
       location = "group:PhotoApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../GPUImage/framework/GPUImage.xcodeproj">
+      location = "group:../FTLibrary/FTLibrary.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../FTLibrary/FTLibrary.xcodeproj">
+      location = "group:Thirdparty/GPUImage/framework/GPUImage.xcodeproj">
    </FileRef>
 </Workspace>

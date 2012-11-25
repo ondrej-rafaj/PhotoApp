@@ -24,9 +24,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	_accelerometer = [UIAccelerometer sharedAccelerometer];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-	self.viewController = [[PAHomeViewController alloc] init];
-	self.window.rootViewController = self.viewController;
+    self.viewController = [[PAHomeViewController alloc] init];
+    UINavigationController *c = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    [c setNavigationBarHidden:YES];
+    [c.navigationBar setTranslucent:YES];
+    [c.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+	self.window.rootViewController = c;
     [self.window makeKeyAndVisible];
 	[FTProjectInitialization enableFlurryWithApiKey:[PAConfig flurryCode]];
     return YES;
