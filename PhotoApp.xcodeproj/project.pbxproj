@@ -7,6 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DC2B600166387A9000BED73 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FE166387A9000BED73 /* libFTLibrary.a */; };
+		3DC2B601166387A9000BED73 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FF166387A9000BED73 /* libGPUImage.a */; };
+		3DC2B602166387C2000BED73 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FE166387A9000BED73 /* libFTLibrary.a */; };
+		3DC2B603166387C2000BED73 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FF166387A9000BED73 /* libGPUImage.a */; };
+		3DC2B604166387C3000BED73 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FE166387A9000BED73 /* libFTLibrary.a */; };
+		3DC2B605166387C3000BED73 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FF166387A9000BED73 /* libGPUImage.a */; };
+		3DC2B606166387C3000BED73 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FE166387A9000BED73 /* libFTLibrary.a */; };
+		3DC2B607166387C3000BED73 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FF166387A9000BED73 /* libGPUImage.a */; };
+		3DC2B608166387C4000BED73 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FE166387A9000BED73 /* libFTLibrary.a */; };
+		3DC2B609166387C4000BED73 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FF166387A9000BED73 /* libGPUImage.a */; };
+		3DC2B60A166387C4000BED73 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FE166387A9000BED73 /* libFTLibrary.a */; };
+		3DC2B60B166387C4000BED73 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2B5FF166387A9000BED73 /* libGPUImage.a */; };
+		3DC2B60E1663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
+		3DC2B60F1663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
+		3DC2B6101663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
+		3DC2B6111663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
+		3DC2B6121663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
+		3DC2B6131663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
+		3DC2B6141663EA62000BED73 /* PA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */; };
+		3DC2B6151663EA62000BED73 /* PA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */; };
+		3DC2B6161663EA62000BED73 /* PA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */; };
+		3DC2B6171663EA62000BED73 /* PA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */; };
+		3DC2B6181663EA62000BED73 /* PA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */; };
+		3DC2B6191663EA62000BED73 /* PA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */; };
+		3DC2B6231663EDEC000BED73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B6221663EDEC000BED73 /* Default-568h@2x.png */; };
+		3DC2B6251663EDF9000BED73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B6241663EDF9000BED73 /* Default-568h@2x.png */; };
 		4C14E83D15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
 		4C14E83E15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
 		4C14E83F15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
@@ -41,7 +67,6 @@
 		4C519B791552F0910050D4B5 /* PASharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C215501C7200D298C3 /* PASharingView.m */; };
 		4C519B7A1552F0910050D4B5 /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
 		4C519B7B1552F0910050D4B5 /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
-		4C519B7C1552F0910050D4B5 /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
 		4C519B7F1552F0910050D4B5 /* Sincerely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F711D1551FF3C00B691B2 /* Sincerely.framework */; };
 		4C519B801552F0910050D4B5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F71181551DD5900B691B2 /* CoreImage.framework */; };
 		4C519B811552F0910050D4B5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC6E7D7154F2FC1007C524C /* MediaPlayer.framework */; };
@@ -91,7 +116,6 @@
 		4C519BDA155347FE0050D4B5 /* PASharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C215501C7200D298C3 /* PASharingView.m */; };
 		4C519BDB155347FE0050D4B5 /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
 		4C519BDC155347FE0050D4B5 /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
-		4C519BDD155347FE0050D4B5 /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
 		4C519BE0155347FE0050D4B5 /* Sincerely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F711D1551FF3C00B691B2 /* Sincerely.framework */; };
 		4C519BE1155347FE0050D4B5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F71181551DD5900B691B2 /* CoreImage.framework */; };
 		4C519BE2155347FE0050D4B5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC6E7D7154F2FC1007C524C /* MediaPlayer.framework */; };
@@ -170,9 +194,6 @@
 		4C519CF615562AAD0050D4B5 /* PA_gallery-bcg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */; };
 		4C519CF715562AAD0050D4B5 /* PA_gallery-bcg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */; };
 		4C519CF815562AAD0050D4B5 /* PA_gallery-bcg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */; };
-		4C519CF915562AAD0050D4B5 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCA15562AAD0050D4B5 /* PA_logo.png */; };
-		4C519CFA15562AAD0050D4B5 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCA15562AAD0050D4B5 /* PA_logo.png */; };
-		4C519CFB15562AAD0050D4B5 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCA15562AAD0050D4B5 /* PA_logo.png */; };
 		4C519CFC15562AAD0050D4B5 /* PA_rotateCam.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */; };
 		4C519CFD15562AAD0050D4B5 /* PA_rotateCam.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */; };
 		4C519CFE15562AAD0050D4B5 /* PA_rotateCam.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */; };
@@ -221,7 +242,6 @@
 		4C519D2C15563BD00050D4B5 /* PASharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C215501C7200D298C3 /* PASharingView.m */; };
 		4C519D2D15563BD00050D4B5 /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
 		4C519D2E15563BD00050D4B5 /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
-		4C519D2F15563BD00050D4B5 /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
 		4C519D3215563BD00050D4B5 /* Sincerely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F711D1551FF3C00B691B2 /* Sincerely.framework */; };
 		4C519D3315563BD00050D4B5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F71181551DD5900B691B2 /* CoreImage.framework */; };
 		4C519D3415563BD00050D4B5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC6E7D7154F2FC1007C524C /* MediaPlayer.framework */; };
@@ -263,7 +283,6 @@
 		4C519D6015563BD00050D4B5 /* PA_checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC715562AAD0050D4B5 /* PA_checkmark@2x.png */; };
 		4C519D6115563BD00050D4B5 /* PA_gallery-bcg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC815562AAD0050D4B5 /* PA_gallery-bcg.png */; };
 		4C519D6215563BD00050D4B5 /* PA_gallery-bcg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */; };
-		4C519D6315563BD00050D4B5 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCA15562AAD0050D4B5 /* PA_logo.png */; };
 		4C519D6415563BD00050D4B5 /* PA_rotateCam.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */; };
 		4C519D6515563BD00050D4B5 /* PA_rotateCam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCC15562AAD0050D4B5 /* PA_rotateCam@2x.png */; };
 		4C519D6615563BD00050D4B5 /* PA_share-email.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCD15562AAD0050D4B5 /* PA_share-email.png */; };
@@ -304,7 +323,6 @@
 		4C558F7715A467EF0047B108 /* PASharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C215501C7200D298C3 /* PASharingView.m */; };
 		4C558F7815A467EF0047B108 /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
 		4C558F7915A467EF0047B108 /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
-		4C558F7A15A467EF0047B108 /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
 		4C558F7B15A467EF0047B108 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
 		4C558F7E15A467EF0047B108 /* Sincerely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F711D1551FF3C00B691B2 /* Sincerely.framework */; };
 		4C558F7F15A467EF0047B108 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F71181551DD5900B691B2 /* CoreImage.framework */; };
@@ -347,7 +365,6 @@
 		4C558FA715A467EF0047B108 /* PA_checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC715562AAD0050D4B5 /* PA_checkmark@2x.png */; };
 		4C558FA815A467EF0047B108 /* PA_gallery-bcg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC815562AAD0050D4B5 /* PA_gallery-bcg.png */; };
 		4C558FA915A467EF0047B108 /* PA_gallery-bcg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */; };
-		4C558FAA15A467EF0047B108 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCA15562AAD0050D4B5 /* PA_logo.png */; };
 		4C558FAB15A467EF0047B108 /* PA_rotateCam.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */; };
 		4C558FAC15A467EF0047B108 /* PA_rotateCam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCC15562AAD0050D4B5 /* PA_rotateCam@2x.png */; };
 		4C558FAD15A467EF0047B108 /* PA_share-email.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCD15562AAD0050D4B5 /* PA_share-email.png */; };
@@ -521,7 +538,6 @@
 		4CAF463E15A2EBAF002B5DAA /* PASharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C215501C7200D298C3 /* PASharingView.m */; };
 		4CAF463F15A2EBAF002B5DAA /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
 		4CAF464015A2EBAF002B5DAA /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
-		4CAF464115A2EBAF002B5DAA /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
 		4CAF464315A2EBAF002B5DAA /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
 		4CAF464515A2EBAF002B5DAA /* Sincerely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F711D1551FF3C00B691B2 /* Sincerely.framework */; };
 		4CAF464615A2EBAF002B5DAA /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F71181551DD5900B691B2 /* CoreImage.framework */; };
@@ -564,7 +580,6 @@
 		4CAF467215A2EBAF002B5DAA /* PA_checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC715562AAD0050D4B5 /* PA_checkmark@2x.png */; };
 		4CAF467315A2EBAF002B5DAA /* PA_gallery-bcg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC815562AAD0050D4B5 /* PA_gallery-bcg.png */; };
 		4CAF467415A2EBAF002B5DAA /* PA_gallery-bcg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */; };
-		4CAF467515A2EBAF002B5DAA /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCA15562AAD0050D4B5 /* PA_logo.png */; };
 		4CAF467615A2EBAF002B5DAA /* PA_rotateCam.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */; };
 		4CAF467715A2EBAF002B5DAA /* PA_rotateCam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCC15562AAD0050D4B5 /* PA_rotateCam@2x.png */; };
 		4CAF467815A2EBAF002B5DAA /* PA_share-email.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C519CCD15562AAD0050D4B5 /* PA_share-email.png */; };
@@ -640,27 +655,12 @@
 		4CF408C315501C7200D298C3 /* PASharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C215501C7200D298C3 /* PASharingView.m */; };
 		4CF408C71550259800D298C3 /* FTRedCameraButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */; };
 		4CF408D31550A0B100D298C3 /* PAGalleryShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */; };
-		4CF408E31550AAB900D298C3 /* PAPhotoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */; };
 		4CF7AC15155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
 		4CF7AC16155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
 		4CF7AC17155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
 		4CF7AC18155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
 		4CF7AC19155651EC001EB017 /* PA_sound_camera.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */; };
-		54ED4AA416623B2C006F0478 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA216623B2C006F0478 /* libFTLibrary.a */; };
-		54ED4AA516623B2C006F0478 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA316623B2C006F0478 /* libGPUImage.a */; };
 		54ED4AA716623B52006F0478 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ED4AA616623B52006F0478 /* Default-568h@2x.png */; };
-		54ED4AA916623B52006F0478 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ED4AA616623B52006F0478 /* Default-568h@2x.png */; };
-		54ED4AAB16623B52006F0478 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ED4AA616623B52006F0478 /* Default-568h@2x.png */; };
-		54ED4AAD16623DB9006F0478 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA216623B2C006F0478 /* libFTLibrary.a */; };
-		54ED4AAE16623DB9006F0478 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA316623B2C006F0478 /* libGPUImage.a */; };
-		54ED4AAF16623DBA006F0478 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA216623B2C006F0478 /* libFTLibrary.a */; };
-		54ED4AB016623DBA006F0478 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA316623B2C006F0478 /* libGPUImage.a */; };
-		54ED4AB116623DBA006F0478 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA216623B2C006F0478 /* libFTLibrary.a */; };
-		54ED4AB216623DBA006F0478 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA316623B2C006F0478 /* libGPUImage.a */; };
-		54ED4AB316623DBA006F0478 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA216623B2C006F0478 /* libFTLibrary.a */; };
-		54ED4AB416623DBA006F0478 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA316623B2C006F0478 /* libGPUImage.a */; };
-		54ED4AB516623DBB006F0478 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA216623B2C006F0478 /* libFTLibrary.a */; };
-		54ED4AB616623DBB006F0478 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AA316623B2C006F0478 /* libGPUImage.a */; };
 		54ED4AB81662416A006F0478 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AB71662416A006F0478 /* Social.framework */; };
 		54ED4AB916624173006F0478 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AB71662416A006F0478 /* Social.framework */; };
 		54ED4ABA16624173006F0478 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54ED4AB71662416A006F0478 /* Social.framework */; };
@@ -839,6 +839,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3DC2B5FE166387A9000BED73 /* libFTLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFTLibrary.a; path = "../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos/libFTLibrary.a"; sourceTree = "<group>"; };
+		3DC2B5FF166387A9000BED73 /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGPUImage.a; path = "../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos/libGPUImage.a"; sourceTree = "<group>"; };
+		3DC2B60C1663EA62000BED73 /* PA_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_logo.png; sourceTree = "<group>"; };
+		3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_logo@2x.png"; sourceTree = "<group>"; };
+		3DC2B6221663EDEC000BED73 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3DC2B6241663EDF9000BED73 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C14E83B15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPUImageStillCamera+LowPixelHandling.h"; sourceTree = "<group>"; };
 		4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GPUImageStillCamera+LowPixelHandling.m"; sourceTree = "<group>"; };
 		4C14E86915596BC3008A9D54 /* GPUImageLomoFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageLomoFilter.h; sourceTree = "<group>"; };
@@ -876,7 +882,6 @@
 		4C519CC715562AAD0050D4B5 /* PA_checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_checkmark@2x.png"; sourceTree = "<group>"; };
 		4C519CC815562AAD0050D4B5 /* PA_gallery-bcg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_gallery-bcg.png"; sourceTree = "<group>"; };
 		4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_gallery-bcg@2x.png"; sourceTree = "<group>"; };
-		4C519CCA15562AAD0050D4B5 /* PA_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_logo.png; sourceTree = "<group>"; };
 		4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_rotateCam.png; sourceTree = "<group>"; };
 		4C519CCC15562AAD0050D4B5 /* PA_rotateCam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_rotateCam@2x.png"; sourceTree = "<group>"; };
 		4C519CCD15562AAD0050D4B5 /* PA_share-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_share-email.png"; sourceTree = "<group>"; };
@@ -1003,11 +1008,7 @@
 		4CF408C61550259800D298C3 /* FTRedCameraButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTRedCameraButtonView.m; sourceTree = "<group>"; };
 		4CF408D11550A0B100D298C3 /* PAGalleryShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAGalleryShareButton.h; sourceTree = "<group>"; };
 		4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAGalleryShareButton.m; sourceTree = "<group>"; };
-		4CF408E11550AAB900D298C3 /* PAPhotoDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoDetailView.h; sourceTree = "<group>"; };
-		4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoDetailView.m; sourceTree = "<group>"; };
 		4CF7AC14155651EC001EB017 /* PA_sound_camera.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PA_sound_camera.wav; sourceTree = "<group>"; };
-		54ED4AA216623B2C006F0478 /* libFTLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFTLibrary.a; path = "../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos/libFTLibrary.a"; sourceTree = "<group>"; };
-		54ED4AA316623B2C006F0478 /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGPUImage.a; path = "../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos/libGPUImage.a"; sourceTree = "<group>"; };
 		54ED4AA616623B52006F0478 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		54ED4AB71662416A006F0478 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		54ED4ABF16624979006F0478 /* FTPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPhotoBrowserViewController.h; sourceTree = "<group>"; };
@@ -1082,9 +1083,9 @@
 				4C519B991552F0910050D4B5 /* UIKit.framework in Frameworks */,
 				4C519B9A1552F0910050D4B5 /* Foundation.framework in Frameworks */,
 				4C519B9B1552F0910050D4B5 /* CoreGraphics.framework in Frameworks */,
-				54ED4AAD16623DB9006F0478 /* libFTLibrary.a in Frameworks */,
-				54ED4AAE16623DB9006F0478 /* libGPUImage.a in Frameworks */,
 				54ED4AB916624173006F0478 /* Social.framework in Frameworks */,
+				3DC2B602166387C2000BED73 /* libFTLibrary.a in Frameworks */,
+				3DC2B603166387C2000BED73 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,9 +1120,9 @@
 				4C519BFA155347FE0050D4B5 /* UIKit.framework in Frameworks */,
 				4C519BFB155347FE0050D4B5 /* Foundation.framework in Frameworks */,
 				4C519BFC155347FE0050D4B5 /* CoreGraphics.framework in Frameworks */,
-				54ED4AAF16623DBA006F0478 /* libFTLibrary.a in Frameworks */,
-				54ED4AB016623DBA006F0478 /* libGPUImage.a in Frameworks */,
 				54ED4ABA16624173006F0478 /* Social.framework in Frameworks */,
+				3DC2B604166387C3000BED73 /* libFTLibrary.a in Frameworks */,
+				3DC2B605166387C3000BED73 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,9 +1157,9 @@
 				4C519D4C15563BD00050D4B5 /* UIKit.framework in Frameworks */,
 				4C519D4D15563BD00050D4B5 /* Foundation.framework in Frameworks */,
 				4C519D4E15563BD00050D4B5 /* CoreGraphics.framework in Frameworks */,
-				54ED4AB116623DBA006F0478 /* libFTLibrary.a in Frameworks */,
-				54ED4AB216623DBA006F0478 /* libGPUImage.a in Frameworks */,
 				54ED4ABB16624174006F0478 /* Social.framework in Frameworks */,
+				3DC2B606166387C3000BED73 /* libFTLibrary.a in Frameworks */,
+				3DC2B607166387C3000BED73 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1193,9 +1194,9 @@
 				4C558F9815A467EF0047B108 /* UIKit.framework in Frameworks */,
 				4C558F9915A467EF0047B108 /* Foundation.framework in Frameworks */,
 				4C558F9A15A467EF0047B108 /* CoreGraphics.framework in Frameworks */,
-				54ED4AB516623DBB006F0478 /* libFTLibrary.a in Frameworks */,
-				54ED4AB616623DBB006F0478 /* libGPUImage.a in Frameworks */,
 				54ED4ABD16624175006F0478 /* Social.framework in Frameworks */,
+				3DC2B60A166387C4000BED73 /* libFTLibrary.a in Frameworks */,
+				3DC2B60B166387C4000BED73 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,9 +1204,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC2B600166387A9000BED73 /* libFTLibrary.a in Frameworks */,
+				3DC2B601166387A9000BED73 /* libGPUImage.a in Frameworks */,
 				54ED4AB81662416A006F0478 /* Social.framework in Frameworks */,
-				54ED4AA416623B2C006F0478 /* libFTLibrary.a in Frameworks */,
-				54ED4AA516623B2C006F0478 /* libGPUImage.a in Frameworks */,
 				4C5F711E1551FF3C00B691B2 /* Sincerely.framework in Frameworks */,
 				4C5F71191551DD5900B691B2 /* CoreImage.framework in Frameworks */,
 				4CC6E7D8154F2FC1007C524C /* MediaPlayer.framework in Frameworks */,
@@ -1276,9 +1277,9 @@
 				4CAF465F15A2EBAF002B5DAA /* UIKit.framework in Frameworks */,
 				4CAF466015A2EBAF002B5DAA /* Foundation.framework in Frameworks */,
 				4CAF466115A2EBAF002B5DAA /* CoreGraphics.framework in Frameworks */,
-				54ED4AB316623DBA006F0478 /* libFTLibrary.a in Frameworks */,
-				54ED4AB416623DBA006F0478 /* libGPUImage.a in Frameworks */,
 				54ED4ABC16624174006F0478 /* Social.framework in Frameworks */,
+				3DC2B608166387C4000BED73 /* libFTLibrary.a in Frameworks */,
+				3DC2B609166387C4000BED73 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1297,8 +1298,8 @@
 		4C519BC11552F0E20050D4B5 /* BWPro */ = {
 			isa = PBXGroup;
 			children = (
-				4C519C461553CE0E0050D4B5 /* System */,
 				4C519BC21552F0E20050D4B5 /* App */,
+				4C519C461553CE0E0050D4B5 /* System */,
 			);
 			path = BWPro;
 			sourceTree = "<group>";
@@ -1315,8 +1316,8 @@
 		4C519C231553481B0050D4B5 /* LomoPro */ = {
 			isa = PBXGroup;
 			children = (
-				4C519C4F1553CE200050D4B5 /* System */,
 				4C519C241553481B0050D4B5 /* App */,
+				4C519C4F1553CE200050D4B5 /* System */,
 			);
 			path = LomoPro;
 			sourceTree = "<group>";
@@ -1357,6 +1358,7 @@
 		4C519C4F1553CE200050D4B5 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				3DC2B6241663EDF9000BED73 /* Default-568h@2x.png */,
 				4C519C501553CE200050D4B5 /* Default.png */,
 				4C519C511553CE200050D4B5 /* Default@2x.png */,
 				4C519C521553CE200050D4B5 /* Icon.png */,
@@ -1389,9 +1391,10 @@
 				4C519CC515562AAD0050D4B5 /* PA_cameraIconFlip@2x.png */,
 				4C519CC615562AAD0050D4B5 /* PA_checkmark.png */,
 				4C519CC715562AAD0050D4B5 /* PA_checkmark@2x.png */,
+				3DC2B60C1663EA62000BED73 /* PA_logo.png */,
+				3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */,
 				4C519CC815562AAD0050D4B5 /* PA_gallery-bcg.png */,
 				4C519CC915562AAD0050D4B5 /* PA_gallery-bcg@2x.png */,
-				4C519CCA15562AAD0050D4B5 /* PA_logo.png */,
 				4C519CCB15562AAD0050D4B5 /* PA_rotateCam.png */,
 				4C519CCC15562AAD0050D4B5 /* PA_rotateCam@2x.png */,
 				4C519CCD15562AAD0050D4B5 /* PA_share-email.png */,
@@ -1411,8 +1414,8 @@
 		4C519D7415563C960050D4B5 /* SketchPro */ = {
 			isa = PBXGroup;
 			children = (
-				4C519D7815563C960050D4B5 /* System */,
 				4C519D7515563C960050D4B5 /* App */,
+				4C519D7815563C960050D4B5 /* System */,
 			);
 			path = SketchPro;
 			sourceTree = "<group>";
@@ -1459,6 +1462,7 @@
 		4C558F5B15A467800047B108 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				3DC2B6221663EDEC000BED73 /* Default-568h@2x.png */,
 				4C558F5C15A467800047B108 /* Default.png */,
 				4C558F5D15A467800047B108 /* Default@2x.png */,
 				4C558F5E15A467800047B108 /* Icon.png */,
@@ -1513,8 +1517,8 @@
 		4C5F70B21551492E00B691B2 /* SepiaPro */ = {
 			isa = PBXGroup;
 			children = (
-				4C519C351553CDDF0050D4B5 /* System */,
 				4C5F7105155149EB00B691B2 /* App */,
+				4C519C351553CDDF0050D4B5 /* System */,
 			);
 			path = SepiaPro;
 			sourceTree = "<group>";
@@ -1556,8 +1560,8 @@
 		4C95758C1540A85100A7141E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				54ED4AA216623B2C006F0478 /* libFTLibrary.a */,
-				54ED4AA316623B2C006F0478 /* libGPUImage.a */,
+				3DC2B5FE166387A9000BED73 /* libFTLibrary.a */,
+				3DC2B5FF166387A9000BED73 /* libGPUImage.a */,
 				54ED4AB71662416A006F0478 /* Social.framework */,
 				4C5F711D1551FF3C00B691B2 /* Sincerely.framework */,
 				4C5F71181551DD5900B691B2 /* CoreImage.framework */,
@@ -1653,7 +1657,6 @@
 			isa = PBXGroup;
 			children = (
 				54ED4AD71662531D006F0478 /* Page scroll view */,
-				4CF408E01550AA7C00D298C3 /* Photo details */,
 				4CF408C015501C5A00D298C3 /* Sharing view */,
 				4CC6E6B4154EEAED007C524C /* Gallery view */,
 				4CC4860E15475C93007BADC2 /* Photo grid view */,
@@ -1867,15 +1870,6 @@
 				4CF408D21550A0B100D298C3 /* PAGalleryShareButton.m */,
 			);
 			name = "Share button";
-			sourceTree = "<group>";
-		};
-		4CF408E01550AA7C00D298C3 /* Photo details */ = {
-			isa = PBXGroup;
-			children = (
-				4CF408E11550AAB900D298C3 /* PAPhotoDetailView.h */,
-				4CF408E21550AAB900D298C3 /* PAPhotoDetailView.m */,
-			);
-			name = "Photo details";
 			sourceTree = "<group>";
 		};
 		54ED4ABE1662494C006F0478 /* Photo browser */ = {
@@ -2122,7 +2116,6 @@
 				4C519CF115562AAD0050D4B5 /* PA_checkmark@2x.png in Resources */,
 				4C519CF415562AAD0050D4B5 /* PA_gallery-bcg.png in Resources */,
 				4C519CF715562AAD0050D4B5 /* PA_gallery-bcg@2x.png in Resources */,
-				4C519CFA15562AAD0050D4B5 /* PA_logo.png in Resources */,
 				4C519CFD15562AAD0050D4B5 /* PA_rotateCam.png in Resources */,
 				4C519D0015562AAD0050D4B5 /* PA_rotateCam@2x.png in Resources */,
 				4C519D0315562AAD0050D4B5 /* PA_share-email.png in Resources */,
@@ -2177,6 +2170,8 @@
 				54ED4B7B16628B8F006F0478 /* action-black-button@2x.png in Resources */,
 				54ED4B8116628B8F006F0478 /* action-sheet-panel.png in Resources */,
 				54ED4B8716628B8F006F0478 /* action-sheet-panel@2x.png in Resources */,
+				3DC2B60F1663EA62000BED73 /* PA_logo.png in Resources */,
+				3DC2B6151663EA62000BED73 /* PA_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2203,7 +2198,6 @@
 				4C519CF215562AAD0050D4B5 /* PA_checkmark@2x.png in Resources */,
 				4C519CF515562AAD0050D4B5 /* PA_gallery-bcg.png in Resources */,
 				4C519CF815562AAD0050D4B5 /* PA_gallery-bcg@2x.png in Resources */,
-				4C519CFB15562AAD0050D4B5 /* PA_logo.png in Resources */,
 				4C519CFE15562AAD0050D4B5 /* PA_rotateCam.png in Resources */,
 				4C519D0115562AAD0050D4B5 /* PA_rotateCam@2x.png in Resources */,
 				4C519D0415562AAD0050D4B5 /* PA_share-email.png in Resources */,
@@ -2239,7 +2233,6 @@
 				4CAF462B15A2D187002B5DAA /* PP_txt_twitter@2x.png in Resources */,
 				4CAF46B715A35EAF002B5DAA /* PP_btn_share.png in Resources */,
 				4CAF46BC15A35EAF002B5DAA /* PP_btn_share@2x.png in Resources */,
-				54ED4AA916623B52006F0478 /* Default-568h@2x.png in Resources */,
 				54ED4B1C16628A81006F0478 /* PA_icon_card.png in Resources */,
 				54ED4B2216628A81006F0478 /* PA_icon_card@2x.png in Resources */,
 				54ED4B2816628A81006F0478 /* PA_icon_fb.png in Resources */,
@@ -2258,6 +2251,9 @@
 				54ED4B7C16628B8F006F0478 /* action-black-button@2x.png in Resources */,
 				54ED4B8216628B8F006F0478 /* action-sheet-panel.png in Resources */,
 				54ED4B8816628B8F006F0478 /* action-sheet-panel@2x.png in Resources */,
+				3DC2B6101663EA62000BED73 /* PA_logo.png in Resources */,
+				3DC2B6161663EA62000BED73 /* PA_logo@2x.png in Resources */,
+				3DC2B6251663EDF9000BED73 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2279,7 +2275,6 @@
 				4C519D6015563BD00050D4B5 /* PA_checkmark@2x.png in Resources */,
 				4C519D6115563BD00050D4B5 /* PA_gallery-bcg.png in Resources */,
 				4C519D6215563BD00050D4B5 /* PA_gallery-bcg@2x.png in Resources */,
-				4C519D6315563BD00050D4B5 /* PA_logo.png in Resources */,
 				4C519D6415563BD00050D4B5 /* PA_rotateCam.png in Resources */,
 				4C519D6515563BD00050D4B5 /* PA_rotateCam@2x.png in Resources */,
 				4C519D6615563BD00050D4B5 /* PA_share-email.png in Resources */,
@@ -2339,6 +2334,8 @@
 				54ED4B7D16628B8F006F0478 /* action-black-button@2x.png in Resources */,
 				54ED4B8316628B8F006F0478 /* action-sheet-panel.png in Resources */,
 				54ED4B8916628B8F006F0478 /* action-sheet-panel@2x.png in Resources */,
+				3DC2B6111663EA62000BED73 /* PA_logo.png in Resources */,
+				3DC2B6171663EA62000BED73 /* PA_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2360,7 +2357,6 @@
 				4C558FA715A467EF0047B108 /* PA_checkmark@2x.png in Resources */,
 				4C558FA815A467EF0047B108 /* PA_gallery-bcg.png in Resources */,
 				4C558FA915A467EF0047B108 /* PA_gallery-bcg@2x.png in Resources */,
-				4C558FAA15A467EF0047B108 /* PA_logo.png in Resources */,
 				4C558FAB15A467EF0047B108 /* PA_rotateCam.png in Resources */,
 				4C558FAC15A467EF0047B108 /* PA_rotateCam@2x.png in Resources */,
 				4C558FAD15A467EF0047B108 /* PA_share-email.png in Resources */,
@@ -2420,6 +2416,8 @@
 				54ED4B7F16628B8F006F0478 /* action-black-button@2x.png in Resources */,
 				54ED4B8516628B8F006F0478 /* action-sheet-panel.png in Resources */,
 				54ED4B8B16628B8F006F0478 /* action-sheet-panel@2x.png in Resources */,
+				3DC2B6131663EA62000BED73 /* PA_logo.png in Resources */,
+				3DC2B6191663EA62000BED73 /* PA_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2441,7 +2439,6 @@
 				4C519CF015562AAD0050D4B5 /* PA_checkmark@2x.png in Resources */,
 				4C519CF315562AAD0050D4B5 /* PA_gallery-bcg.png in Resources */,
 				4C519CF615562AAD0050D4B5 /* PA_gallery-bcg@2x.png in Resources */,
-				4C519CF915562AAD0050D4B5 /* PA_logo.png in Resources */,
 				4C519CFC15562AAD0050D4B5 /* PA_rotateCam.png in Resources */,
 				4C519CFF15562AAD0050D4B5 /* PA_rotateCam@2x.png in Resources */,
 				4C519D0215562AAD0050D4B5 /* PA_share-email.png in Resources */,
@@ -2501,6 +2498,8 @@
 				54ED4B7A16628B8F006F0478 /* action-black-button@2x.png in Resources */,
 				54ED4B8016628B8F006F0478 /* action-sheet-panel.png in Resources */,
 				54ED4B8616628B8F006F0478 /* action-sheet-panel@2x.png in Resources */,
+				3DC2B60E1663EA62000BED73 /* PA_logo.png in Resources */,
+				3DC2B6141663EA62000BED73 /* PA_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2538,7 +2537,6 @@
 				4CAF467215A2EBAF002B5DAA /* PA_checkmark@2x.png in Resources */,
 				4CAF467315A2EBAF002B5DAA /* PA_gallery-bcg.png in Resources */,
 				4CAF467415A2EBAF002B5DAA /* PA_gallery-bcg@2x.png in Resources */,
-				4CAF467515A2EBAF002B5DAA /* PA_logo.png in Resources */,
 				4CAF467615A2EBAF002B5DAA /* PA_rotateCam.png in Resources */,
 				4CAF467715A2EBAF002B5DAA /* PA_rotateCam@2x.png in Resources */,
 				4CAF467815A2EBAF002B5DAA /* PA_share-email.png in Resources */,
@@ -2579,7 +2577,6 @@
 				4C558F6315A467800047B108 /* Default@2x.png in Resources */,
 				4C558F6415A467800047B108 /* Icon.png in Resources */,
 				4C558F6515A467800047B108 /* Icon@2x.png in Resources */,
-				54ED4AAB16623B52006F0478 /* Default-568h@2x.png in Resources */,
 				54ED4B1E16628A81006F0478 /* PA_icon_card.png in Resources */,
 				54ED4B2416628A81006F0478 /* PA_icon_card@2x.png in Resources */,
 				54ED4B2A16628A81006F0478 /* PA_icon_fb.png in Resources */,
@@ -2598,6 +2595,9 @@
 				54ED4B7E16628B8F006F0478 /* action-black-button@2x.png in Resources */,
 				54ED4B8416628B8F006F0478 /* action-sheet-panel.png in Resources */,
 				54ED4B8A16628B8F006F0478 /* action-sheet-panel@2x.png in Resources */,
+				3DC2B6121663EA62000BED73 /* PA_logo.png in Resources */,
+				3DC2B6181663EA62000BED73 /* PA_logo@2x.png in Resources */,
+				3DC2B6231663EDEC000BED73 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2642,7 +2642,6 @@
 				4C519B791552F0910050D4B5 /* PASharingView.m in Sources */,
 				4C519B7A1552F0910050D4B5 /* FTRedCameraButtonView.m in Sources */,
 				4C519B7B1552F0910050D4B5 /* PAGalleryShareButton.m in Sources */,
-				4C519B7C1552F0910050D4B5 /* PAPhotoDetailView.m in Sources */,
 				4C519C29155348870050D4B5 /* PAConfig.m in Sources */,
 				4C14E83F15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 				54ED4AC216624979006F0478 /* FTPhotoBrowserViewController.m in Sources */,
@@ -2678,7 +2677,6 @@
 				4C519BDA155347FE0050D4B5 /* PASharingView.m in Sources */,
 				4C519BDB155347FE0050D4B5 /* FTRedCameraButtonView.m in Sources */,
 				4C519BDC155347FE0050D4B5 /* PAGalleryShareButton.m in Sources */,
-				4C519BDD155347FE0050D4B5 /* PAPhotoDetailView.m in Sources */,
 				4C519C271553481B0050D4B5 /* PAConfig.m in Sources */,
 				4C14E84015593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 				4C14E86B15596BC3008A9D54 /* GPUImageLomoFilter.m in Sources */,
@@ -2715,7 +2713,6 @@
 				4C519D2C15563BD00050D4B5 /* PASharingView.m in Sources */,
 				4C519D2D15563BD00050D4B5 /* FTRedCameraButtonView.m in Sources */,
 				4C519D2E15563BD00050D4B5 /* PAGalleryShareButton.m in Sources */,
-				4C519D2F15563BD00050D4B5 /* PAPhotoDetailView.m in Sources */,
 				4C519D7D15563C960050D4B5 /* PAConfig.m in Sources */,
 				4C14E84115593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 				54ED4AC416624979006F0478 /* FTPhotoBrowserViewController.m in Sources */,
@@ -2751,7 +2748,6 @@
 				4C558F7715A467EF0047B108 /* PASharingView.m in Sources */,
 				4C558F7815A467EF0047B108 /* FTRedCameraButtonView.m in Sources */,
 				4C558F7915A467EF0047B108 /* PAGalleryShareButton.m in Sources */,
-				4C558F7A15A467EF0047B108 /* PAPhotoDetailView.m in Sources */,
 				4C558F7B15A467EF0047B108 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 				4C558FE615A4683B0047B108 /* PAConfig.m in Sources */,
 				54ED4AC616624979006F0478 /* FTPhotoBrowserViewController.m in Sources */,
@@ -2787,7 +2783,6 @@
 				4CF408C315501C7200D298C3 /* PASharingView.m in Sources */,
 				4CF408C71550259800D298C3 /* FTRedCameraButtonView.m in Sources */,
 				4CF408D31550A0B100D298C3 /* PAGalleryShareButton.m in Sources */,
-				4CF408E31550AAB900D298C3 /* PAPhotoDetailView.m in Sources */,
 				4C14E83D15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 				4CAF46AD15A3316D002B5DAA /* PAConfig.m in Sources */,
 				54ED4AC116624979006F0478 /* FTPhotoBrowserViewController.m in Sources */,
@@ -2839,7 +2834,6 @@
 				4CAF463E15A2EBAF002B5DAA /* PASharingView.m in Sources */,
 				4CAF463F15A2EBAF002B5DAA /* FTRedCameraButtonView.m in Sources */,
 				4CAF464015A2EBAF002B5DAA /* PAGalleryShareButton.m in Sources */,
-				4CAF464115A2EBAF002B5DAA /* PAPhotoDetailView.m in Sources */,
 				4CAF464315A2EBAF002B5DAA /* GPUImageStillCamera+LowPixelHandling.m in Sources */,
 				4C558F6015A467800047B108 /* PAConfig.m in Sources */,
 				54ED4AC516624979006F0478 /* FTPhotoBrowserViewController.m in Sources */,
@@ -2883,6 +2877,269 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3DC2B61A1663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"./Thirdparty/GPUImage/framework/**",
+					"../FTLibrary/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
+				VALID_ARCHS = armv7;
+			};
+			name = Enterprise;
+		};
+		3DC2B61B1663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuerte Int Ltd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"./Thirdparty/GPUImage/framework/**",
+					"../FTLibrary/**",
+				);
+				INFOPLIST_FILE = "Bundles/SepiaPro/App/PhotoApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C2E0650C-2322-4086-8FD6-1EDEE33406A5";
+				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
+				VALID_ARCHS = "armv6 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Enterprise;
+		};
+		3DC2B61C1663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotoApp.app/PhotoApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
+				INFOPLIST_FILE = "PhotoAppTests/PhotoAppTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+					"\"$(SRCROOT)\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Enterprise;
+		};
+		3DC2B61D1663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuerte Int Ltd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"./Thirdparty/GPUImage/framework/**",
+					"../FTLibrary/**",
+				);
+				INFOPLIST_FILE = "Bundles/BWPro/App/PhotoApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "B&W Pro";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "11C4589A-D8D4-4E4A-A530-34B218BE567D";
+				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
+				VALID_ARCHS = "armv6 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Enterprise;
+		};
+		3DC2B61E1663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuerte Int Ltd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
+				INFOPLIST_FILE = "Bundles/LomoPro/App/PhotoApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Lomo Pro";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71956261-34D3-405C-8914-317D3ED22599";
+				VALID_ARCHS = "armv6 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Enterprise;
+		};
+		3DC2B61F1663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuerte Int Ltd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"./Thirdparty/GPUImage/framework/**",
+					"../FTLibrary/**",
+				);
+				INFOPLIST_FILE = "Bundles/SketchPro/App/PhotoApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Sketch Pro";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EA01D0C5-DD4E-4EEE-8B8B-883CB300407E";
+				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
+				VALID_ARCHS = "armv6 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Enterprise;
+		};
+		3DC2B6201663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuerte Int Ltd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
+				INFOPLIST_FILE = "Bundles/ColorPro/App/PhotoApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Color Pro";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F305F292-6FB0-4FCF-9E5B-F3E316C27CD2";
+				VALID_ARCHS = "armv6 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Enterprise;
+		};
+		3DC2B6211663EBCC000BED73 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuerte Int Ltd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoApp/PhotoApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"./Thirdparty/GPUImage/framework/**",
+					"../FTLibrary/**",
+				);
+				INFOPLIST_FILE = "Bundles/NoirPro/App/PhotoApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Noir Pro";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "674F401D-C2E1-4AE6-B7F4-8C278D9C4AAA";
+				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
+				VALID_ARCHS = "armv6 armv7";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Enterprise;
+		};
 		4C519BBC1552F0910050D4B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2904,6 +3161,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -2916,7 +3174,7 @@
 			};
 			name = Debug;
 		};
-		4C519BBD1552F0910050D4B5 /* Release */ = {
+		4C519BBD1552F0910050D4B5 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fuerte Int Ltd";
@@ -2939,6 +3197,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -2951,7 +3210,7 @@
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = AppStore;
 		};
 		4C519C1E155347FE0050D4B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2970,6 +3229,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -2981,7 +3241,7 @@
 			};
 			name = Debug;
 		};
-		4C519C1F155347FE0050D4B5 /* Release */ = {
+		4C519C1F155347FE0050D4B5 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fuerte Int Ltd";
@@ -3000,6 +3260,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3011,7 +3272,7 @@
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = AppStore;
 		};
 		4C519D6F15563BD00050D4B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3034,6 +3295,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3046,7 +3308,7 @@
 			};
 			name = Debug;
 		};
-		4C519D7015563BD00050D4B5 /* Release */ = {
+		4C519D7015563BD00050D4B5 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fuerte Int Ltd";
@@ -3069,6 +3331,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3081,7 +3344,7 @@
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = AppStore;
 		};
 		4C558FD415A467EF0047B108 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3104,6 +3367,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3116,7 +3380,7 @@
 			};
 			name = Debug;
 		};
-		4C558FD515A467EF0047B108 /* Release */ = {
+		4C558FD515A467EF0047B108 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fuerte Int Ltd";
@@ -3139,6 +3403,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3151,7 +3416,7 @@
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = AppStore;
 		};
 		4C9575BA1540A85200A7141E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3188,7 +3453,7 @@
 			};
 			name = Debug;
 		};
-		4C9575BB1540A85200A7141E /* Release */ = {
+		4C9575BB1540A85200A7141E /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -3217,7 +3482,7 @@
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
-			name = Release;
+			name = AppStore;
 		};
 		4C9575BD1540A85200A7141E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3240,6 +3505,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3252,7 +3518,7 @@
 			};
 			name = Debug;
 		};
-		4C9575BE1540A85200A7141E /* Release */ = {
+		4C9575BE1540A85200A7141E /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fuerte Int Ltd";
@@ -3275,6 +3541,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3287,7 +3554,7 @@
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = AppStore;
 		};
 		4C9575C01540A85200A7141E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3311,7 +3578,7 @@
 			};
 			name = Debug;
 		};
-		4C9575C11540A85200A7141E /* Release */ = {
+		4C9575C11540A85200A7141E /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotoApp.app/PhotoApp";
@@ -3331,7 +3598,7 @@
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
-			name = Release;
+			name = AppStore;
 		};
 		4CAF469915A2EBAF002B5DAA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3350,6 +3617,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3361,7 +3629,7 @@
 			};
 			name = Debug;
 		};
-		4CAF469A15A2EBAF002B5DAA /* Release */ = {
+		4CAF469A15A2EBAF002B5DAA /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fuerte Int Ltd";
@@ -3380,6 +3648,7 @@
 					"\"$(SRCROOT)/Thirdparty/FlurryAnalytics\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3391,7 +3660,7 @@
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = AppStore;
 		};
 /* End XCBuildConfiguration section */
 
@@ -3400,73 +3669,81 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C519BBC1552F0910050D4B5 /* Debug */,
-				4C519BBD1552F0910050D4B5 /* Release */,
+				3DC2B61D1663EBCC000BED73 /* Enterprise */,
+				4C519BBD1552F0910050D4B5 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		4C519C1D155347FE0050D4B5 /* Build configuration list for PBXNativeTarget "Lomo Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C519C1E155347FE0050D4B5 /* Debug */,
-				4C519C1F155347FE0050D4B5 /* Release */,
+				3DC2B61E1663EBCC000BED73 /* Enterprise */,
+				4C519C1F155347FE0050D4B5 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		4C519D6E15563BD00050D4B5 /* Build configuration list for PBXNativeTarget "Sketch Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C519D6F15563BD00050D4B5 /* Debug */,
-				4C519D7015563BD00050D4B5 /* Release */,
+				3DC2B61F1663EBCC000BED73 /* Enterprise */,
+				4C519D7015563BD00050D4B5 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		4C558FD315A467EF0047B108 /* Build configuration list for PBXNativeTarget "Noir Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C558FD415A467EF0047B108 /* Debug */,
-				4C558FD515A467EF0047B108 /* Release */,
+				3DC2B6211663EBCC000BED73 /* Enterprise */,
+				4C558FD515A467EF0047B108 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		4C9575831540A85100A7141E /* Build configuration list for PBXProject "PhotoApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C9575BA1540A85200A7141E /* Debug */,
-				4C9575BB1540A85200A7141E /* Release */,
+				3DC2B61A1663EBCC000BED73 /* Enterprise */,
+				4C9575BB1540A85200A7141E /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		4C9575BC1540A85200A7141E /* Build configuration list for PBXNativeTarget "Sepia Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C9575BD1540A85200A7141E /* Debug */,
-				4C9575BE1540A85200A7141E /* Release */,
+				3DC2B61B1663EBCC000BED73 /* Enterprise */,
+				4C9575BE1540A85200A7141E /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		4C9575BF1540A85200A7141E /* Build configuration list for PBXNativeTarget "PhotoAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C9575C01540A85200A7141E /* Debug */,
-				4C9575C11540A85200A7141E /* Release */,
+				3DC2B61C1663EBCC000BED73 /* Enterprise */,
+				4C9575C11540A85200A7141E /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		4CAF469815A2EBAF002B5DAA /* Build configuration list for PBXNativeTarget "Color Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CAF469915A2EBAF002B5DAA /* Debug */,
-				4CAF469A15A2EBAF002B5DAA /* Release */,
+				3DC2B6201663EBCC000BED73 /* Enterprise */,
+				4CAF469A15A2EBAF002B5DAA /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 /* End XCConfigurationList section */
 	};

@@ -40,7 +40,7 @@
 @end
 
 
-@interface FTPhotoBrowserViewController : FTViewController <FT2PageScrollViewDataSource, FT2PageScrollViewDelegate, SYSincerelyControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface FTPhotoBrowserViewController : FTViewController <FT2PageScrollViewDataSource, FT2PageScrollViewDelegate, SYSincerelyControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, weak) id<FTPhotoBrowserViewControllerDataSource> dataSource;
 @property (nonatomic, weak) id<FTPhotoBrowserViewControllerDelegate> delegate;

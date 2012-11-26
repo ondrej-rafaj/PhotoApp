@@ -24,6 +24,7 @@
 @property (nonatomic) NSInteger customStartIndex;
 @property (nonatomic, strong) UIToolbar *toolBar;
 @property (nonatomic) NSInteger currentIndex;
+@property (nonatomic, strong) UIView *blockerShadow;
 
 @end
 
@@ -33,16 +34,10 @@
 #pragma mark Positioning
 
 - (CGFloat)screenHeight {
-    if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
-        CGFloat scale = [[UIScreen mainScreen] scale];
-        
-        if (scale > 1.0) {
-            if([[UIScreen mainScreen] bounds].size.height == 568) {
-                return 568;
-            }
-        }
+    if([[UIScreen mainScreen] bounds].size.height == 568) {
+        return 568;
     }
-    return 480;
+    else return 480;
 }
 
 #pragma mark Image scaling
@@ -81,6 +76,24 @@
         [_toolBar setAlpha:1];
     } completion:^(BOOL finished) {
         
+    }];
+}
+
+- (void)showBlockerShadow {
+    [_blockerShadow setHidden:NO];
+    [_blockerShadow setAlpha:0];
+    [UIView animateWithDuration:0.3 animations:^{
+        [_blockerShadow setAlpha:1];
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)hideBlockerShadow {
+    [UIView animateWithDuration:0.3 animations:^{
+        [_blockerShadow setAlpha:0];
+    } completion:^(BOOL finished) {
+        [_blockerShadow setHidden:YES];
     }];
 }
 
@@ -147,6 +160,38 @@
 
 #pragma mark Creating elements
 
+- (void)createSharingBlockerView {
+    _blockerShadow = [[UIView alloc] initWithFrame:self.view.frame];
+    [_blockerShadow setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
+    //[_blockerShadow setUserInteractionEnabled:NO];
+    [_blockerShadow setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [_blockerShadow setHidden:YES];
+    [self.view addSubview:_blockerShadow];
+}
+
+- (void)createScrollView {
+    CGRect r = self.view.bounds;
+    _scrollView = [[FT2PageScrollView alloc] initWithFrame:r];
+    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnScreen:)];
+    [_scrollView addGestureRecognizer:gr];
+    [self.view addSubview:_scrollView];
+}
+
+- (void)createToolbar {
+    CGRect r = self.view.bounds;
+    r.origin.y = ([self screenHeight] - 44);
+    r.size.height = 44;
+    _toolBar = [[UIToolbar alloc] initWithFrame:r];
+    [_toolBar setAlpha:0];
+    [_toolBar setTranslucent:YES];
+    [_toolBar setBarStyle:UIBarStyleBlackOpaque];
+    UIBarButtonItem *action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(presentActionSheet)];
+    //UIBarButtonItem *action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(presentCustomActionSheet)];
+    [_toolBar setItems:[NSArray arrayWithObject:action]];
+    [self.view addSubview:_toolBar];
+
+}
+
 - (UIImage *)sharingImageForCurrentPage {
     if ([_dataSource respondsToSelector:@selector(photoBrowserViewController:requestsThumbnailImageWithIndex:)]) {
         return [_dataSource photoBrowserViewController:self requestsThumbnailImageWithIndex:0];
@@ -212,14 +257,15 @@
 	[self performSelectorOnMainThread:@selector(sendImageOnFacebook:) withObject:img waitUntilDone:NO];
 }
 
-
+/*
 - (void)presentCustomActionSheet {
+    [self showBlockerShadow];
     __weak IconActionSheet *sheet = [IconActionSheet sheetWithTitle:nil];
-    
     // Facebook
     if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         [sheet addIconWithTitle:@"Facebook" image:[UIImage imageNamed:@"PA_icon_fb"] block:^{
             [self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareForFacebook:) onTarget:self withObject:[self getAssetForIndex:_currentIndex] animated:YES];
+            [self hideBlockerShadow];
             [sheet dismissView];
         } atIndex:-1];
     }
@@ -232,6 +278,7 @@
         [sheet addIconWithTitle:@"Twitter" image:[UIImage imageNamed:@"PA_icon_tw"] block:^{
             [self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareForTwitter:) onTarget:self withObject:[self getAssetForIndex:_currentIndex] animated:YES];
             
+            [self hideBlockerShadow];
             [sheet dismissView];
         } atIndex:-1];
     }
@@ -242,14 +289,17 @@
         if ([MFMailComposeViewController canSendMail]) {
             [self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareEmail:) onTarget:self withObject:[self getAssetForIndex:_currentIndex] animated:YES];
         }
+        [self hideBlockerShadow];
         [sheet dismissView];
     } atIndex:-1];
 //    [sheet addIconWithTitle:@"Print" image:[UIImage imageNamed:@"PA_icon_print"] block:^{
 //        //label.text = @"You selected the settings icon!";
+//        [self hideBlockerShadow];
 //        [sheet dismissView];
 //    } atIndex:-1];
 //    [sheet addIconWithTitle:@"iMessage" image:[UIImage imageNamed:@"PA_icon_imessage"] block:^{
 //        //label.text = @"You selected the message icon!";
+//        [self hideBlockerShadow];
 //        [sheet dismissView];
 //    } atIndex:-1];
     [sheet addIconWithTitle:@"Postcard" image:[UIImage imageNamed:@"PA_icon_card"] block:^{
@@ -262,10 +312,46 @@
                 
             }];
         }
+        [self hideBlockerShadow];
         [sheet dismissView];
     } atIndex:-1];
     
     [sheet showInView:self.view];
+}
+ //*/
+
+- (void)presentActionSheet {
+    NSString *email = ([MFMailComposeViewController canSendMail]) ? FTLangGet(@"Send in Email") : nil;
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:FTLangGet(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:FTLangGet(@"Share on Facebook"), FTLangGet(@"Share on Twitter"), FTLangGet(@"Send as a Postcard"), email, nil];
+    [sheet showFromToolbar:_toolBar];
+}
+
+#pragma mark Action 
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"Button clicked: %d", buttonIndex);
+    if (buttonIndex == 0) { // Facebook
+        [self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareForFacebook:) onTarget:self withObject:[self getAssetForIndex:_currentIndex] animated:YES];
+    }
+    else if (buttonIndex == 1) { // Twitter
+        [self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareForTwitter:) onTarget:self withObject:[self getAssetForIndex:_currentIndex] animated:YES];
+    }
+    else if (buttonIndex == 2) { // Postcard
+        ALAsset *asset = [self getAssetForIndex:_currentIndex];
+        ALAssetRepresentation *rep = [asset defaultRepresentation];
+        CGImageRef iref = [rep fullResolutionImage];
+        SYSincerelyController *controller = [[SYSincerelyController alloc] initWithImages:[NSArray arrayWithObject:[UIImage imageWithCGImage:iref]] product:SYProductTypePostcard applicationKey:[PAConfig sincerelyApiKey] delegate:self];
+        if (controller) {
+            [self presentViewController:controller animated:YES completion:^{
+                
+            }];
+        }
+    }
+    else if (buttonIndex == 3) { // Email
+        if ([MFMailComposeViewController canSendMail]) {
+            [self enableLoadingProgressViewWithTitle:FTLangGet(@"Generating image") withAnimationStyle:FTProgressViewAnimationFade showWhileExecuting:@selector(prepareEmail:) onTarget:self withObject:[self getAssetForIndex:_currentIndex] animated:YES];
+        }
+    }
 }
 
 #pragma mark View Lifecycle
@@ -273,21 +359,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    CGRect r = self.view.bounds;
-    _scrollView = [[FT2PageScrollView alloc] initWithFrame:r];
-    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnScreen:)];
-    [_scrollView addGestureRecognizer:gr];
-    [self.view addSubview:_scrollView];
-    
-    r.origin.y = ([self screenHeight] - 44);
-    r.size.height = 44;
-    _toolBar = [[UIToolbar alloc] initWithFrame:r];
-    [_toolBar setAlpha:0];
-    [_toolBar setTranslucent:YES];
-    [_toolBar setBarStyle:UIBarStyleBlackOpaque];
-    UIBarButtonItem *action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(presentCustomActionSheet)];
-    [_toolBar setItems:[NSArray arrayWithObject:action]];
-    [self.view addSubview:_toolBar];
+    [self createScrollView];
+    [self createToolbar];
+    [self createSharingBlockerView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -297,13 +371,16 @@
     [_scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [_scrollView setDataSource:self];
     [_scrollView setDelegate:self];
+    [_scrollView reloadPageNumber];
+    [_scrollView scrollToPageAtIndex:_currentIndex animated:NO];
     [_scrollView reloadData];
-    [_scrollView scrollToPageAtIndex:_customStartIndex animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(showControls) userInfo:nil repeats:NO];
+    NSInteger number = [self numberOfPagesInPageScrollView:_scrollView];
+    [self setTitle:[NSString stringWithFormat:@"%d of %d", (_currentIndex + 1), number]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -332,8 +409,7 @@
 
 - (void)setStartIndex:(NSInteger)index {
     _customStartIndex = index;
-    NSInteger number = [self numberOfPagesInPageScrollView:_scrollView];
-    [self setTitle:[NSString stringWithFormat:@"%d of %d", (index + 1), number]];
+    _currentIndex = index;
 }
 
 #pragma mark Gesture recognizer action methods
@@ -347,7 +423,7 @@
 - (FT2PageView *)pageScrollView:(FT2PageScrollView *)scrollView viewForPageAtIndex:(NSInteger)index reusedView:(UIView *)view {
     static NSString *reuseId = @"reuseId";
     FTPhotoBrowserPageView *v = (FTPhotoBrowserPageView *)view;
-    if ([_dataSource respondsToSelector:@selector(photoBrowserViewController:requestsThumbnailImageWithIndex:)]) {
+    if ([_dataSource respondsToSelector:@selector(photoBrowserViewController:requestsThumbnailImageWithIndex:)] && [_dataSource respondsToSelector:@selector(photoBrowserViewController:requestsAssetWithIndex:)]) {
         if (!v) {
             v = [[FTPhotoBrowserPageView alloc] initWithReuseIdentifier:reuseId];
         }
@@ -356,6 +432,7 @@
         [v setFrame:self.view.bounds];
         [v setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
         [v setImage:image];
+        [v setAsset:[_dataSource photoBrowserViewController:self requestsAssetWithIndex:index]];
         return v;
     }
     else return nil;
@@ -369,6 +446,7 @@
 }
 
 - (void)pageScrollView:(FT2PageScrollView *)scrollView didSlideToIndex:(NSInteger)index {
+    _currentIndex = index;
     NSInteger number = [self numberOfPagesInPageScrollView:_scrollView];
     [self setTitle:[NSString stringWithFormat:@"%d of %d", (index + 1), number]];
 }

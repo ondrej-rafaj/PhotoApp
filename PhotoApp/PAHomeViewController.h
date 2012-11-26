@@ -46,6 +46,7 @@
 	PAConfigFlashMode flashMode;
 	UIButton *snapButton;
 	CGFloat optionsTableHeight;
+	CGFloat idealOptionsTableHeight;
 	MBProgressHUD *progressHud;
 	
 	UIView *galleryMainView;

@@ -57,6 +57,9 @@
 		[_valueSlider setFrame:r];
 		[self addSubview:_valueSlider];
 		[_valueSlider setHidden:YES];
+        
+        [self setAutoresizesSubviews:YES];
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     }
     return self;
 }

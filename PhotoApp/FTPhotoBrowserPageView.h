@@ -7,8 +7,13 @@
 //
 
 #import "FT2PageView.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface FTPhotoBrowserPageView : FT2PageView
+
+@interface FTPhotoBrowserPageView : FT2PageView <UIScrollViewDelegate>
+
+
+@property (nonatomic, strong) ALAsset *asset;
 
 - (void)setImage:(UIImage *)image;
 
