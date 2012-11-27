@@ -596,10 +596,11 @@
 			NSLog(@"Did finish picking photo with size: %@", NSStringFromCGSize(processedImage.size));
 			[NSThread detachNewThreadSelector:@selector(startBackgroundSaving:) toTarget:self withObject:processedImage];
 			
-			[progressHud setMode:MBProgressHUDModeIndeterminate];
-			[progressHud setLabelText:@"Saving photo"];
-			[progressHud setDetailsLabelText:@"to the gallery"];
-			[progressHud show:YES];
+            //  "show" cant be called twice with the same style. It only causes ugly flashing of the hud
+//			[progressHud setMode:MBProgressHUDModeIndeterminate];
+//			[progressHud setLabelText:@"Saving photo"];
+//			[progressHud setDetailsLabelText:@"to the gallery"];
+//			[progressHud show:YES];
 		}];
 	}
 }
