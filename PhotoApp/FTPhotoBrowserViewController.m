@@ -322,7 +322,7 @@
 
 - (void)presentActionSheet {
     NSString *email = ([MFMailComposeViewController canSendMail]) ? FTLangGet(@"Send in Email") : nil;
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:FTLangGet(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:FTLangGet(@"Share on Facebook"), FTLangGet(@"Share on Twitter"), FTLangGet(@"Send as a Postcard"), email, nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:FTLangGet(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:FTLangGet(@"Share on Facebook"), FTLangGet(@"Share on Twitter"), FTLangGet(@"Send as Postcard"), email, nil];
     [sheet showFromToolbar:_toolBar];
 }
 
