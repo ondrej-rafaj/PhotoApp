@@ -9,6 +9,9 @@
 #import "FTAppDelegate.h"
 #import <Accelerate/Accelerate.h>
 
+@interface UIViewController (OrientationFix)
+
+@end
 
 @class PAHomeViewController;
 

@@ -13,6 +13,14 @@
 #import "PAConfig.h"
 #import "UINavigationController+RotationIn_IOS6.h"
 
+@implementation UIViewController (OrientationFix)
+
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+//{
+//	return UIInterfaceOrientationPortrait;
+//}
+
+@end
 
 @implementation PAAppDelegate
 

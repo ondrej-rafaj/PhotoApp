@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>B&amp;W Pro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Color Pro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Lomo Pro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Noir Pro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Sepia Pro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Sketch Pro.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4C519B681552F0910050D4B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C519BC9155347FE0050D4B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C519D1B15563BD00050D4B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C558F6615A467EF0047B108</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C9575881540A85100A7141E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C9575A91540A85200A7141E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4CAF462D15A2EBAF002B5DAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
