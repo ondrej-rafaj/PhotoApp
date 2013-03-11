@@ -255,6 +255,8 @@
 	[optionsTable.layer setCornerRadius:15];
 	[optionsTable.layer setBorderWidth:1];
 	[optionsTable.layer setBorderColor:[UIColor darkGrayColor].CGColor];
+	optionsTable.layer.shouldRasterize = 1;
+	optionsTable.layer.rasterizationScale = [UIScreen mainScreen].scale;
 	[cameraMainView addSubview:optionsTable];
 }
 

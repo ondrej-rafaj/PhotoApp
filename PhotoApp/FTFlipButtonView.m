@@ -24,6 +24,9 @@
 - (void)configureSideView:(UIView *)view {
 	[view.layer setCornerRadius:5];
 	[view setClipsToBounds:YES];
+	view.layer.shouldRasterize = 1;
+	view.layer.rasterizationScale = [UIScreen mainScreen].scale;
+
 }
 
 #pragma mark Button actions

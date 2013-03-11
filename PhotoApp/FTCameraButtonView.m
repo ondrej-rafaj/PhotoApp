@@ -24,6 +24,8 @@
 		[self setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
 		[self addTarget:self action:@selector(didPressDown:) forControlEvents:UIControlEventTouchDown];
 		[self addTarget:self action:@selector(didPressUp:) forControlEvents:UIControlEventTouchUpInside];
+		self.layer.shouldRasterize = 1;
+		self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 	}
 	return self;
 }
