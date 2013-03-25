@@ -7,18 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15123D3216EEBECD00A667C3 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3016EEBECD00A667C3 /* libFTLibrary.a */; };
-		15123D3316EEBECD00A667C3 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3116EEBECD00A667C3 /* libGPUImage.a */; };
-		1574425416EECA8600A6FBB2 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3016EEBECD00A667C3 /* libFTLibrary.a */; };
-		1574425516EECA8600A6FBB2 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3116EEBECD00A667C3 /* libGPUImage.a */; };
-		1574425616EECA8700A6FBB2 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3016EEBECD00A667C3 /* libFTLibrary.a */; };
-		1574425716EECA8700A6FBB2 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3116EEBECD00A667C3 /* libGPUImage.a */; };
-		1574425816EECA8800A6FBB2 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3016EEBECD00A667C3 /* libFTLibrary.a */; };
-		1574425916EECA8800A6FBB2 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3116EEBECD00A667C3 /* libGPUImage.a */; };
-		1574425A16EECA8800A6FBB2 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3016EEBECD00A667C3 /* libFTLibrary.a */; };
-		1574425B16EECA8900A6FBB2 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3116EEBECD00A667C3 /* libGPUImage.a */; };
-		1574425C16EECA8900A6FBB2 /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3016EEBECD00A667C3 /* libFTLibrary.a */; };
-		1574425D16EECA8900A6FBB2 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15123D3116EEBECD00A667C3 /* libGPUImage.a */; };
 		3DC2B60E1663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
 		3DC2B60F1663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
 		3DC2B6101663EA62000BED73 /* PA_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60C1663EA62000BED73 /* PA_logo.png */; };
@@ -33,6 +21,14 @@
 		3DC2B6191663EA62000BED73 /* PA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */; };
 		3DC2B6231663EDEC000BED73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B6221663EDEC000BED73 /* Default-568h@2x.png */; };
 		3DC2B6251663EDF9000BED73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC2B6241663EDF9000BED73 /* Default-568h@2x.png */; };
+		4BFEF06E1700C1A5006D8BDE /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06C1700C1A5006D8BDE /* libFTLibrary.a */; };
+		4BFEF06F1700C1A5006D8BDE /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06D1700C1A5006D8BDE /* libGPUImage.a */; };
+		4BFEF0701700C821006D8BDE /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06C1700C1A5006D8BDE /* libFTLibrary.a */; };
+		4BFEF0711700C821006D8BDE /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06D1700C1A5006D8BDE /* libGPUImage.a */; };
+		4BFEF0721700C8EA006D8BDE /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06C1700C1A5006D8BDE /* libFTLibrary.a */; };
+		4BFEF0731700C8EA006D8BDE /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06D1700C1A5006D8BDE /* libGPUImage.a */; };
+		4BFEF0741700CA8C006D8BDE /* libFTLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06C1700C1A5006D8BDE /* libFTLibrary.a */; };
+		4BFEF0751700CA8C006D8BDE /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFEF06D1700C1A5006D8BDE /* libGPUImage.a */; };
 		4C14E83D15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
 		4C14E83E15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
 		4C14E83F15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */; };
@@ -839,12 +835,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15123D3016EEBECD00A667C3 /* libFTLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFTLibrary.a; path = "/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos/libFTLibrary.a"; sourceTree = "<absolute>"; };
-		15123D3116EEBECD00A667C3 /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGPUImage.a; path = "/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos/libGPUImage.a"; sourceTree = "<absolute>"; };
 		3DC2B60C1663EA62000BED73 /* PA_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PA_logo.png; sourceTree = "<group>"; };
 		3DC2B60D1663EA62000BED73 /* PA_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PA_logo@2x.png"; sourceTree = "<group>"; };
 		3DC2B6221663EDEC000BED73 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3DC2B6241663EDF9000BED73 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4BFEF06C1700C1A5006D8BDE /* libFTLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFTLibrary.a; path = "/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos/libFTLibrary.a"; sourceTree = "<absolute>"; };
+		4BFEF06D1700C1A5006D8BDE /* libGPUImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGPUImage.a; path = "/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos/libGPUImage.a"; sourceTree = "<absolute>"; };
 		4C14E83B15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPUImageStillCamera+LowPixelHandling.h"; sourceTree = "<group>"; };
 		4C14E83C15593707008A9D54 /* GPUImageStillCamera+LowPixelHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GPUImageStillCamera+LowPixelHandling.m"; sourceTree = "<group>"; };
 		4C14E86915596BC3008A9D54 /* GPUImageLomoFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageLomoFilter.h; sourceTree = "<group>"; };
@@ -1056,6 +1052,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BFEF0721700C8EA006D8BDE /* libFTLibrary.a in Frameworks */,
+				4BFEF0731700C8EA006D8BDE /* libGPUImage.a in Frameworks */,
 				4C519B7F1552F0910050D4B5 /* Sincerely.framework in Frameworks */,
 				4C519B801552F0910050D4B5 /* CoreImage.framework in Frameworks */,
 				4C519B811552F0910050D4B5 /* MediaPlayer.framework in Frameworks */,
@@ -1084,8 +1082,6 @@
 				4C519B9A1552F0910050D4B5 /* Foundation.framework in Frameworks */,
 				4C519B9B1552F0910050D4B5 /* CoreGraphics.framework in Frameworks */,
 				54ED4AB916624173006F0478 /* Social.framework in Frameworks */,
-				1574425416EECA8600A6FBB2 /* libFTLibrary.a in Frameworks */,
-				1574425516EECA8600A6FBB2 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,8 +1117,6 @@
 				4C519BFB155347FE0050D4B5 /* Foundation.framework in Frameworks */,
 				4C519BFC155347FE0050D4B5 /* CoreGraphics.framework in Frameworks */,
 				54ED4ABA16624173006F0478 /* Social.framework in Frameworks */,
-				1574425A16EECA8800A6FBB2 /* libFTLibrary.a in Frameworks */,
-				1574425B16EECA8900A6FBB2 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1130,6 +1124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BFEF0741700CA8C006D8BDE /* libFTLibrary.a in Frameworks */,
+				4BFEF0751700CA8C006D8BDE /* libGPUImage.a in Frameworks */,
 				4C519D3215563BD00050D4B5 /* Sincerely.framework in Frameworks */,
 				4C519D3315563BD00050D4B5 /* CoreImage.framework in Frameworks */,
 				4C519D3415563BD00050D4B5 /* MediaPlayer.framework in Frameworks */,
@@ -1158,8 +1154,6 @@
 				4C519D4D15563BD00050D4B5 /* Foundation.framework in Frameworks */,
 				4C519D4E15563BD00050D4B5 /* CoreGraphics.framework in Frameworks */,
 				54ED4ABB16624174006F0478 /* Social.framework in Frameworks */,
-				1574425816EECA8800A6FBB2 /* libFTLibrary.a in Frameworks */,
-				1574425916EECA8800A6FBB2 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1161,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BFEF06E1700C1A5006D8BDE /* libFTLibrary.a in Frameworks */,
+				4BFEF06F1700C1A5006D8BDE /* libGPUImage.a in Frameworks */,
 				4C558F7E15A467EF0047B108 /* Sincerely.framework in Frameworks */,
 				4C558F7F15A467EF0047B108 /* CoreImage.framework in Frameworks */,
 				4C558F8015A467EF0047B108 /* MediaPlayer.framework in Frameworks */,
@@ -1195,8 +1191,6 @@
 				4C558F9915A467EF0047B108 /* Foundation.framework in Frameworks */,
 				4C558F9A15A467EF0047B108 /* CoreGraphics.framework in Frameworks */,
 				54ED4ABD16624175006F0478 /* Social.framework in Frameworks */,
-				1574425616EECA8700A6FBB2 /* libFTLibrary.a in Frameworks */,
-				1574425716EECA8700A6FBB2 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1204,8 +1198,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15123D3216EEBECD00A667C3 /* libFTLibrary.a in Frameworks */,
-				15123D3316EEBECD00A667C3 /* libGPUImage.a in Frameworks */,
+				4BFEF0701700C821006D8BDE /* libFTLibrary.a in Frameworks */,
+				4BFEF0711700C821006D8BDE /* libGPUImage.a in Frameworks */,
 				54ED4AB81662416A006F0478 /* Social.framework in Frameworks */,
 				4C5F711E1551FF3C00B691B2 /* Sincerely.framework in Frameworks */,
 				4C5F71191551DD5900B691B2 /* CoreImage.framework in Frameworks */,
@@ -1278,8 +1272,6 @@
 				4CAF466015A2EBAF002B5DAA /* Foundation.framework in Frameworks */,
 				4CAF466115A2EBAF002B5DAA /* CoreGraphics.framework in Frameworks */,
 				54ED4ABC16624174006F0478 /* Social.framework in Frameworks */,
-				1574425C16EECA8900A6FBB2 /* libFTLibrary.a in Frameworks */,
-				1574425D16EECA8900A6FBB2 /* libGPUImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1560,8 +1552,8 @@
 		4C95758C1540A85100A7141E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				15123D3016EEBECD00A667C3 /* libFTLibrary.a */,
-				15123D3116EEBECD00A667C3 /* libGPUImage.a */,
+				4BFEF06C1700C1A5006D8BDE /* libFTLibrary.a */,
+				4BFEF06D1700C1A5006D8BDE /* libGPUImage.a */,
 				54ED4AB71662416A006F0478 /* Social.framework */,
 				4C5F711D1551FF3C00B691B2 /* Sincerely.framework */,
 				4C5F71181551DD5900B691B2 /* CoreImage.framework */,
@@ -2929,7 +2921,7 @@
 					"../FTLibrary/**",
 				);
 				INFOPLIST_FILE = "Bundles/SepiaPro/App/PhotoApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
@@ -2938,6 +2930,7 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -2946,6 +2939,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "C2E0650C-2322-4086-8FD6-1EDEE33406A5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C2E0650C-2322-4086-8FD6-1EDEE33406A5";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -2999,6 +2993,7 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3072,6 +3067,7 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3145,14 +3141,16 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Noir Pro";
-				PROVISIONING_PROFILE = "674F401D-C2E1-4AE6-B7F4-8C278D9C4AAA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "674F401D-C2E1-4AE6-B7F4-8C278D9C4AAA";
+				PROVISIONING_PROFILE = "CAB4DCBB-6FFF-46B2-AA01-8655A85B9A3D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CAB4DCBB-6FFF-46B2-AA01-8655A85B9A3D";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3184,6 +3182,7 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3223,14 +3222,15 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "B&W Pro";
-				PROVISIONING_PROFILE = "DCE9C236-02F4-4128-AAC5-2F53C84D95F1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DCE9C236-02F4-4128-AAC5-2F53C84D95F1";
+				PROVISIONING_PROFILE = "F2430FC6-7792-4D51-AB38-F02C0ABBCECB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F2430FC6-7792-4D51-AB38-F02C0ABBCECB";
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3330,6 +3330,7 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3369,14 +3370,15 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Sketch Pro";
-				PROVISIONING_PROFILE = "7ED9D0E8-24F9-4195-B4CC-807BEC1AF8E9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7ED9D0E8-24F9-4195-B4CC-807BEC1AF8E9";
+				PROVISIONING_PROFILE = "D0CE549D-E3A9-455E-B290-9A04677D1AF9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D0CE549D-E3A9-455E-B290-9A04677D1AF9";
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3408,6 +3410,7 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3416,6 +3419,7 @@
 				PRODUCT_NAME = "Noir Pro";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3447,14 +3451,16 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Noir Pro";
-				PROVISIONING_PROFILE = "0775F3FE-150B-4EFC-AC3F-8223AF8393ED";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0775F3FE-150B-4EFC-AC3F-8223AF8393ED";
+				PROVISIONING_PROFILE = "CAB4DCBB-6FFF-46B2-AA01-8655A85B9A3D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CAB4DCBB-6FFF-46B2-AA01-8655A85B9A3D";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3544,7 +3550,7 @@
 					"../FTLibrary/**",
 				);
 				INFOPLIST_FILE = "Bundles/SepiaPro/App/PhotoApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
@@ -3553,6 +3559,7 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3561,6 +3568,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3583,7 +3591,7 @@
 					"../FTLibrary/**",
 				);
 				INFOPLIST_FILE = "Bundles/SepiaPro/App/PhotoApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/DerivedData/RunMe/Build/Products/Debug-iphoneos\"",
@@ -3592,14 +3600,16 @@
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-fsvkqgjfxpwkklhatfnleqphmajm/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RunMe-ffckjajpxjsaymcsdutjzjjmijqu/Build/Products/Debug-iphoneos\"",
 					"\"/Users/pro/Library/Developer/Xcode/DerivedData/RunMe-bxmpcsieaqgybsbhtkizebjfedcq/Build/Products/Debug-iphoneos\"",
+					"\"/Users/arashi/Library/Developer/Xcode/DerivedData/RunMe-azyixsqxkveflpawpyamtbjkhqwn/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0775F3FE-150B-4EFC-AC3F-8223AF8393ED";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0775F3FE-150B-4EFC-AC3F-8223AF8393ED";
+				PROVISIONING_PROFILE = "18D22612-3728-4DC2-8FDE-632DAC215C9B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18D22612-3728-4DC2-8FDE-632DAC215C9B";
+				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "./Thirdparty/GPUImage/framework/** ../FTLibrary/**";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
